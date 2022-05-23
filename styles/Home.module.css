@@ -1,116 +1,378 @@
-.container {
-  padding: 0 2rem;
-}
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
 
 .main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.footer {
-  display: flex;
-  flex: 1;
-  padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
-  justify-content: center;
-  align-items: center;
+.maindiv,
+.div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 75vh;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+.div {
+    background-image: none;
+    min-height: fit-content;
 }
 
-.title a {
-  color: #0070f3;
-  text-decoration: none;
+.titlediv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0 2rem;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+.buttondiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    column-gap: 2rem;
+    margin-top: 1rem;
+    row-gap: 0;
 }
 
 .title,
-.description {
-  text-align: center;
+.smalltitle {
+    margin: 0;
+    font-size: 6rem;
+    text-align: center;
+    width: 80%;
+    font-family: "Inter", sans-serif;
 }
 
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
+.smalltitle {
+    font-size: 3rem;
 }
 
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+.text,
+.subtitle {
+    margin: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    width: 80%;
+}
+
+.nav {
+    height: fit-content;
+    width: 100vw;
+    padding: 1rem;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.navlinks {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50vw;
+    padding: 1rem;
+    column-gap: 2rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.link {
+    transition: 0.3s;
+}
+
+.link:hover {
+    color: #ffb13d;
+}
+
+.imglink {
+    display: flex;
+    vertical-align: middle;
+}
+
+.speciallink,
+.button,
+.buttonwhite {
+    color: #1f2937;
+    background-color: #ffb13d;
+    border-radius: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    transition: 0.3s;
+}
+
+.speciallink:hover,
+.button:hover {
+    background-color: #fda521;
+}
+
+.button:hover,
+.buttonwhite:hover {
+    box-shadow: 0 20px 35px 0 rgb(0 0 0 / 10%);
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.button,
+.buttonwhite {
+    border: none;
+    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+}
+
+.buttonwhite {
+    background-color: #ffffff;
 }
 
 .grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 70%;
+    margin: 0 2rem;
+    margin-top: 2rem;
+    column-gap: 2rem;
 }
 
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+.griditem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0.3rem;
+    border: #a0a0a0 solid 1px;
+    padding: 1.5rem 2rem;
+    background-color: #ffb13d;
 }
 
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
+.griditem h6,
+.griditem p {
+    font-size: 1.2rem;
+    margin: 0;
+    text-align: center;
 }
 
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
+.footer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 80vw;
+    margin-top: 10rem;
+    margin-bottom: 3rem;
+    font-size: 1rem;
+    border-top: #696969 solid 1px;
+    padding-top: 3rem;
+    align-items: center;
+    justify-items: center;
 }
 
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+.footeritemcol,
+.footeritemrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: fit-content;
 }
 
-.logo {
-  height: 1em;
-  margin-left: 0.5rem;
+.footeritemrow {
+    flex-direction: row;
+}
+
+.footeritemcol p,
+.footeritemrow p {
+    margin: 0;
+}
+
+.subfooteritem {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 2rem;
+}
+
+.footerlink {
+    transition: 0.3s;
+}
+
+.footerlink:hover {
+    color: #ffb13d;
+}
+
+.fadein {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem;
+    margin-top: 0;
+    margin-bottom: 4rem;
+    font-size: 2rem;
+    text-align: center;
+    width: 80%;
+}
+
+.fadein span {
+    animation: fadeEffect 12.5s linear infinite 0s;
+    color: #ffb13d;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+.fadein span:nth-child(2) {
+    animation-delay: 2.5s;
+    -ms-animation-delay: 2.5s;
+    -webkit-animation-delay: 2.5s;
+}
+
+.fadein span:nth-child(3) {
+    animation-delay: 5s;
+    -ms-animation-delay: 5s;
+    -webkit-animation-delay: 5s;
+}
+
+.fadein span:nth-child(4) {
+    animation-delay: 7.5s;
+    -ms-animation-delay: 7.5s;
+    -webkit-animation-delay: 7.5s;
+}
+
+.fadein span:nth-child(5) {
+    animation-delay: 10s;
+    -ms-animation-delay: 10s;
+    -webkit-animation-delay: 10s;
+}
+
+.fadein span:nth-child(6) {
+    animation-delay: 12.5s;
+    -ms-animation-delay: 12.5s;
+    -webkit-animation-delay: 12.5s;
+}
+
+@media (max-width: 1000px) {
+    .navlinks {
+        width: 100vw;
+    }
+}
+
+@media (max-width: 800px) {
+    .title {
+        font-size: 4rem;
+        width: 100%;
+    }
+
+    .subtitle,
+    .fadein {
+        width: 100%;
+    }
+
+    .maindiv,
+    .div {
+        min-height: 90vh;
+    }
 }
 
 @media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
+    .nav {
+        justify-content: flex-start;
+    }
+
+    .navlinks {
+        font-size: 1rem;
+        column-gap: 0.7rem;
+        padding: 1rem;
+        margin-left: 1.5rem;
+    }
+
+    .title {
+        width: 100%;
+        text-align: center;
+    }
+
+    .titlediv {
+        margin: 0 1.5rem;
+    }
+
+    .buttondiv {
+        flex-direction: column;
+        row-gap: 1rem;
+        column-gap: 0;
+    }
+
+    .grid {
+        width: 90%;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        row-gap: 1rem;
+        column-gap: 0;
+    }
+
+    .footer {
+        margin-top: 5rem;
+        font-size: 0.7rem;
+        padding-left: 1rem;
+    }
+
+    .subfooteritem {
+        margin-left: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .title {
+        font-size: 3.5rem;
+    }
+
+    .text,
+    .button,
+    .buttonwhite,
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .fadein {
+        font-size: 1.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .griditem {
+        font-size: 1rem;
+    }
+}
+
+@keyframes fadeEffect {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    25% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    30% {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+    80% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
 }
