@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
+import Footer from "../components/footer";
+import Topnav from "../components/topnav";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -23,50 +24,7 @@ const Home: NextPage = () => {
             </Head>
 
             <main className={styles.main}>
-                <header className={styles.nav}>
-                    <Link href="/library">
-                        <a>
-                            <Image
-                                src="/logo.png"
-                                alt="NexLiber Logo"
-                                width={80}
-                                height={80}
-                            />
-                        </a>
-                    </Link>
-                    <div className={styles.navlinks}>
-                        <Link href="https://github.com/xyntechx/NexLiber">
-                            <a target="_blank" className={styles.imglink}>
-                                <Image
-                                    src="/github.png"
-                                    width={40}
-                                    height={40}
-                                    alt="NexLiber GitHub Repo"
-                                />
-                            </a>
-                        </Link>
-                        {/* TODO: Discord Server */}
-                        <Link href="/">
-                            <a target="_blank" className={styles.imglink}>
-                                <Image
-                                    src="/discord.png"
-                                    width={40}
-                                    height={40}
-                                    alt="NexLiber Discord Community"
-                                />
-                            </a>
-                        </Link>
-                        {/* TODO: Buy me a coffee */}
-                        <Link href="/">
-                            <a target="_blank" className={styles.link}>
-                                Support
-                            </a>
-                        </Link>
-                        <Link href="/library">
-                            <a className={styles.speciallink}>Browse</a>
-                        </Link>
-                    </div>
-                </header>
+                <Topnav />
                 <section className={styles.maindiv}>
                     <div className={styles.titlediv}>
                         <h1 className={styles.title}>Create to Learn.</h1>
@@ -133,45 +91,7 @@ const Home: NextPage = () => {
                         </div>
                     </div>
                 </section>
-                <footer className={styles.footer}>
-                    <div className={styles.footeritemrow}>
-                        <Image
-                            src="/logo.png"
-                            alt="NexLiber Logo"
-                            width={80}
-                            height={80}
-                        />
-                        <div className={styles.subfooteritem}>
-                            <p>MIT License</p>
-                            <p>Copyright (c) 2022 xyntechx</p>
-                        </div>
-                    </div>
-                    <div className={styles.footeritemcol}>
-                        <Link href="/faq">
-                            <a className={styles.footerlink}>FAQ</a>
-                        </Link>
-                        <br />
-                        {/* TODO: Buy me a coffee */}
-                        <Link href="/">
-                            <a className={styles.footerlink} target="_blank">
-                                Support
-                            </a>
-                        </Link>
-                        <br />
-                        {/* TODO: Discord Server */}
-                        <Link href="/">
-                            <a className={styles.footerlink} target="_blank">
-                                Discord
-                            </a>
-                        </Link>
-                        <br />
-                        <Link href="https://github.com/xyntechx/NexLiber">
-                            <a className={styles.footerlink} target="_blank">
-                                GitHub
-                            </a>
-                        </Link>
-                    </div>
-                </footer>
+                <Footer />
             </main>
         </div>
     );
