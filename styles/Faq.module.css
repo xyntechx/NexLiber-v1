@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+    font-size: 6rem;
+    text-align: center;
+    width: 80%;
+    font-family: "Inter", sans-serif;
+}
+
+.title {
+    font-size: 3rem;
+}
+
+.content {
+    width: 70vw;
+    height: fit-content;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: -5rem;
+}
+
+.question,
+.answer {
+    font-size: 1.2rem;
+    text-align: justify;
+}
+
+.question {
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.answer {
+    margin-left: 20px;
+    margin-top: 0.5rem;
+    background-color: #ffb13d;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+
+.link {
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .content {
+        width: 80vw;
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .question,
+    .answer {
+        font-size: 1rem;
+    }
+}
