@@ -33,12 +33,12 @@
 .question,
 .answer {
     font-size: 1.2rem;
-    text-align: justify;
 }
 
 .question {
     cursor: pointer;
     margin-top: 1.5rem;
+    text-align: left;
 }
 
 .answer {
@@ -47,6 +47,7 @@
     background-color: #ffb13d;
     padding: 0.5rem;
     border-radius: 0.3rem;
+    text-align: justify;
 }
 
 .link {
@@ -67,6 +68,6 @@
 @media (max-width: 400px) {
     .question,
     .answer {
-        font-size: 1rem;
+        font-size: 0.5rem;
     }
 }
