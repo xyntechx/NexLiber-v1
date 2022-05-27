@@ -93,7 +93,9 @@ const FAQ: NextPage = () => {
                             <Link href="/library">
                                 <a className={styles.link}>Library</a>
                             </Link>
-                            ! To become a Creator, create a{" "}
+                            ! Rest assured that all projects created by a
+                            Creator will belong to the Creator. To become a
+                            Creator, create a{" "}
                             <Link href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">
                                 <a className={styles.link} target="_blank">
                                     pull request
