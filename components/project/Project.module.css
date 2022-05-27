@@ -1,0 +1,79 @@
+.project {
+    transition: 0.3s;
+    border: none;
+    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    cursor: pointer;
+    border-radius: 0.4rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.project:hover {
+    box-shadow: 0 20px 35px 0 rgb(0 0 0 / 10%);
+}
+
+.title,
+.text,
+.textGreen,
+.textYellow,
+.textRed {
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.title {
+    font-size: 1.2rem;
+    height: fit-content;
+    margin-bottom: 0;
+}
+
+.textGreen {
+    color: #4ade80;
+    margin-top: 0;
+}
+
+.textYellow {
+    color: #fcd34d;
+    margin-top: 0;
+}
+
+.textRed {
+    color: #f87171;
+    margin-top: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.specs {
+    border-radius: 0.3rem;
+    width: 100%;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #000;
+    color: #fff;
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 1rem;
+    }
+
+    .text,
+    .textGreen,
+    .textYellow,
+    .textRed {
+        font-size: 0.8rem;
+    }
+}
