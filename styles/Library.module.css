@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    margin: 0;
+    font-size: 6rem;
+    text-align: center;
+    width: 80%;
+    font-family: "Inter", sans-serif;
+    font-size: 3rem;
+}
+
+.content {
+    width: 70vw;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: -5rem;
+    column-gap: 3rem;
+    row-gap: 3rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .content {
+        width: 80vw;
+        margin-bottom: 0;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        column-gap: 1.5rem;
+        row-gap: 1.5rem;
+        margin-top: 1rem;
+    }
+}

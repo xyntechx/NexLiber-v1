@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
+import Footer from "../components/footer";
+import Project from "../components/project";
+import Topnav from "../components/topnav";
 import styles from "../styles/Library.module.css";
 
 const Library: NextPage = () => {
@@ -22,7 +23,26 @@ const Library: NextPage = () => {
                 <meta property="og:type" content="website" />
             </Head>
 
-            {/* Library */}
+            <main className={styles.main}>
+                <Topnav />
+                <h1 className={styles.title}>Library</h1>
+                <br />
+                <section className={styles.content}>
+                    <Project
+                        title="Free Scrabble"
+                        description="A one-try, unvalidated Scrabble game written in Python"
+                        field="Vanilla (Python)"
+                        difficulty="Beginner"
+                    />
+                    <Project
+                        title="Personal Portfolio Website"
+                        description="A personal portfolio website built using Next.js"
+                        field="Web Development"
+                        difficulty="Intermediate"
+                    />
+                </section>
+                <Footer />
+            </main>
         </div>
     );
 };
