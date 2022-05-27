@@ -19,7 +19,8 @@
 .text,
 .textGreen,
 .textYellow,
-.textRed {
+.textRed,
+.creator {
     font-size: 1rem;
     text-align: center;
     width: 100%;
@@ -49,6 +50,12 @@
     margin-top: 0;
 }
 
+.creator {
+    text-align: right;
+    color: #696969;
+    margin-bottom: 0;
+}
+
 .hidden {
     display: none;
 }
@@ -73,7 +80,8 @@
     .text,
     .textGreen,
     .textYellow,
-    .textRed {
+    .textRed,
+    .creator {
         font-size: 0.8rem;
     }
 }

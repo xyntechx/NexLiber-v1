@@ -33,12 +33,14 @@ const Library: NextPage = () => {
                         description="A one-try, unvalidated Scrabble game written in Python"
                         field="Vanilla (Python)"
                         difficulty="Beginner"
+                        creator="Nyx Iskandar"
                     />
                     <Project
                         title="Personal Portfolio Website"
                         description="A personal portfolio website built using Next.js"
                         field="Web Development"
                         difficulty="Intermediate"
+                        creator="Nyx Iskandar"
                     />
                 </section>
                 <Footer />

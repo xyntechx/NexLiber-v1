@@ -7,11 +7,13 @@ const Project = ({
     description,
     field,
     difficulty,
+    creator,
 }: {
     title: string;
     description: string;
     field: string;
     difficulty: string;
+    creator: string;
 }) => {
     const [url, setUrl] = useState(title.toLowerCase().split(" ").join("-"));
 
@@ -50,6 +52,7 @@ const Project = ({
                         Advanced
                     </p>
                 </span>
+                <p className={styles.creator}>Creator: {creator}</p>
             </a>
         </Link>
     );
