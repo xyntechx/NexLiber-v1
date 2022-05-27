@@ -63,6 +63,11 @@
         width: 80vw;
         margin-bottom: 0;
     }
+
+    .question,
+    .answer {
+        font-size: 0.5rem;
+    }
 }
 
 @media (max-width: 400px) {
