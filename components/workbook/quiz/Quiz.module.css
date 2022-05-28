@@ -1,0 +1,44 @@
+.container {
+    width: 70vw;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #000;
+    color: #fff;
+}
+
+.text,
+.choice {
+    margin: 0.5rem 0;
+    text-align: left;
+    font-size: 1rem;
+}
+
+.choice {
+    width: 100%;
+    border: none;
+    border-radius: 0.3rem;
+    background-color: #ffb13d;
+    transition: 0.3s;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.choice:hover,
+.choice:focus {
+    background-color: #fda521;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 80vw;
+    }
+
+    .text,
+    .choice {
+        font-size: 0.8rem;
+    }
+}
