@@ -22,7 +22,7 @@
 
 .content {
     width: 70vw;
-    height: fit-content;
+    min-height: 40vh;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
