@@ -43,8 +43,7 @@ const Home: NextPage = () => {
                             <Link href="/library">
                                 <a className={styles.button}>Get Started</a>
                             </Link>
-                            {/* TODO: Discord Server */}
-                            <Link href="/">
+                            <Link href="https://discord.gg/CvZGEjyzbR">
                                 <a
                                     target="_blank"
                                     className={styles.buttonwhite}

@@ -26,6 +26,4 @@ Your project will undergo some checks to ensure that it is fully functional. Onc
 Upon merging, you will be assigned an Editor to monitor your progress in drafting the Workbook of your project. Once you have completed your Workbook, it will be put up on NexLiber, and you will be a published NexLiber Creator!
 
 ## Discord Community
-If you have any questions regarding this process or NexLiber in general, raise it up on our [Discord]()!
-
-<!-- TODO: Discord Server -->
+If you have any questions regarding this process or NexLiber in general, raise it up on our [Discord](https://discord.gg/CvZGEjyzbR)!

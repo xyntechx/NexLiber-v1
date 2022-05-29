@@ -27,8 +27,7 @@ const Topnav: NextPage = () => {
                         />
                     </a>
                 </Link>
-                {/* TODO: Discord Server */}
-                <Link href="/">
+                <Link href="https://discord.gg/CvZGEjyzbR">
                     <a target="_blank" className={styles.imglink}>
                         <Image
                             src="/discord.png"
@@ -38,8 +37,7 @@ const Topnav: NextPage = () => {
                         />
                     </a>
                 </Link>
-                {/* TODO: Buy me a coffee */}
-                <Link href="/">
+                <Link href="https://www.buymeacoffee.com/xyntechx">
                     <a target="_blank" className={styles.link}>
                         Sponsor
                     </a>

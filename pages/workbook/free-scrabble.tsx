@@ -233,12 +233,11 @@ else:
                     </p>
 
                     <h1 className={styles.header}>Discord Community</h1>
-                    {/* TODO: Discord Server */}
                     <p className={styles.paragraph}>
                         If you have questions about anything related to NexLiber
                         or this workbook, you&apos;re welcome to ask our
                         community on{" "}
-                        <Link href="/">
+                        <Link href="https://discord.gg/CvZGEjyzbR">
                             <a className={styles.link} target="_blank">
                                 Discord
                             </a>

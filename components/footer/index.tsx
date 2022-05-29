@@ -24,15 +24,13 @@ const Footer: NextPage = () => {
                     <a className={styles.footerlink}>FAQ</a>
                 </Link>
                 <br />
-                {/* TODO: Buy me a coffee */}
-                <Link href="/">
+                <Link href="https://www.buymeacoffee.com/xyntechx">
                     <a className={styles.footerlink} target="_blank">
                         Sponsor
                     </a>
                 </Link>
                 <br />
-                {/* TODO: Discord Server */}
-                <Link href="/">
+                <Link href="https://discord.gg/CvZGEjyzbR">
                     <a className={styles.footerlink} target="_blank">
                         Discord
                     </a>

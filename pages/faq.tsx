@@ -46,7 +46,6 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>Why learn with NexLiber?</summary>
                         <div className={styles.answer}>
-                            {/* TODO: Discord Server */}
                             NexLiber is a community-driven project in the sense
                             that Learners, Creators, Developers, and Editors are
                             coders from all over the globe who are
@@ -54,7 +53,7 @@ const FAQ: NextPage = () => {
                             Moreover, NexLiber requires no account creation on
                             the site itself, holding all community discussions
                             and Q&A on our{" "}
-                            <Link href="/">
+                            <Link href="https://discord.gg/CvZGEjyzbR">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -67,7 +66,6 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>How do I get started as a Learner?</summary>
                         <div className={styles.answer}>
-                            {/* TODO: Discord Server */}
                             Visit the{" "}
                             <Link href="/library">
                                 <a className={styles.link}>Library</a>
@@ -75,7 +73,7 @@ const FAQ: NextPage = () => {
                             and try implementing a project! We have projects for
                             beginner, intermediate, and advanced coders in all
                             CS fields. Don&apos;t forget to join our{" "}
-                            <Link href="/">
+                            <Link href="https://discord.gg/CvZGEjyzbR">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -86,7 +84,6 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>How do I become a Creator?</summary>
                         <div className={styles.answer}>
-                            {/* TODO: Discord Server */}
                             Creators are coders who propose already-built
                             projects and curate a Workbook to be included in
                             NexLiber&apos;s{" "}
@@ -102,7 +99,7 @@ const FAQ: NextPage = () => {
                                 </a>
                             </Link>
                             . Also, join our{" "}
-                            <Link href="/">
+                            <Link href="https://discord.gg/CvZGEjyzbR">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -114,15 +111,14 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>How do I become a Developer?</summary>
                         <div className={styles.answer}>
-                            {/* TODO: Discord Server */}
                             Developers are coders experienced in Next.js who
                             help with the development of NexLiber, updating the{" "}
                             <Link href="/library">
                                 <a className={styles.link}>Library</a>
                             </Link>{" "}
                             with new Workbooks and implementing new features on
-                            NexLiber! To become a Creator, join our{" "}
-                            <Link href="/">
+                            NexLiber! To become a Developer, join our{" "}
+                            <Link href="https://discord.gg/CvZGEjyzbR">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -134,13 +130,12 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>How do I become an Editor?</summary>
                         <div className={styles.answer}>
-                            {/* TODO: Discord Server */}
                             Editors are coders who manage and review the
                             Workbook drafts of Creators! To become an Editor,
                             you must first be a Creator who has launched at
                             least 5 Workbooks on NexLiber. You should also join
                             our{" "}
-                            <Link href="/">
+                            <Link href="https://discord.gg/CvZGEjyzbR">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -155,14 +150,13 @@ const FAQ: NextPage = () => {
                             Developer, or Editor?
                         </summary>
                         <div className={styles.answer}>
-                            {/* TODO: Discord Server */}
                             Creators, Developers, and Editors will all earn
                             digital certificates after creating, implementing,
                             and managing at least 1 Workbook respectively. You
                             will also stand to participate in giveaways after
                             referring 5 friends to join NexLiber as Creators
                             (see the #referral channel on{" "}
-                            <Link href="/">
+                            <Link href="https://discord.gg/CvZGEjyzbR">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -175,12 +169,11 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>How can I buy you a coffee?</summary>
                         <div className={styles.answer}>
-                            {/* TODO: Buy me a coffee */}
                             In case you didn&apos;t know, hi! My name is Nyx and
                             I&apos;m the Founder of NexLiber! To support
                             NexLiber and ensure that it reaches and impacts more
                             coders, please support me on{" "}
-                            <Link href="/">
+                            <Link href="https://www.buymeacoffee.com/xyntechx">
                                 <a className={styles.link} target="_blank">
                                     Buy Me a Coffee
                                 </a>
