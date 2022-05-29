@@ -96,7 +96,7 @@ const FAQ: NextPage = () => {
                             ! Rest assured that all projects created by a
                             Creator will belong to the Creator. To become a
                             Creator, create a{" "}
-                            <Link href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">
+                            <Link href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork">
                                 <a className={styles.link} target="_blank">
                                     pull request
                                 </a>
