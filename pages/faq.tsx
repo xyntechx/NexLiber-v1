@@ -95,30 +95,11 @@ const FAQ: NextPage = () => {
                             </Link>
                             ! Rest assured that all projects created by a
                             Creator will belong to the Creator. To become a
-                            Creator, create a{" "}
-                            <Link href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork">
+                            Creator, follow the guide{" "}
+                            <Link href="https://github.com/xyntechx/NexLiber/blob/main/library/README.md">
                                 <a className={styles.link} target="_blank">
-                                    pull request
+                                    here
                                 </a>
-                            </Link>{" "}
-                            on NexLiber&apos;s{" "}
-                            <Link href="https://github.com/xyntechx/NexLiber">
-                                <a className={styles.link} target="_blank">
-                                    GitHub
-                                </a>
-                            </Link>{" "}
-                            repository with your completed project in the{" "}
-                            <Link href="https://github.com/xyntechx/NexLiber/tree/main/library">
-                                <a className={styles.link} target="_blank">
-                                    /library
-                                </a>
-                            </Link>{" "}
-                            directory. Once we approve your pull request, you
-                            can start drafting the Workbook for your project,
-                            and we will provide feedback all the way until the
-                            final draft which will be put up in the{" "}
-                            <Link href="/library">
-                                <a className={styles.link}>Library</a>
                             </Link>
                             . Also, join our{" "}
                             <Link href="/">
