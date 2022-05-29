@@ -30,7 +30,7 @@ const Library: NextPage = () => {
                 <section className={styles.content}>
                     <Project
                         title="Free Scrabble"
-                        description="A one-try, unvalidated Scrabble game written in Python"
+                        description="A one-try, one-player Scrabble game written in Python"
                         field="Vanilla (Python)"
                         difficulty="Beginner"
                         creator="Nyx Iskandar"
