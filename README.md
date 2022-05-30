@@ -1,5 +1,9 @@
 # NexLiber
-> Create to Learn
+<p align="center">
+  <a href="https://nexliber.com/">
+    <img src="https://github.com/xyntechx/NexLiber/blob/main/public/banner.png" alt="NexLiber Banner" width="600"/>
+  </a>
+</p>
 
 [NexLiber](https://nexliber.com) is a comprehensive library of projects to supercharge your learning in all things Computer Science.
 
