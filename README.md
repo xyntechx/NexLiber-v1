@@ -1,4 +1,7 @@
-# NexLiber
+<h1 align="center">
+  NexLiber
+</h1>
+
 <p align="center">
   <a href="https://nexliber.com/">
     <img src="https://github.com/xyntechx/NexLiber/blob/main/public/banner.png" alt="NexLiber Banner" width="600"/>
