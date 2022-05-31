@@ -1,6 +1,7 @@
-.footer {
+.footer,
+.footermobile {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 50% 25% 25%;
     width: 80vw;
     margin-top: 10rem;
     margin-bottom: 3rem;
@@ -9,6 +10,10 @@
     padding-top: 3rem;
     align-items: center;
     justify-items: center;
+}
+
+.footermobile {
+    display: none;
 }
 
 .footeritemcol,
@@ -46,13 +51,28 @@
 }
 
 @media (max-width: 600px) {
-    .footer {
+    .footermobile {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
         margin-top: 5rem;
         font-size: 0.7rem;
-        padding-left: 1rem;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .subfooter {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        align-items: center;
+        justify-items: center;
+        margin-bottom: 2rem;
     }
 
     .subfooteritem {
         margin-left: 1rem;
+        width: 50%;
     }
 }
