@@ -31,9 +31,11 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>What is NexLiber?</summary>
                         <div className={styles.answer}>
-                            NexLiber is a comprehensive library of Computer
-                            Science projects promoting experiential learning
-                            amongst developers (you!). Projects on NexLiber are
+                            NexLiber is a comprehensive library of projects to
+                            supercharge your learning in all things Computer
+                            Science, empowering coders like yourself to master
+                            your skills in any CS field through community-driven
+                            experiential learning. Projects on NexLiber are
                             presented in a &quot;Workbook&quot; form, complete
                             with setup instructions, a full guide to complete
                             the project, milestone quizzes to periodically check
