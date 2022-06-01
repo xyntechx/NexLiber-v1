@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Footer from "../../components/footer";
 import Topnav from "../../components/topnav";
+import Title from "../../components/workbook/title";
 import styles from "../../styles/Workbook.module.css";
 
 const Workbook: NextPage = () => {
@@ -24,7 +25,19 @@ const Workbook: NextPage = () => {
 
             <main className={styles.main}>
                 <Topnav />
-                <h1 className={styles.title}>Personal Portfolio Website</h1>
+
+                <Title
+                    title="Personal Portfolio Website"
+                    description="A personal portfolio website built using Next.js"
+                    field="Web Development"
+                    difficulty="Intermediate"
+                    creator="Nyx Iskandar"
+                />
+
+                <section className={styles.content}>
+                    <h1 className={styles.header}>Coming Soon...</h1>
+                </section>
+
                 <Footer />
             </main>
         </div>
