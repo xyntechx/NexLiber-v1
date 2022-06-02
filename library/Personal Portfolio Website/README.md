@@ -1,5 +1,5 @@
 # Personal Portfolio Website
-A personal portfolio website built using Next.js
+A personal portfolio website built using Next.js.
 
 ## Field
 Web Development
