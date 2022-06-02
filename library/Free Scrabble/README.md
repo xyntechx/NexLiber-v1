@@ -8,4 +8,4 @@ Vanilla (Python)
 Beginner
 
 ## Creator
-[Nyx Iskandar](https://github.com/xyntechx/)
+[Nyx Iskandar](https://github.com/xyntechx/) (xyntechx#1073)

@@ -7,7 +7,7 @@ Since you do not have write access to `xyntechx/NexLiber`, you have to fork this
 ## Add Your Project
 Here are the step-by-step instructions you should follow:
 - Put all the files and folders of your complete working project into one main overarching folder
-- Add a `README.md` file to the root directory of the main folder - follow the format of [this README](https://github.com/xyntechx/NexLiber/blob/main/library/Free%20Scrabble/README.md)
+- Add a `README.md` file to the root directory of the main folder - follow the format of this [template](https://github.com/xyntechx/NexLiber/blob/main/library/TEMPLATE.md)
 - Name the main folder your **Project Title** (e.g. Free Scrabble)
 - Place the main folder into the `/library` directory of your fork
 - Commit your changes with the message "New Project: **Project Title**"
@@ -18,7 +18,8 @@ Now, create a Pull Request (PR) to the original `xyntechx/NexLiber` repository b
 
 Things to note:
 - Title your PR "New Project: **Project Title**"
-- Enter your **project description**, **field**, **difficulty**, and your **name** or **GitHub username** in the comment field
+- Enter the **project description**, **field**, and **difficulty** in the comment field
+- Additionally, enter your **name**, **GitHub username**, and **Discord username** in the comment field too
 
 Your project will undergo some checks to ensure that it is fully functional. Once the checks are complete, your project must be reviewed and approved by an admin before it is merged into the main branch.
 
