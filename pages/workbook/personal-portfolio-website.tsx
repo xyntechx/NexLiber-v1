@@ -374,8 +374,10 @@ export default function Home() {
                     <p className={styles.paragraph}>
                         What this does is set the value of{" "}
                         <span className={styles.highlight}>tab</span> to{" "}
-                        <span className={styles.highlight}>"about"</span>, and
-                        defining a function{" "}
+                        <span className={styles.highlight}>
+                            &quot;about&quot;
+                        </span>
+                        , and define a function{" "}
                         <span className={styles.highlight}>setTab()</span> which
                         changes the value of{" "}
                         <span className={styles.highlight}>tab</span> to the
