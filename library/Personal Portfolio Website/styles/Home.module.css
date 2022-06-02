@@ -58,12 +58,3 @@
 .button:focus {
     background-color: #3396ff;
 }
-
-@media (max-width: 600px) {
-}
-/* @media (max-width: 600px) {
-    .main {
-        flex-direction: column;
-    }
-}
- */
