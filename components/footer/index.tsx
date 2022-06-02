@@ -28,7 +28,7 @@ const Footer: NextPage = () => {
                     <br />
                     <Link href="https://www.buymeacoffee.com/xyntechx">
                         <a className={styles.footerlink} target="_blank">
-                            Support
+                            Buy Me a Coffee
                         </a>
                     </Link>
                     <br />
@@ -69,7 +69,7 @@ const Footer: NextPage = () => {
                         <br />
                         <Link href="https://www.buymeacoffee.com/xyntechx">
                             <a className={styles.footerlink} target="_blank">
-                                Support
+                                Buy Me a Coffee
                             </a>
                         </Link>
                         <br />
