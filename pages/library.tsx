@@ -42,6 +42,13 @@ const Library: NextPage = () => {
                         difficulty="Intermediate"
                         creator="Nyx Iskandar"
                     />
+                    <Project
+                        title="Dragon Ball Classifier"
+                        description="An image classification model for Dragon Ball characters"
+                        field="Machine Learning"
+                        difficulty="Intermediate"
+                        creator="Nyx Iskandar"
+                    />
                 </section>
                 <Footer />
             </main>
