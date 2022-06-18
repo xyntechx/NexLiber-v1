@@ -38,47 +38,53 @@ const Workbook: NextPage = () => {
                 />
 
                 <section className={styles.content}>
-                    <h1 className={styles.header}>Coming Soon...</h1>
-                </section>
-
-                {/* <section className={styles.content}>
                     <h1 className={styles.header}>Setup</h1>
                     <p className={styles.paragraph}>
-                        Make sure that you have installed{" "}
-                        <Link href="https://www.python.org/downloads/">
+                        This project will be done on Google Colaboratory
+                        (Colab), so no installations on your local machine is
+                        necessary. However, you do need to sign in to your
+                        Google Account in order to use Colab. Once you have done
+                        so, visit{" "}
+                        <Link href="https://research.google.com/colaboratory/">
                             <a className={styles.link} target="_blank">
-                                Python
+                                Colab
                             </a>
                         </Link>{" "}
-                        on your machine before getting started with the project.
-                        Also, check that you have a code editor/IDE installed;
-                        if you don&apos;t have one, I recommend installing{" "}
-                        <Link href="https://code.visualstudio.com/download">
+                        and create a new{" "}
+                        <span className={styles.highlight}>.ipynb</span> file by
+                        clicking{" "}
+                        <span className={styles.highlight}>New Notebook</span>.
+                        You will see a new empty notebook with a single empty
+                        code cell.
+                    </p>
+
+                    <h1 className={styles.header}>About the Project</h1>
+                    <p className={styles.paragraph}>
+                        You will be building an image classifier using{" "}
+                        <Link href="https://github.com/fastai/fastai">
                             <a className={styles.link} target="_blank">
-                                Visual Studio Code
+                                fastai
+                            </a>
+                        </Link>{" "}
+                        and{" "}
+                        <Link href="https://pytorch.org/">
+                            <a className={styles.link} target="_blank">
+                                PyTorch
                             </a>
                         </Link>
-                        .
+                        . The machine learning model will be classifying{" "}
+                        <Link href="https://en.dragon-ball-official.com/">
+                            <a className={styles.link} target="_blank">
+                                Dragon Ball
+                            </a>
+                        </Link>{" "}
+                        characters, specifically Goku, Vegeta, Gohan, and
+                        Trunks. If you want to know why Dragon Ball, it&apos;s
+                        because I&apos;m a fan ;).
                     </p>
-                    <p className={styles.paragraph}>
-                        Once you have installed both Python and Visual Studio
-                        Code (or any code editor/IDE of your choice), create a
-                        Python file (a.k.a.{" "}
-                        <span className={styles.highlight}>.py</span> file) and
-                        write
-                    </p>
-                    <Code code={`print("Hello, World!")`} />
-                    <p className={styles.paragraph}>Now, run your code!</p>
-                    <Quiz
-                        question="What do you see in the console?"
-                        choices={[`print("Hello, World!")`, `Hello, World!`]}
-                        correctAnsIndex={1}
-                        correctMessage="Nice! You're on the right track!"
-                        wrongMessage="Oops! Try again!"
-                    />
-                    <p className={styles.paragraph}>
-                        Alright! Let&apos;s get started!
-                    </p>
+                </section>
+
+                {/*
 
                     <h1 className={styles.header}>About the Project</h1>
                     <p className={styles.paragraph}>
