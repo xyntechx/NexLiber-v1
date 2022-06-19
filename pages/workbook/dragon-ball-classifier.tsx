@@ -42,9 +42,9 @@ const Workbook: NextPage = () => {
                     <p className={styles.paragraph}>
                         This project will be done on Google Colaboratory
                         (Colab), so no installations on your local machine is
-                        necessary. However, you do need to sign in to your
-                        Google Account in order to use Colab. Once you have done
-                        so, visit{" "}
+                        necessary. However, you do need to sign into your Google
+                        Account in order to use Colab. Once you have done so,
+                        visit{" "}
                         <Link href="https://research.google.com/colaboratory/">
                             <a className={styles.link} target="_blank">
                                 Colab
@@ -82,159 +82,197 @@ const Workbook: NextPage = () => {
                         Trunks. If you want to know why Dragon Ball, it&apos;s
                         because I&apos;m a fan ;).
                     </p>
-                </section>
 
-                {/*
-
-                    <h1 className={styles.header}>About the Project</h1>
+                    <h1 className={styles.header}>Preparing the Dataset</h1>
                     <p className={styles.paragraph}>
-                        Free Scrabble is a one-try, one-player game such that
-                        the player&apos;s objective is to form the highest
-                        scoring word possible (according to Scrabble letter
-                        values) in one try. The game will give the player 7
-                        random, not necessarily distinct, uppercase letters to
-                        form the word with (the blank tile in Scrabble is
-                        excluded to make the game more challenging). The player
-                        then forms a valid Scrabble word using those letters and
-                        is finally given a score computed based on Scrabble
-                        letter values!
-                    </p>
-                    <p className={styles.paragraph}>
-                        Now that we understand what we&apos;re going to do,
-                        let&apos;s begin coding!
-                    </p>
-
-                    <h1 className={styles.header}>The Constants</h1>
-                    <p className={styles.paragraph}>
-                        In a game of Scrabble, we need all letters from A to Z.
-                        It&apos;ll be good if we could store them in a list, so
-                        let&apos;s do that!
-                    </p>
-                    <Code
-                        code={`letters = [chr(i) for i in range(65, 91)]  # list of uppercase letters (A-Z)`}
-                    />
-                    <p className={styles.paragraph}>
-                        The code above is a list comprehension converting ASCII
-                        codes into characters (strings).
-                    </p>
-                    <p className={styles.paragraph}>
-                        Now, we need to link these letters to their values.
-                        Let&apos;s create another list called{" "}
-                        <span className={styles.highlight}>points</span> and
-                        create a dictionary mapping each letter to its
-                        corresponding value.
-                    </p>
-                    <Code
-                        code={`points = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10]  # list of Scrabble letter values
-letters_points = {letters: points for letters, points in zip(letters, points)} # dictionary of letters and points`}
-                    />
-                    <p className={styles.paragraph}>
-                        We&apos;ll also need a list of valid Scrabble words to
-                        check our answer against. For that, I have included a
-                        text file filled with words{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/blob/main/library/Free%20Scrabble/words.txt">
+                        Our image classifier needs data, specifically images of
+                        the aforementioned Dragon Ball characters, to be trained
+                        on. I have prepared{" "}
+                        <span className={styles.highlight}>.csv</span> files
+                        containing the URLs of various images of each of the 4
+                        Dragon Ball characters{" "}
+                        <Link href="https://github.com/xyntechx/Dragon-Ball-Classifier/tree/main/dragonball">
                             <a className={styles.link} target="_blank">
                                 here
                             </a>
                         </Link>
-                        . Let&apos;s read this file and transfer its contents to
-                        a list.
+                        . Download the files to your local machine, then upload
+                        them onto Colab&apos;s Files side panel in a folder
+                        named{" "}
+                        <span className={styles.highlight}>dragonball</span>.
                     </p>
-                    <Code
-                        code={`words = []
 
-with open("words.txt") as file:  # open words.txt
-    for word in file:
-        words.append(word.strip().upper())  # append all words to an array`}
-                    />
-
-                    <h1 className={styles.header}>Random Letters</h1>
+                    <h1 className={styles.header}>Installations and Imports</h1>
                     <p className={styles.paragraph}>
-                        Since we need 7 random letters, we need Python&apos;s
-                        built-in{" "}
-                        <span className={styles.highlight}>random</span> module.
-                        We don&apos;t need to install anything, but we do need
-                        to import the module, specifically its{" "}
-                        <span className={styles.highlight}>randint()</span>{" "}
-                        method. This is because we&apos;ll be using the random
-                        integer generated to index{" "}
-                        <span className={styles.highlight}>letters</span>.
+                        In the empty code cell in your notebook, you may write
+                        commands to install fastai and PyTorch. To fix
+                        compatibility issues unique for Colab, you will also
+                        need to uninstall several preinstalled packages on
+                        Colab.
                     </p>
                     <Code
-                        code={`from random import randint
-
-inventory = []
-
-for i in range(7):  # pick 7 letters
-    letter = letters[randint(0, len(letters) - 1)]  # pick a random letter from letters
-    inventory.append(letter)  # add letter to inventory`}
+                        code={`!pip uninstall "torchtext" "torchaudio"
+!pip install "torch==1.4.0" "torchvision==0.5.0"
+from fastai.vision import *
+import os`}
                     />
-
-                    <h1 className={styles.header}>Gameplay</h1>
                     <p className={styles.paragraph}>
-                        To start the game off, we will inform the player of the
-                        7 letters they can use, and ask them to input a word.
+                        The <span className={styles.highlight}>!</span> signals
+                        Colab that the line is a command normally run directly
+                        in the terminal, not code in the traditional sense.
+                    </p>
+
+                    <h1 className={styles.header}>Building the Dataset</h1>
+                    <p className={styles.paragraph}>
+                        Currently, we only have the URLs of the images to train
+                        our model on, not the images themselves. We will be
+                        downloading the images of each character to Colab into
+                        separate subfolders of{" "}
+                        <span className={styles.highlight}>/dragonball</span>.
+                        First things first, let&apos;s create the subfolders.
                     </p>
                     <Code
-                        code={`print("Possible letters to use:", inventory)
-word = input("Enter word: ").strip().upper()`}
+                        code={`for character in characters:
+    path = Path("dragonball")
+    dest = path/character
+    dest.mkdir(parents=True, exist_ok=True)`}
                     />
-                    <br />
+                    <p className={styles.paragraph}>
+                        Wait! We haven&apos;t assigned a value to the list named{" "}
+                        <span className={styles.highlight}>characters</span>!
+                        Given that it needs to contain the names of the
+                        characters we want to classify, what should be the value
+                        of <span className={styles.highlight}>characters</span>?
+                    </p>
                     <Quiz
-                        question={`What is the purpose of "Enter word: " in input()`}
+                        question="characters = "
                         choices={[
-                            `It is a prompt to alert the player on what to do`,
-                            `It is the value that will be passed into the variable word`,
-                            `It is for the coder to know what the use of input() in this case is`,
+                            `["goku", "gohan", "trunks"]`,
+                            `["vegeta", "piccolo", "gohan", "trunks"]`,
+                            `["vegeta", "goku", "gohan", "trunks"]`,
+                        ]}
+                        correctAnsIndex={2}
+                        correctMessage="That's right! We will be training the model to identify Vegeta, Goku, Gohan, and Trunks."
+                        wrongMessage="Are you sure?"
+                    />
+                    <p className={styles.paragraph}>
+                        Now, we have to download the images using the URLs in
+                        the <span className={styles.highlight}>.csv</span>{" "}
+                        files.
+                    </p>
+                    <Code
+                        code={`for character in characters:
+    path = Path("dragonball")
+    csv_file = Path("dragonball/" + character + ".csv")
+    dest = path/character
+    download_images(csv_file, dest, max_pics=100)`}
+                    />
+                    <p className={styles.paragraph}>
+                        We also have to remove any images which can&apos;t be
+                        opened so that our model can be trained smoothly.
+                    </p>
+                    <Code
+                        code={`for character in characters:
+    path = Path("dragonball")
+    verify_images(path/character, delete=True, max_size=500)`}
+                    />
+
+                    <h1 className={styles.header}>Training the Model</h1>
+                    <p className={styles.paragraph}>
+                        Now that we have our dataset, we can train the image
+                        classification model.
+                    </p>
+                    <Code
+                        code={`data = ImageDataBunch.from_folder(path, train=".", valid_pct=0.2, ds_tfms=get_transforms(), size=224, num_workers=4).normalize(imagenet_stats)
+learner = cnn_learner(data, models.resnet101, metrics=accuracy)
+learner.fit_one_cycle(20)`}
+                    />
+                    <p className={styles.paragraph}>
+                        The first line grabs all the valid images from{" "}
+                        <span className={styles.highlight}>/dragonball</span>{" "}
+                        and labels each of them with the names of their
+                        corresponding characters. The second line creates the
+                        model with ResNet101, a convolutional neural network
+                        with 101 layers, as its backbone. Can you guess what the
+                        third line does?
+                    </p>
+                    <Quiz
+                        question="The third line..."
+                        choices={[
+                            `trains the model in 20 epochs or "rounds"`,
+                            `creates 20 models and chooses the best one`,
+                            `repeatedly trains the model in 20 minutes`,
                         ]}
                         correctAnsIndex={0}
-                        correctMessage="Correct! The argument inside input() is a prompt and will not be passed into the variable word."
-                        wrongMessage="That's not quite right. Try again!"
+                        correctMessage="Correct!"
+                        wrongMessage="Try Again!"
                     />
+
+                    <h1 className={styles.header}>Interpreting the Results</h1>
                     <p className={styles.paragraph}>
-                        Let&apos;s also define a variable called{" "}
-                        <span className={styles.highlight}>score</span> which
-                        holds an integer that is the player&apos;s score.
-                    </p>
-                    <Code code={`score = 0`} />
-                    <p className={styles.paragraph}>
-                        Now, we check whether the word is a valid Scrabble word
-                        by determining whether the word is in the{" "}
-                        <span className={styles.highlight}>words</span> list. If
-                        it is, we loop over every character of the inputted word
-                        and see whether the character is in{" "}
-                        <span className={styles.highlight}>inventory</span>. If
-                        it is, we remove the character from{" "}
-                        <span className={styles.highlight}>inventory</span> and
-                        add the character&apos;s value to{" "}
-                        <span className={styles.highlight}>score</span>.
-                    </p>
-                    <p className={styles.paragraph}>
-                        If all goes well, we print out the player&apos;s score.
+                        Good job! Your model can now identify four Dragon Ball
+                        characters! To get a visualisation of how accurate it
+                        is, run the following code.
                     </p>
                     <Code
-                        code={`if word in words:  # if the user creates a valid word
-    for char in word:
-        if char not in inventory:  # if the user enters an invalid letter
-            print("Please only use the letters in your inventory")
-            break
-        else:
-            inventory.remove(char)  # ensure the user only uses each occurrence of a letter once
-            score += letters_points[char]
-    else:  # if all letters are valid
-        print("Good game! Your score is", score, ":D")
-else:
-    print("Remember to make a valid word!")`}
+                        code={`interp = ClassificationInterpretation.from_learner(learner)
+interp.plot_confusion_matrix()`}
+                    />
+
+                    <h1 className={styles.header}>Testing the Model</h1>
+                    <p className={styles.paragraph}>
+                        Now, I&apos;m sure that you&apos;d want to see your
+                        model in action on random images of the four characters
+                        not found in the dataset you&apos;ve created. I have
+                        prepared exactly that{" "}
+                        <Link href="https://github.com/xyntechx/Dragon-Ball-Classifier/tree/main/test">
+                            <a className={styles.link} target="_blank">
+                                here
+                            </a>
+                        </Link>
+                        . Download the 4 images and upload them onto
+                        Colab&apos;s Files side panel in a folder named{" "}
+                        <span className={styles.highlight}>test</span>. Images
+                        1, 2, 3, and 4 are images of Vegeta, Goku, Gohan, and
+                        Trunks respectively.
+                    </p>
+                    <Code
+                        code={`model = load_learner(path)
+
+for i in range(4):
+    img_path = "test/" + str(i+1) + ".png"
+    img = open_image(img_path)
+    pred_class, pred_idx, outputs = model.predict(img)
+    
+    print(pred_class)
+    print(data.classes)
+    print(outputs)`}
                     />
                     <p className={styles.paragraph}>
-                        And that&apos;s it! Good work!
+                        The code above loads the model and uses it to predict
+                        the character in each of the 4 test images. It then
+                        prints out the results of the prediction. If your model
+                        is not as accurate as you hope it to be, don&apos;t
+                        hesitate to tweak some training parameters after
+                        learning about them in the{" "}
+                        <Link href="https://docs.fast.ai/">
+                            <a className={styles.link} target="_blank">
+                                fastai documentation
+                            </a>
+                        </Link>
+                        .
+                    </p>
+                    <p className={styles.paragraph}>
+                        That&apos;s all for the project! Feel free to include
+                        more Dragon Ball characters, or even build more models
+                        for different shows, movies, etc.
                     </p>
 
                     <h1 className={styles.header}>Reference</h1>
                     <p className={styles.paragraph}>
                         If you would like to see the complete code, you can do
                         so{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/tree/main/library/Free%20Scrabble">
+                        <Link href="https://github.com/xyntechx/NexLiber/tree/main/library/Dragon-Ball-Classifier">
                             <a className={styles.link} target="_blank">
                                 here
                             </a>
@@ -254,7 +292,7 @@ else:
                         </Link>
                         !
                     </p>
-                </section> */}
+                </section>
 
                 <Footer />
             </main>
