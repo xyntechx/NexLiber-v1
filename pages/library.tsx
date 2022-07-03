@@ -49,6 +49,13 @@ const Library: NextPage = () => {
                         difficulty="Intermediate"
                         creator="Nyx Iskandar"
                     />
+                    <Project
+                        title="Fresh Jokes"
+                        description="A joke generator built with Fresh"
+                        field="Web Development"
+                        difficulty="Intermediate"
+                        creator="Nyx Iskandar"
+                    />
                 </section>
                 <Footer />
             </main>
