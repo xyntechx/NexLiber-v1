@@ -421,7 +421,7 @@ export default function Home() {
                     <p className={styles.paragraph}>
                         If you would like to see the complete code, you can do
                         so{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/tree/main/library/Personal%20Portfolio%20Website">
+                        <Link href="https://github.com/xyntechx/NexLiber-Projects/tree/main/Personal%20Portfolio%20Website">
                             <a className={styles.link} target="_blank">
                                 here
                             </a>

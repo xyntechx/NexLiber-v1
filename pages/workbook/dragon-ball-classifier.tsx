@@ -272,7 +272,7 @@ for i in range(4):
                     <p className={styles.paragraph}>
                         If you would like to see the complete code, you can do
                         so{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/tree/main/library/Dragon-Ball-Classifier">
+                        <Link href="https://github.com/xyntechx/NexLiber-Projects/tree/main/Dragon%20Ball%20Classifier">
                             <a className={styles.link} target="_blank">
                                 here
                             </a>

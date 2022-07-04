@@ -14,7 +14,7 @@
 NexLiber is an open-source project with an MIT License. Anyone is welcome to contribute new features, design improvements, or any new ideas in general!
 
 ### NexLiber Creators
-Follow the instructions in the [Guide for Creators](https://github.com/xyntechx/NexLiber/blob/main/library/README.md)!
+Follow the instructions in the [Guide for Creators](https://github.com/xyntechx/NexLiber-Projects)!
 
 ### Other Contributors
 Create an Issue for any suggestions, questions, etc.

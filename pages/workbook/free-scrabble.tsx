@@ -122,7 +122,7 @@ letters_points = {letters: points for letters, points in zip(letters, points)} #
                         We&apos;ll also need a list of valid Scrabble words to
                         check our answer against. For that, I have included a
                         text file filled with words{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/blob/main/library/Free%20Scrabble/words.txt">
+                        <Link href="https://github.com/xyntechx/NexLiber-Projects/blob/main/Free%20Scrabble/words.txt">
                             <a className={styles.link} target="_blank">
                                 here
                             </a>
@@ -224,7 +224,7 @@ else:
                     <p className={styles.paragraph}>
                         If you would like to see the complete code, you can do
                         so{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/tree/main/library/Free%20Scrabble">
+                        <Link href="https://github.com/xyntechx/NexLiber-Projects/tree/main/Free%20Scrabble">
                             <a className={styles.link} target="_blank">
                                 here
                             </a>

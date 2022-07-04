@@ -95,7 +95,7 @@ const FAQ: NextPage = () => {
                             ! Rest assured that all projects created by a
                             Creator will belong to the Creator. To become a
                             Creator, follow the guide{" "}
-                            <Link href="https://github.com/xyntechx/NexLiber/blob/main/library/README.md">
+                            <Link href="https://github.com/xyntechx/NexLiber-Projects">
                                 <a className={styles.link} target="_blank">
                                     here
                                 </a>
