@@ -39,53 +39,38 @@ const Workbook: NextPage = () => {
                 />
 
                 <section className={styles.content}>
-                    <h1 className={styles.header}>Coming Soon...</h1>
-                    {/* <p className={styles.paragraph}>
-                        Before we get started, install{" "}
-                        <Link href="https://nodejs.org/en/">
+                    <h1 className={styles.header}>Setup</h1>
+                    <p className={styles.paragraph}>
+                        Follow the Get Started section of the{" "}
+                        <Link href="https://fresh.deno.dev/#getting-started">
                             <a className={styles.link} target="_blank">
-                                Node (version 10.13 or later)
-                            </a>
-                        </Link>{" "}
-                        on your machine.
-                    </p>
-                    <p className={styles.paragraph}>
-                        Once that&apos;s done, open up your terminal and run the
-                        following command to create your Next.js project.
-                    </p>
-                    <Code code="npx create-next-app@latest" />
-                    <p className={styles.paragraph}>
-                        Then, <span className={styles.highlight}>cd</span> to
-                        your project&apos;s directory and run
-                    </p>
-                    <Code code="npm run dev" />
-                    <p className={styles.paragraph}>
-                        as per the instructions written in your terminal. Using
-                        your browser, navigate to{" "}
-                        <span className={styles.highlight}>
-                            http://localhost:3000
-                        </span>
-                        .
-                    </p>
-                    <Quiz
-                        question="What is the first line written on the website?"
-                        choices={[`Welcome to Next.js!`, `Hello, Next.js!`]}
-                        correctAnsIndex={0}
-                        correctMessage="Nice! You're on the right track!"
-                        wrongMessage="Oops! Try again!"
-                    />
-                    <p className={styles.paragraph}>
-                        Now, open your project in your favourite code
-                        editor/IDE; if you don&apos;t have one, I recommend
-                        installing{" "}
-                        <Link href="https://code.visualstudio.com/download">
-                            <a className={styles.link} target="_blank">
-                                Visual Studio Code
+                                Fresh documentation
                             </a>
                         </Link>
                         .
                     </p>
-
+                    <p className={styles.paragraph}>
+                        Now, open your browser and visit{" "}
+                        <span className={styles.highlight}>localhost:8000</span>
+                        .
+                    </p>
+                    <Quiz
+                        question="What image do you see?"
+                        choices={[
+                            `Nothing...`,
+                            `An blackberry`,
+                            `An apple`,
+                            `A lemon`,
+                        ]}
+                        correctAnsIndex={3}
+                        correctMessage="Awesome! Let's get started then!"
+                        wrongMessage="Are you sure you selected the right fruit?"
+                    />
+                    <p className={styles.paragraph}>
+                        Open your project in your favourite text editor/IDE and
+                        let the development start!
+                    </p>
+                    {/* 
                     <h1 className={styles.header}>About the Project</h1>
                     <p className={styles.paragraph}>
                         This workbook will guide you through creating your own
