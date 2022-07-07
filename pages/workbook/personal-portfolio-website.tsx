@@ -93,7 +93,7 @@ const Workbook: NextPage = () => {
                         look something like this...
                     </p>
                     <Pic
-                        src="https://raw.githubusercontent.com/xyntechx/NexLiber/main/library/Personal%20Portfolio%20Website/assets/2.png"
+                        src="https://github.com/xyntechx/NexLiber-Projects/blob/main/Personal%20Portfolio%20Website/assets/2.png"
                         alt="Complete Personal Portfolio Website"
                         width={400}
                         height={260}
@@ -304,7 +304,7 @@ export default function Home() {
                         Nice! This is how your website should roughly look like!
                     </p>
                     <Pic
-                        src="https://raw.githubusercontent.com/xyntechx/NexLiber/main/library/Personal%20Portfolio%20Website/assets/1.png"
+                        src="https://github.com/xyntechx/NexLiber-Projects/blob/main/Personal%20Portfolio%20Website/assets/1.png"
                         alt="Incomplete Personal Portfolio Website"
                         width={400}
                         height={260}
