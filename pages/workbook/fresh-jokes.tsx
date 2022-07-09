@@ -47,6 +47,16 @@ const Workbook: NextPage = () => {
                                 Fresh documentation
                             </a>
                         </Link>
+                        . Enter <span className={styles.highlight}>y</span> for
+                        the prompt{" "}
+                        <span className={styles.highlight}>
+                            Do you want to use 'twind' (https://twind.dev/) for
+                            styling?
+                        </span>{" "}
+                        and, if you use VSCode,{" "}
+                        <span className={styles.highlight}>
+                            Do you use VS Code?
+                        </span>
                         .
                     </p>
                     <p className={styles.paragraph}>
@@ -70,343 +80,311 @@ const Workbook: NextPage = () => {
                         Open your project in your favourite text editor/IDE and
                         let the development start!
                     </p>
-                    {/* 
+
                     <h1 className={styles.header}>About the Project</h1>
                     <p className={styles.paragraph}>
-                        This workbook will guide you through creating your own
-                        simple portfolio website using Next.js. The website will
-                        look something like this...
+                        This project is a website built using a new web
+                        framework (at the time of writing this workbook) called
+                        Fresh (version 1.0.0). The website will generate random
+                        jokes from a predetermined array of jokes as well as
+                        enable the user to input a joke and display it on the
+                        website.
+                    </p>
+                    <p className={styles.paragraph}>
+                        Visiting Fresh Jokes, you will see the following page:
                     </p>
                     <Pic
-                        src="https://raw.githubusercontent.com/xyntechx/NexLiber/main/library/Personal%20Portfolio%20Website/assets/2.png"
-                        alt="Complete Personal Portfolio Website"
+                        src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Jokes/assets/1.png"
+                        alt="Initial state of the website"
                         width={400}
                         height={260}
                     />
                     <p className={styles.paragraph}>
-                        You will include your profile picture, about, skills,
-                        and projects in the website. Of course, this website
-                        looks quite plain, so you&apos;re free to modify it
-                        yourself once you have completed this Workbook!
+                        When you press the{" "}
+                        <span className={styles.highlight}>Make My Own!</span>{" "}
+                        button, a simple form appears.
                     </p>
-
-                    <h1 className={styles.header}>Cleaning Up</h1>
-                    <p className={styles.paragraph}>
-                        Let&apos;s start by removing some unnecessary code from
-                        the project&apos;s files. First, clean{" "}
-                        <span className={styles.highlight}>
-                            Home.module.css
-                        </span>{" "}
-                        such that the file looks like this
-                    </p>
-                    <Code
-                        code={`.container {
-    padding: 0 2rem;
-}
-
-.main {
-    min-height: 100vh;
-    padding: 4rem 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}`}
+                    <Pic
+                        src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Jokes/assets/2.png"
+                        alt="State of website when creating our own joke"
+                        width={400}
+                        height={260}
                     />
 
+                    <h1 className={styles.header}>Project Structure</h1>
                     <p className={styles.paragraph}>
-                        Then, clean{" "}
-                        <span className={styles.highlight}>index.js</span> such
-                        that the file looks like this
+                        Make sure that your project has the structure as seen in
+                        the image below. Empty all the files as well!
                     </p>
+                    <Pic
+                        src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Jokes/assets/3.png"
+                        alt="Project structure"
+                        width={175}
+                        height={375}
+                    />
 
+                    <h1 className={styles.header}>Homepage</h1>
+                    <p className={styles.paragraph}>
+                        The file{" "}
+                        <span className={styles.highlight}>
+                            routes/index.tsx
+                        </span>
+                        , specifies the content of the{" "}
+                        <span className={styles.highlight}>/</span> route of the
+                        website. The code will be written in Typescript using
+                        JSX syntax, which is used to describe how a user
+                        interface (UI) should look like.
+                    </p>
+                    <p className={styles.paragraph}>
+                        For Fresh to work, we will need to import{" "}
+                        <span className={styles.highlight}>Preact</span>.{" "}
+                        <span className={styles.highlight}>Tailwind</span>{" "}
+                        should also be imported into the project for styling.
+                    </p>
                     <Code
-                        code={`import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+                        code={`/** @jsx h */
+import { h } from "preact";
+import { tw } from "@twind";`}
+                    />
+                    <p className={styles.paragraph}>
+                        The homepage includes a title to introduce what the
+                        website is about. Below the title, you will be
+                        displaying a random joke from an array of jokes in{" "}
+                        <span className={styles.highlight}>utils/jokes.ts</span>
+                        , followed by buttons to display another joke and to
+                        fire up the form to create your own joke. Since these
+                        components below the title require client side
+                        interactivity, they are called islands, isolated
+                        client-rendered Preact components, to be included in the{" "}
+                        <span className={styles.highlight}>islands</span>{" "}
+                        directory.
+                    </p>
+                    <p className={styles.paragraph}>
+                        The islands for displaying the random joke and to create
+                        your own joke will be called{" "}
+                        <span className={styles.highlight}>Joke</span> and{" "}
+                        <span className={styles.highlight}>Create</span>{" "}
+                        respectively. According to Fresh guidelines, the TSX
+                        files describing each island's logic and UI must be
+                        named the name of the island in PascalCase.
+                    </p>
+                    <p className={styles.paragraph}>
+                        In{" "}
+                        <span className={styles.highlight}>
+                            routes/index.tsx
+                        </span>
+                        , add the following code.
+                    </p>
+                    <Code
+                        code={`import Joke from "../islands/Joke.tsx";
+import Create from "../islands/Create.tsx";
 
 export default function Home() {
     return (
-        <div className={styles.container}>
-            <Head>
-                <title>Create Next App</title>
-                <meta
-                    name="description"
-                    content="Generated by create next app"
-                />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+        <main class={tw\`p-0 m-0 h-screen w-screen flex flex-col items-center justify-center\`}>
+            <h1 class={tw\`p-0 m-2 text-2xl font-bold text-center\`}>
+                Your daily dose of \`fresh\` jokes!
+            </h1>
+            <Joke index={0} />
+            <Create />
+        </main>
+    );
+}`}
+                    />
+                    <p className={styles.paragraph}>
+                        <span className={styles.highlight}>tw`...`</span>{" "}
+                        specifies the Tailwind classes to style the elements.
+                    </p>
 
-            <main className={styles.main}></main>
+                    <h1 className={styles.header}>Array of Jokes</h1>
+                    <p className={styles.paragraph}>
+                        Let&apos;s now write the array of jokes in{" "}
+                        <span className={styles.highlight}>utils/jokes.ts</span>
+                        . The code below creates a constant which is an array of
+                        strings. Feel free to modify the array yourself!
+                    </p>
+                    <Code
+                        code={`const JOKES: string[] = [
+    "Why do Java developers often wear glasses? They can't C#.",
+    "A SQL query walks into a bar, goes up to two tables and says “can I join you?”",
+    "Wasn't hard to crack Forrest Gump's password. 1forrest1.",
+    "I love pressing the F5 key. It's refreshing.",
+    "Called IT support and a chap from Australia came to fix my network connection.  I asked “Do you come from a LAN down under?”",
+    "There are 10 types of people in the world. Those who understand binary and those who don't.",
+    "Why are assembly programmers often wet? They work below C level.",
+    "My favourite computer based band is the Black IPs.",
+    "What programme do you use to predict the music tastes of former US presidential candidates? An Al Gore Rhythm.",
+    "An SEO expert walked into a bar, pub, inn, tavern, hostelry, public house.",
+];
+
+export default JOKES;`}
+                    />
+
+                    <h1 className={styles.header}>Islands: Joke</h1>
+                    <p className={styles.paragraph}>
+                        This island will display a random joke and generate a
+                        new one from the array of jokes once the{" "}
+                        <span className={styles.highlight}>Another One!</span>{" "}
+                        button is pressed.
+                    </p>
+                    <p className={styles.paragraph}>
+                        To make this island work, you will need to import the{" "}
+                        <span className={styles.highlight}>useState</span> hook
+                        to access and set the index of the joke to be displayed
+                        as well as the{" "}
+                        <span className={styles.highlight}>JOKES</span> array
+                        from{" "}
+                        <span className={styles.highlight}>utils/jokes.ts</span>{" "}
+                        for the random jokes.
+                    </p>
+                    <Code
+                        code={`/** @jsx h */
+import { h } from "preact";
+import { useState } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
+import { tw } from "@twind";
+import JOKES from "../utils/jokes.ts";`}
+                    />
+                    <p className={styles.paragraph}>
+                        For consistency, the first joke in the array will be
+                        displayed when the website is first visited. To achieve
+                        this, this island should have a parameter with type
+                        number to represent the index of the joke. You will then
+                        initialise the{" "}
+                        <span className={styles.highlight}>index</span> state
+                        with the argument passed into the island, which in our
+                        case is 0.
+                    </p>
+                    <p className={styles.paragraph}>
+                        Of course, you will need to display the random joke
+                        itself, which is done by indexing the{" "}
+                        <span className={styles.highlight}>JOKES</span> array.
+                        The{" "}
+                        <span className={styles.highlight}>Another One!</span>{" "}
+                        button will generate a random integer from 0 to the
+                        length of the array, set the integer as{" "}
+                        <span className={styles.highlight}>index</span>, and
+                        finally change the displayed joke.
+                    </p>
+                    <Code
+                        code={`interface Props {
+    index: number;
+}
+
+export default function Joke(props: Props) {
+    const [index, setIndex] = useState(props.index);
+    const btn = tw
+        \`px-2 py-1 border(gray-100 1) hover:bg-yellow-100 w-max focus:outline-none mt-4\`;
+    const text = tw\`p-0 m-2 text-xl\`;
+
+    return (
+        <div class={tw\`flex flex-col items-center justify-center\`}>
+            <p class={text}>{JOKES[index]}</p>
+            <button
+                class={btn}
+                onClick={() => setIndex(Math.floor(Math.random() * JOKES.length))}
+                disabled={!IS_BROWSER}
+            >
+                Another One!
+            </button>
         </div>
     );
 }`}
                     />
-                    <br />
-                    <Quiz
-                        question="What do you see on the website?"
-                        choices={[`Nothing`, `Welcome to Next.js!`]}
-                        correctAnsIndex={0}
-                        correctMessage="Nice! You're on the right track!"
-                        wrongMessage="Oops! Try again!"
-                    />
 
-                    <h1 className={styles.header}>Into the Metaverse</h1>
+                    <h1 className={styles.header}>Islands: Create</h1>
                     <p className={styles.paragraph}>
-                        Before we start adding content to and styling your
-                        website, let&apos;s take care of the website&apos;s meta
-                        values, including its favicon, title, and description.
-                    </p>
-                    <p className={styles.paragraph}>
-                        You can change the website&apos;s favicon to your own
-                        logo or any other image! Just make sure to rename the
-                        image file to{" "}
-                        <span className={styles.highlight}>favicon.ico</span>{" "}
-                        and move it to the{" "}
-                        <span className={styles.highlight}>/public</span>{" "}
-                        directory of your project.
-                    </p>
-                    <p className={styles.paragraph}>
-                        Now, change the{" "}
-                        <span className={styles.highlight}>title</span> tag in{" "}
-                        <span className={styles.highlight}>Head</span> to
-                    </p>
-                    <Code code="<title>My Website</title>" />
-                    <p className={styles.paragraph}>
-                        and the <span className={styles.highlight}>meta</span>{" "}
-                        tag in <span className={styles.highlight}>Head</span> to
+                        Similar to the previous island, this island requires the{" "}
+                        <span className={styles.highlight}>useState</span> hook.
                     </p>
                     <Code
-                        code={`<meta
-    name="description"
-    content="My website created with Nexliber"
-/>`}
+                        code={`/** @jsx h */
+import { h } from "preact";
+import { useState } from "preact/hooks";
+import { tw } from "@twind";`}
                     />
                     <p className={styles.paragraph}>
-                        or anything else you&apos;d like!
-                    </p>
-
-                    <Quiz
-                        question="Did the look of your website change?"
-                        choices={[`Yes`, `No`]}
-                        correctAnsIndex={1}
-                        correctMessage="Correct! Changing the meta values doesn't change how your website looks like. The only visible changes for this case are the favicon and title of the website!"
-                        wrongMessage="Are you sure?"
-                    />
-
-                    <h1 className={styles.header}>Adding Content</h1>
-                    <p className={styles.paragraph}>
-                        A personal portfolio website wouldn&apos;t be complete
-                        without a profile picture. Add the best photo of
-                        yourself into the{" "}
-                        <span className={styles.highlight}>/public</span>{" "}
-                        directory and name it{" "}
-                        <span className={styles.highlight}>profile.png</span>.
-                        Now, we can make that image appear on the website by
-                        adding the code below within the{" "}
-                        <span className={styles.highlight}>main</span> tag.
+                        This is because we would need to check whether the user
+                        is currently creating a joke, and check whether the user
+                        has submitted the joke to display it, and store the new
+                        joke (as a string).
                     </p>
                     <Code
-                        code={`<Image
-    src="/profile.png"
-    width={200}
-    height={200}
-    alt="My Profile Picture"
-/>`}
-                    />
-                    <p className={styles.paragraph}>
-                        For your information,{" "}
-                        <span className={styles.highlight}>src</span> is the
-                        source URL of the image,{" "}
-                        <span className={styles.highlight}>width</span> and{" "}
-                        <span className={styles.highlight}>height</span> are the
-                        image dimensions in pixels, and{" "}
-                        <span className={styles.highlight}>alt</span> is an
-                        attribute important for accessibility.
-                    </p>
-                    <p className={styles.paragraph}>
-                        Below the image, add your name, about, skills, and
-                        projects.
-                    </p>
-                    <Code
-                        code={`<div className={styles.content}>
-    <h1 className={styles.name}>Nyx Iskandar</h1>
-    <p className={styles.text}>
-        A teen passionate about computer science, research,
-        entrepreneurship, and service-learning.
-    </p>
-    <p className={styles.text}>
-        Next.js | Angular | Nuxt 3 | Svelte
-    </p>
-    <p className={styles.text}>
-        Nexliber | NXpyre | Code for Hope
-    </p>
-</div>`}
-                    />
-
-                    <p className={styles.paragraph}>
-                        To beautify your website, add some classes to{" "}
-                        <span className={styles.highlight}>
-                            Home.module.css
-                        </span>
-                        .
-                    </p>
-                    <Code
-                        code={`.main {
-    min-height: 100vh;
-    padding: 2rem; 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    column-gap: 5rem;
-}
-
-.content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 50%;
-    text-align: center;
-}
-
-.name {
-    font-size: 3rem;
-    margin: 0;
-    padding: 0;
-    margin-bottom: 1rem;
-}
-
-.text {
-    font-size: 1.5rem;
-    text-align: center;
-    margin: 0.5rem 0;
+                        code={`export default function Create() {
+    const [isCreating, setIsCreating] = useState(false);
+    const [show, setShow] = useState(false);
+    const [joke, setJoke] = useState("");
+    
+    return()
 }`}
                     />
                     <p className={styles.paragraph}>
-                        Nice! This is how your website should roughly look like!
+                        When the user is not creating, the default{" "}
+                        <span className={styles.highlight}>Make My Own!</span>{" "}
+                        button should be shown. Otherwise, the simple form to
+                        submit the joke must appear. The text input of the form
+                        should update the value of the{" "}
+                        <span className={styles.highlight}>joke</span> state
+                        every time the user changes the value of the text input
+                        by typing. Once the submit button is pressed, the joke
+                        will be displayed.
                     </p>
-                    <Pic
-                        src="https://raw.githubusercontent.com/xyntechx/NexLiber/main/library/Personal%20Portfolio%20Website/assets/1.png"
-                        alt="Incomplete Personal Portfolio Website"
-                        width={400}
-                        height={260}
-                    />
-
-                    <h1 className={styles.header}>
-                        From Static to Interactive
-                    </h1>
                     <p className={styles.paragraph}>
-                        Hmm... The website looks a little bit cluttered. Why
-                        don&apos;t we add some buttons to toggle between your
-                        about, skills, and projects? Let&apos;s add them
-                        underneath all the text.
+                        In the <span className={styles.highlight}>return</span>{" "}
+                        statement, write...
                     </p>
                     <Code
-                        code={`<div className={styles.buttonContainer}>
-    <button className={styles.button}>About</button>
-    <button className={styles.button}>Skills</button>
-    <button className={styles.button}>Projects</button>
+                        code={`
+<div class={tw\`flex flex-col items-center justify-center\`}>
+    {isCreating
+        ? (
+            <div class={tw\`flex flex-col items-center justify-center mt-10\`}>
+                <input
+                    class={tw
+                    \`border(gray-100 1) rounded-md w-full text-lg py-1 px-2 focus:bg-yellow-100 focus:outline-none\`}
+                    type="text"
+                    placeholder="Enter joke"
+                    onChange={(e) => setJoke(e.target.value)}
+                />
+                <button
+                    class={tw\`px-2 py-1 mt-2 border(gray-100 1) hover:bg-yellow-100 focus:outline-none\`}
+                    onClick={() => {
+                    setShow(true);
+                    setIsCreating(false);
+                    }}
+                >
+                    Submit
+                </button>
+            </div>
+        )
+        : (
+            <button
+            class={tw\`px-2 py-1 mt-2 border(gray-100 1) hover:bg-yellow-100 focus:outline-none\`}
+            disabled={isCreating}
+            onClick={() => {
+                setIsCreating(true);
+                setJoke("");
+            }}
+            >
+                Make My Own!
+            </button>
+        )
+    }
+    {show && <p class={tw\`p-0 text-xl mt-10 w-screen bg-yellow-100 text-center\`}>{joke}</p>}
 </div>`}
                     />
 
+                    <h1 className={styles.header}>Wrapping Up</h1>
                     <p className={styles.paragraph}>
-                        Let&apos;s style the buttons!
-                    </p>
-                    <Code
-                        code={`.buttonContainer {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    column-gap: 1rem;
-    width: 100%;
-    margin-top: 2rem;
-}
-
-.button {
-    font-size: 1.5rem;
-    text-align: center;
-    border: 0.1rem #3396ff solid;
-    border-radius: 0.5rem;
-    background-color: #fff;
-    padding: 0.5rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.button:hover, .button:focus {
-    background-color: #3396ff;
-}`}
-                    />
-
-                    <p className={styles.paragraph}>
-                        Right now, the buttons don&apos;t do anything when
-                        clicked. We can make the buttons functional by using the{" "}
-                        <span className={styles.highlight}>useState</span>{" "}
-                        method and some{" "}
-                        <span className={styles.highlight}>if-else</span>{" "}
-                        statements.
-                    </p>
-                    <p className={styles.paragraph}>First, import useState.</p>
-                    <Code code={`import { useState } from "react";`} />
-                    <p className={styles.paragraph}>
-                        Then, outside of{" "}
-                        <span className={styles.highlight}>return()</span>,
-                        write
-                    </p>
-                    <Code code={`const [tab, setTab] = useState("about");`} />
-                    <p className={styles.paragraph}>
-                        What this does is set the value of{" "}
-                        <span className={styles.highlight}>tab</span> to{" "}
-                        <span className={styles.highlight}>
-                            &quot;about&quot;
-                        </span>
-                        , and define a function{" "}
-                        <span className={styles.highlight}>setTab()</span> which
-                        changes the value of{" "}
-                        <span className={styles.highlight}>tab</span> to the
-                        argument passed into it when called. We will change the
-                        value of <span className={styles.highlight}>tab</span>{" "}
-                        every time a button is clicked. To do so, we will call{" "}
-                        <span className={styles.highlight}>setTab()</span> when
-                        that happens.
-                    </p>
-                    <Code
-                        code={`<button className={styles.button} onClick={() => setTab("about")}>About</button>
-<button className={styles.button} onClick={() => setTab("skills")}>Skills</button>
-<button className={styles.button} onClick={() => setTab("projects")}>Projects</button>`}
-                    />
-                    <p className={styles.paragraph}>
-                        We can now write the{" "}
-                        <span className={styles.highlight}>if-else</span>{" "}
-                        statements. Separately, wrap your about, skills, and
-                        projects with
-                    </p>
-                    <Code code={`{tab === "tabname" && ()}`} />
-                    <p className={styles.paragraph}>
-                        such that{" "}
-                        <span className={styles.highlight}>tabname</span> is the
-                        intended value of the tab (i.e. about/skills/projects)
-                        and the <span className={styles.highlight}>p</span> tag
-                        containing your about, skills, or projects is located
-                        between the parentheses.
-                    </p>
-                    <p className={styles.paragraph}>
-                        Now, when you click the About button, your about will
-                        appear; when you click the Skills button, your skills
-                        will appear; and when you click the Projects button,
-                        your projects will appear.
-                    </p>
-                    <p className={styles.paragraph}>
-                        Congratulations! You have completed the project!
+                        Voila! The website is complete! Now, you can display
+                        random developer jokes and even create your own.
                     </p>
 
                     <h1 className={styles.header}>Reference</h1>
                     <p className={styles.paragraph}>
                         If you would like to see the complete code, you can do
                         so{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/tree/main/library/Personal%20Portfolio%20Website">
+                        <Link href="https://github.com/xyntechx/NexLiber-Projects/tree/main/Fresh%20Jokes">
                             <a className={styles.link} target="_blank">
                                 here
                             </a>
@@ -425,7 +403,7 @@ export default function Home() {
                             </a>
                         </Link>
                         !
-                    </p> */}
+                    </p>
                 </section>
 
                 <Footer />
