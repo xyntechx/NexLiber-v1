@@ -50,8 +50,8 @@ const Workbook: NextPage = () => {
                         . Enter <span className={styles.highlight}>y</span> for
                         the prompt{" "}
                         <span className={styles.highlight}>
-                            Do you want to use 'twind' (https://twind.dev/) for
-                            styling?
+                            Do you want to use &apos;twind&apos;
+                            (https://twind.dev/) for styling?
                         </span>{" "}
                         and, if you use VSCode,{" "}
                         <span className={styles.highlight}>
@@ -165,7 +165,7 @@ import { tw } from "@twind";`}
                         <span className={styles.highlight}>Joke</span> and{" "}
                         <span className={styles.highlight}>Create</span>{" "}
                         respectively. According to Fresh guidelines, the TSX
-                        files describing each island's logic and UI must be
+                        files describing each island&apos;s logic and UI must be
                         named the name of the island in PascalCase.
                     </p>
                     <p className={styles.paragraph}>
