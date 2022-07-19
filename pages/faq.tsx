@@ -172,15 +172,20 @@ const FAQ: NextPage = () => {
                         <summary>How can I buy you a coffee?</summary>
                         <div className={styles.answer}>
                             In case you didn&apos;t know, hi! My name is Nyx and
-                            I&apos;m the Founder of NexLiber! To support
-                            NexLiber and ensure that it reaches and impacts more
-                            coders, please support me on{" "}
+                            I&apos;m the Founder of NexLiber! To help NexLiber
+                            reach and impact more coders, please support me on{" "}
                             <Link href="https://www.buymeacoffee.com/xyntechx">
                                 <a className={styles.link} target="_blank">
                                     Buy Me a Coffee
                                 </a>
                             </Link>
-                            ! Thank you!
+                            ! Feel free to contact me via my email address{" "}
+                            <Link href="mailto:xyntechx@gmail.com">
+                                <a className={styles.link} target="_blank">
+                                    xyntechx@gmail.com
+                                </a>
+                            </Link>
+                            . Thank you!
                         </div>
                     </details>
                 </section>
