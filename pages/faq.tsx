@@ -179,13 +179,7 @@ const FAQ: NextPage = () => {
                                     Buy Me a Coffee
                                 </a>
                             </Link>
-                            ! Feel free to contact me via my email address{" "}
-                            <Link href="mailto:xyntechx@gmail.com">
-                                <a className={styles.link} target="_blank">
-                                    xyntechx@gmail.com
-                                </a>
-                            </Link>
-                            . Thank you!
+                            ! Thank you!
                         </div>
                     </details>
                 </section>
