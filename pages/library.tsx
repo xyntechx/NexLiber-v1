@@ -56,6 +56,13 @@ const Library: NextPage = () => {
                         difficulty="Intermediate"
                         creator="Nyx Iskandar"
                     />
+                    <Project
+                        title="Typing Test"
+                        description="A typing speed and accuracy test written purely in Python"
+                        field="Vanilla (Python)"
+                        difficulty="Intermediate"
+                        creator="Nyx Iskandar"
+                    />
                 </section>
                 <Footer />
             </main>
