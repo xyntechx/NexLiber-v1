@@ -79,6 +79,13 @@ const Workbook: NextPage = () => {
                     </p>
 
                     <h1 className={styles.header}>About the Project</h1>
+                    - typing speed + accuracy
+                    - terminal app
+                    - pick # of words
+                    - get words
+                    - start timer upon Enter
+                    - stop timer upon next Enter
+                    - eval
                     */}
                 </section>
 
