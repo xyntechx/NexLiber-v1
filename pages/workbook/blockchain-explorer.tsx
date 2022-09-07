@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -7,21 +8,40 @@ import Code from "../../components/workbook/code";
 import Quiz from "../../components/workbook/quiz";
 import Title from "../../components/workbook/title";
 import styles from "../../styles/Workbook.module.css";
-import { ethers } from "ethers";
+import { ethers, BigNumber } from "ethers";
 import { formatEther } from "@ethersproject/units";
-import { useEffect, useState } from "react";
 
 const Workbook: NextPage = () => {
   const provider = ethers.getDefaultProvider();
-  const [result, setResult] = useState("");
+
+  const daiAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+  const daiAbi = ["function balanceOf(address) view returns (uint256)"];
+  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+
+  const [balances, setBalances]: [
+    number[],
+    Dispatch<SetStateAction<number[]>>
+  ] = useState([0, 0]);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const address = "0x5555763613a12D8F3e73be831DFf8598089d3dCa";
-        const balance = await provider.getBalance(address);
-        const parsedBalance = formatEther(balance);
-        setResult(parsedBalance);
+        const addresses = [
+          "0x5555763613a12D8F3e73be831DFf8598089d3dCa",
+          "0x07EA23D8efb70Db2A7AEd8E77a93dD83cd12Fa53",
+          "0xfeb0387ed65409a1aa7b0689dc9328a12d64001c",
+        ];
+        const balances = [
+          await provider.getBalance(addresses[0]),
+          await provider.getBalance(addresses[1]),
+          await daiContract.balanceOf(addresses[2]),
+        ];
+        const parsedBalances: number[] = balances.map((balance) =>
+          parseFloat(formatEther(balance))
+        );
+        setBalances(parsedBalances);
+        setLoaded(true);
       } catch (error) {
         console.log(error);
       }
@@ -29,6 +49,10 @@ const Workbook: NextPage = () => {
 
     fetchBalance();
   });
+
+  const parseBalance = (balance: number, multiplier: number = 1.0) => {
+    return parseFloat((balance * multiplier).toFixed(4)).toLocaleString();
+  };
 
   return (
     <div>
@@ -215,10 +239,16 @@ getBalance();`}
             earlier.
           </p>
           <Quiz
-            question="What is the balance of the address 0x5555763613a12D8F3e73be831DFf8598089d3dCa?"
-            choices={[`1`, `11`, `10`, `1 + 1`]}
-            correctAnsIndex={3}
-            correctMessage="Nice! You're on the right track!"
+            question="How much ether does the address 0x5555763613a12D8F3e73be831DFf8598089d3dCa have?"
+            loaded={loaded}
+            choices={[
+              `${parseBalance(balances[0], 0.97)}`,
+              `${parseBalance(balances[0], 0.93)}`,
+              `${parseBalance(balances[0])}`,
+              `${parseBalance(balances[0], 1.01)}`,
+            ]}
+            correctAnsIndex={2}
+            correctMessage="Good job! You're on the right track!"
             wrongMessage="Oops! Try again!"
           />
           <h1 className={styles.header}>Adding Interactivity</h1>
@@ -229,18 +259,18 @@ getBalance();`}
             <span className={styles.highlight}>let requestedAddress;</span>{" "}
             below the provider.
           </p>
-          <p className={styles.paragraph}>
+          <p className={styles.paragraph} style={{ marginBottom: 0 }}>
             Let&apos;s then create a quick loop to:
-            <ol style={{ margin: 0 }}>
-              <li> Prompt users to key an address.</li>
-              <li>
-                {" "}
-                Use the <span className={styles.highlight}>isAddress</span>{" "}
-                utility to check the validity of the address, and loop back to
-                the prompt if it&apos;s invalid.
-              </li>
-            </ol>
           </p>
+          <ol style={{ margin: 0 }} className={styles.paragraph}>
+            <li> Prompt users to key an address.</li>
+            <li>
+              {" "}
+              Use the <span className={styles.highlight}>isAddress</span>{" "}
+              utility to check the validity of the address, and loop back to the
+              prompt if it&apos;s invalid.
+            </li>
+          </ol>
           <p className={styles.paragraph}>
             First off, let&apos;s install{" "}
             <span className={styles.highlight}>prompt-sync</span> through the
@@ -285,7 +315,20 @@ const prompt = require("prompt-sync")({ sigint: true });
             <span className={styles.highlight}>getBalance()</span> to{" "}
             <span className={styles.highlight}>requestedAddress</span>.
           </p>
-          {/* TODO: Add quiz */}
+          <Quiz
+            question="How much ether does address 0x07EA23D8efb70Db2A7AEd8E77a93dD83cd12Fa53 have?"
+            loaded={loaded}
+            choices={[
+              `${parseBalance(balances[1], 1.07)}`,
+              `${parseBalance(balances[1], 0.95)}`,
+              `${parseBalance(balances[1], 0.98)}`,
+              `${parseBalance(balances[1])}`,
+            ]}
+            correctAnsIndex={3}
+            correctMessage="Good job! Let's move on to the next section."
+            wrongMessage="Oops! Try again!"
+          />
+
           <h1 className={styles.header}>Interacting with ERC-20 Tokens: </h1>
           <p className={styles.paragraph}>
             Now besides the native currency, some blockchains have smart
@@ -371,7 +414,19 @@ getTokenBalance()
             …and then re-run the server with{" "}
             <span className={styles.highlight}>node ./index.js</span>
           </p>
-          {/* TODO: Poll */}
+          <Quiz
+            question="How much Dai does address 0xfeb0387ed65409a1aa7b0689dc9328a12d64001c have?"
+            loaded={loaded}
+            choices={[
+              `${parseBalance(balances[2], 1.05)}`,
+              `${parseBalance(balances[2])}`,
+              `${parseBalance(balances[2], 0.96)}`,
+              `${parseBalance(balances[2], 1.09)}`,
+            ]}
+            correctAnsIndex={1}
+            correctMessage="Good job! Congrats on finishing the project!"
+            wrongMessage="Oops! Try again!"
+          />
           <p className={styles.paragraph}>
             Congratulations! You have completed the project! Feel free to find
             and play around with some addresses from{" "}
