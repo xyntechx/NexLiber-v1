@@ -50,7 +50,7 @@ const Library: NextPage = () => {
                         creator="Nyx Iskandar"
                     />
                     <Project
-                        title="Fresh Jokes"
+                        title="Fresh Jokes" 
                         description="A joke generator built with Fresh"
                         field="Web Development"
                         difficulty="Intermediate"
@@ -62,6 +62,13 @@ const Library: NextPage = () => {
                         field="Vanilla (Python)"
                         difficulty="Intermediate"
                         creator="Nyx Iskandar"
+                    />
+                    <Project
+                        title="Blockchain Explorer"
+                        description="An introduction to the blockchain, and related JavaScript Libraries."
+                        field="Web3 / Crypto"
+                        difficulty="Intermediate"
+                        creator="Matthew Chan"
                     />
                 </section>
                 <Footer />
