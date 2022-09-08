@@ -50,7 +50,7 @@ const Library: NextPage = () => {
                         creator="Nyx Iskandar"
                     />
                     <Project
-                        title="Fresh Jokes" 
+                        title="Fresh Jokes"
                         description="A joke generator built with Fresh"
                         field="Web Development"
                         difficulty="Intermediate"
