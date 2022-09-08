@@ -63,6 +63,13 @@ const Library: NextPage = () => {
                         difficulty="Intermediate"
                         creator="Nyx Iskandar"
                     />
+                    <Project
+                        title="Blockchain Explorer"
+                        description="An introduction to the blockchain, and related JavaScript Libraries"
+                        field="Web3 / Crypto"
+                        difficulty="Intermediate"
+                        creator="Matthew Chan"
+                    />
                 </section>
                 <Footer />
             </main>

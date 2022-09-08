@@ -7,12 +7,14 @@ const Quiz = ({
     correctAnsIndex,
     correctMessage,
     wrongMessage,
+    loaded = true,
 }: {
     question: string;
     choices: string[];
     correctAnsIndex: number;
     correctMessage: string;
     wrongMessage: string;
+    loaded?: boolean;
 }) => {
     const [isCorrect, setIsCorrect] = useState(0);
 
@@ -30,7 +32,7 @@ const Quiz = ({
                     className={styles.choice}
                     onClick={() => checkAnswer(i)}
                 >
-                    {choice}
+                    {loaded ? choice : "Loading..."}
                 </button>
             ))}
             {isCorrect === 1 && <p className={styles.text}>{correctMessage}</p>}
