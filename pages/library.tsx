@@ -65,7 +65,7 @@ const Library: NextPage = () => {
                     />
                     <Project
                         title="Blockchain Explorer"
-                        description="An introduction to the blockchain, and related JavaScript Libraries."
+                        description="An introduction to the blockchain, and related JavaScript Libraries"
                         field="Web3 / Crypto"
                         difficulty="Intermediate"
                         creator="Matthew Chan"
