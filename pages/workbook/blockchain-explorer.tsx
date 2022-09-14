@@ -255,7 +255,7 @@ getBalance();`}
                     </p>
                     <Quiz
                         question="How much ether does the address 0x5555763613a12D8F3e73be831DFf8598089d3dCa have?"
-                        loaded={loaded}
+                        hasLoaded={loaded}
                         choices={[
                             `${parseBalance(balances[0], 0.97)}`,
                             `${parseBalance(balances[0], 0.93)}`,
@@ -345,7 +345,7 @@ const prompt = require("prompt-sync")({ sigint: true });
                     </p>
                     <Quiz
                         question="How much ether does address 0x07EA23D8efb70Db2A7AEd8E77a93dD83cd12Fa53 have?"
-                        loaded={loaded}
+                        hasLoaded={loaded}
                         choices={[
                             `${parseBalance(balances[1], 1.07)}`,
                             `${parseBalance(balances[1], 0.95)}`,
@@ -451,7 +451,7 @@ getTokenBalance()
                     </p>
                     <Quiz
                         question="How much Dai does address 0xfeb0387ed65409a1aa7b0689dc9328a12d64001c have?"
-                        loaded={loaded}
+                        hasLoaded={loaded}
                         choices={[
                             `${parseBalance(balances[2], 1.05)}`,
                             `${parseBalance(balances[2])}`,
