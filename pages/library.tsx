@@ -4,6 +4,7 @@ import Footer from "../components/footer";
 import Project from "../components/project";
 import Topnav from "../components/topnav";
 import styles from "../styles/Library.module.css";
+import PROJECTS from "../public/projects.json";
 
 const Library: NextPage = () => {
     return (
@@ -28,48 +29,9 @@ const Library: NextPage = () => {
                 <h1 className={styles.title}>Library</h1>
                 <br />
                 <section className={styles.content}>
-                    <Project
-                        title="Free Scrabble"
-                        description="A one-try, one-player Scrabble game written in Python"
-                        field="Vanilla (Python)"
-                        difficulty="Beginner"
-                        creator="Nyx Iskandar"
-                    />
-                    <Project
-                        title="Personal Portfolio Website"
-                        description="A personal portfolio website built using Next.js"
-                        field="Web Development"
-                        difficulty="Intermediate"
-                        creator="Nyx Iskandar"
-                    />
-                    <Project
-                        title="Dragon Ball Classifier"
-                        description="An image classification model for Dragon Ball characters"
-                        field="Machine Learning"
-                        difficulty="Intermediate"
-                        creator="Nyx Iskandar"
-                    />
-                    <Project
-                        title="Fresh Jokes"
-                        description="A joke generator built with Fresh"
-                        field="Web Development"
-                        difficulty="Intermediate"
-                        creator="Nyx Iskandar"
-                    />
-                    <Project
-                        title="Typing Test"
-                        description="A typing speed and accuracy test written purely in Python"
-                        field="Vanilla (Python)"
-                        difficulty="Intermediate"
-                        creator="Nyx Iskandar"
-                    />
-                    <Project
-                        title="Blockchain Explorer"
-                        description="An introduction to the blockchain, and related JavaScript Libraries"
-                        field="Web3 / Crypto"
-                        difficulty="Intermediate"
-                        creator="Matthew Chan"
-                    />
+                    {PROJECTS.map((project) => (
+                        <Project key={project.title} {...project} />
+                    ))}
                 </section>
                 <Footer />
             </main>
