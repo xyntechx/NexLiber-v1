@@ -29,7 +29,7 @@
 
 .choice:hover,
 .choice:focus {
-    background-color: #fda521;
+    background-color: #f99c10;
 }
 
 @media (max-width: 600px) {
