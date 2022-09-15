@@ -8,12 +8,26 @@
     align-items: center;
 }
 
-.title {
+.title,
+.label {
     margin: 0;
     text-align: center;
     width: 80%;
     font-family: "Inter", sans-serif;
     font-size: 3rem;
+}
+
+.label {
+    font-size: 1.5rem;
+    width: 70vw;
+    text-align: left;
+    margin-top: 1rem;
+}
+
+.alert {
+    margin: 0;
+    font-size: 1rem;
+    text-align: center;
 }
 
 .content {
@@ -27,9 +41,72 @@
     margin-top: 2rem;
 }
 
+.inputContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    margin: 0;
+    margin-top: 1rem;
+}
+
+.input {
+    width: 95%;
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border: 1px #000 solid;
+    border-radius: 0.4rem;
+    font-size: 1rem;
+}
+
+.input:focus {
+    border-color: #ffb13d;
+}
+
+.info,
+.infoActive {
+    text-align: center;
+    width: 5%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.infoActive {
+    color: #ffb13d;
+}
+
+.info:hover {
+    color: #ffb13d;
+}
+
+.button {
+    margin: 0;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    outline: none;
+    border: transparent;
+    border-radius: 0.4rem;
+    color: #1f2937;
+    background-color: #ffb13d;
+    padding: 0.3rem 0.8rem;
+    transition: 0.3s;
+    font-size: 1.2rem;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #f99c10;
+}
+
 @media (max-width: 600px) {
     .title {
         font-size: 2rem;
+    }
+
+    .label {
+        font-size: 1.2rem;
+        width: 80vw;
     }
 
     .content {
@@ -39,5 +116,28 @@
         column-gap: 1.5rem;
         row-gap: 1.5rem;
         margin-top: 1rem;
+    }
+
+    .inputContainer {
+        width: 80vw;
+    }
+
+    .input {
+        width: 90%;
+        font-size: 0.8rem;
+    }
+
+    .info,
+    .infoActive {
+        width: 10%;
+        font-size: 1rem;
+    }
+
+    .button {
+        font-size: 1rem;
+    }
+
+    .alert {
+        font-size: 0.8rem;
     }
 }
