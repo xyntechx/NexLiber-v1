@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import Code from "../../components/workbook/code";
 import Quiz from "../../components/workbook/quiz";
-import Pic from "../../components/pic";
+import Pic from "../../components/workbook/pic";
 import styles from "../../styles/Workbook.module.css";
 import WorkbookLayout from "../../layouts/WorkbookLayout";
 
