@@ -16,6 +16,8 @@ NexLiber is an open-source project with an MIT License. Anyone is welcome to con
 ### NexLiber Creators
 Follow the instructions in the [Guide for Creators](https://github.com/xyntechx/NexLiber-Projects)!
 
+Once your project is approved and merged into `xyntechx/NexLiber-Projects`, please read the [Workbook Dev Guide](https://github.com/xyntechx/NexLiber/blob/main/WBDEV.md) before writing and pushing your Workbook to this repository!
+
 ### Other Contributors
 Create an Issue for any suggestions, questions, etc.
 
@@ -26,3 +28,5 @@ Connect with coders from all around the globe on the [NexLiber Discord](https://
 
 ## ✨ Author
 Nyx Audrey Angelo Iskandar ([@xyntechx](https://github.com/xyntechx))
+
+_Copyright (c) Nyx Audrey Angelo Iskandar_
