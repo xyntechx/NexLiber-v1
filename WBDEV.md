@@ -9,7 +9,7 @@ Here are the step-by-step instructions you should follow:
 - Run `npm i` in the terminal to install all the necessary packages
 - Add your project details into `public/projects.json` -- follow the format [here](#format-projectsjson)
 - Add your Workbook (`project-title.tsx`) into `pages/workbook/` -- follow the format [here](#format-project-titletsx)
-- While writing your Workbook, review it by running `npm run dev` in the terminal
+- While writing your Workbook, review it by running `npm run dev` in the terminal and visiting `http://localhost:3000/` in your browser
 - Once you are satisfied with your Workbook, test it for any bugs by running `npm run build` in the terminal
 - If the test is successful, commit your changes with the message "🔖 Complete Workbook: **Project Title**"
 - Push your changes to your fork's remote repository (the fork on your GitHub account)
