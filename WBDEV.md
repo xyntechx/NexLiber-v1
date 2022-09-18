@@ -1,7 +1,7 @@
 # Workbook Dev Guide
 Congratulations! You are one step closer to becoming a published NexLiber Creator! Follow the steps below when writing your Workbook.
 
-## Fork This repository
+## Fork This Repository
 Since you do not have write access to `xyntechx/NexLiber`, you have to fork this repository before creating a pull request with the completed Workbook. Follow GitHub's official guide [here](https://docs.github.com/en/get-started/quickstart/fork-a-repo) to learn how you can fork a repository.
 
 ## Add Your Workbook
