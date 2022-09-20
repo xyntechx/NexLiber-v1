@@ -11,7 +11,7 @@
         "field": "Web Development",
         "difficulty": "Intermediate",
         "creator": "Nyx Iskandar",
-        "date": "Jun 2, 2022"
+        "date": "Jun 02, 2022"
     },
     "Dragon Ball Classifier": {
         "description": "An image classification model for Dragon Ball characters",
@@ -25,7 +25,7 @@
         "field": "Web Development",
         "difficulty": "Intermediate",
         "creator": "Nyx Iskandar",
-        "date": "Jul 9, 2022"
+        "date": "Jul 09, 2022"
     },
     "Typing Test": {
         "description": "A typing speed and accuracy test written purely in Python",
@@ -39,6 +39,6 @@
         "field": "Web3 / Crypto",
         "difficulty": "Intermediate",
         "creator": "Matthew Chan",
-        "date": "Sep 7, 2022"
+        "date": "Sep 07, 2022"
     }
 }
