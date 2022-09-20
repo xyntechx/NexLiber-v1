@@ -8,12 +8,14 @@ const Project = ({
     field,
     difficulty,
     creator,
+    date,
 }: {
     title: string;
     description: string;
     field: string;
     difficulty: string;
     creator: string;
+    date: string;
 }) => {
     const [url, setUrl] = useState(title.toLowerCase().split(" ").join("-"));
 
@@ -53,6 +55,7 @@ const Project = ({
                     </p>
                 </span>
                 <p className={styles.creator}>Creator: {creator}</p>
+                <p className={styles.date}>{date}</p>
             </a>
         </Link>
     );

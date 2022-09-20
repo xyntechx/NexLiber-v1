@@ -19,6 +19,7 @@ const WorkbookLayout: React.FC<WorkbookLayoutProps> = (props) => {
             field: string;
             difficulty: string;
             creator: string;
+            date: string;
         };
     }>(PROJECTS);
 

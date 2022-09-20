@@ -14,6 +14,7 @@ const Library: NextPage = () => {
             field: string;
             difficulty: string;
             creator: string;
+            date: string;
         };
     }>(PROJECTS);
 
@@ -118,13 +119,15 @@ const Library: NextPage = () => {
                         )}
                         <h1 className={styles.label}>All Projects</h1>
                         <section className={styles.content}>
-                            {Object.keys(projects).map((project_title) => (
-                                <Project
-                                    key={project_title}
-                                    title={project_title}
-                                    {...projects[project_title]}
-                                />
-                            ))}
+                            {Object.keys(projects)
+                                .reverse()
+                                .map((title) => (
+                                    <Project
+                                        key={title}
+                                        title={title}
+                                        {...projects[title]}
+                                    />
+                                ))}
                         </section>
                     </>
                 ) : (

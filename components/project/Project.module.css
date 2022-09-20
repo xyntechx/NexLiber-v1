@@ -21,7 +21,8 @@
 .textGreen,
 .textYellow,
 .textRed,
-.creator {
+.creator,
+.date {
     font-size: 1rem;
     text-align: center;
     width: 100%;
@@ -51,10 +52,17 @@
     margin-top: 0;
 }
 
-.creator {
+.creator,
+.date {
     text-align: right;
     color: #696969;
     margin-bottom: 0;
+}
+
+.date {
+    font-size: 0.8rem;
+    padding-right: 2px;
+    font-style: italic;
 }
 
 .hidden {
@@ -84,5 +92,9 @@
     .textRed,
     .creator {
         font-size: 0.8rem;
+    }
+
+    .date {
+        font-size: 0.6rem;
     }
 }

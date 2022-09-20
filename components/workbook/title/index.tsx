@@ -6,12 +6,14 @@ const Title = ({
     field,
     difficulty,
     creator,
+    date,
 }: {
     title: string;
     description: string;
     field: string;
     difficulty: string;
     creator: string;
+    date: string;
 }) => {
     return (
         <div className={styles.container}>
@@ -48,6 +50,7 @@ const Title = ({
                 </span>
             </p>
             <p className={styles.subtitle}>Creator: {creator}</p>
+            <p className={styles.date}>{date}</p>
         </div>
     );
 };
