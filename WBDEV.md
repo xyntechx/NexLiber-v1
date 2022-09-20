@@ -20,9 +20,12 @@ Here are the step-by-step instructions you should follow:
     "description": "Project description",
     "field": "Project Field",
     "difficulty": "Difficulty",
-    "creator": "Creator Name"
+    "creator": "Creator Name",
+    "date": "Month DD, YYYY"
 }
 ```
+
+> Note: "Date" is the date of your "🔖 Complete Workbook: **Project Title**" commit
 
 ### Format: `project-title.tsx`
 ```tsx
