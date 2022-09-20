@@ -21,7 +21,7 @@ Here are the step-by-step instructions you should follow:
     "field": "Project Field",
     "difficulty": "Difficulty",
     "creator": "Creator Name",
-    "date": "Month DD, YYYY"
+    "date": "Mon DD, YYYY"
 }
 ```
 
