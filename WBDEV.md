@@ -30,8 +30,8 @@ Here are the step-by-step instructions you should follow:
 ### Format: `project-title.mdx`
 ```md
 import WorkbookLayout from "../../layouts/WorkbookLayout";
-<!--- NexLiber component imports (if necessary): Code, Pic, Quiz -- refer to already-written Workbooks for examples --->
-<!--- Other external imports (if necessary) --->
+// NexLiber component imports (if necessary): Code, Pic, Quiz -- refer to already-written Workbooks for examples
+// Other external imports (if necessary)
 
 # The Header
 
@@ -41,7 +41,7 @@ Another paragraph... this time with [a link](https://nexliber.com/).
 
 Here's some **highlighted text**!
 
-<!--- And so on and so forth --->
+[//]: # (And so on and so forth)
 
 export default ({ children }) => (
     <WorkbookLayout projectTitle="Project Title" content={children} />
