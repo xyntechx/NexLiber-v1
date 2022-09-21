@@ -8,7 +8,7 @@ Since you do not have write access to `xyntechx/NexLiber`, you have to fork this
 Here are the step-by-step instructions you should follow:
 - Run `npm i` in the terminal to install all the necessary packages
 - Add your project details into `public/projects.json` -- follow the format [here](#format-projectsjson)
-- Add your Workbook (`project-title.tsx`) into `pages/workbook/` -- follow the format [here](#format-project-titletsx)
+- Add your Workbook (`project-title.mdx`) into `pages/workbook/` -- follow the format [here](#format-project-titlemdx)
 - While writing your Workbook, review it by running `npm run dev` in the terminal and visiting `http://localhost:3000/` in your browser
 - Once you are satisfied with your Workbook, test it for any bugs by running `npm run build` in the terminal
 - If the test is successful, commit your changes with the message "🔖 Complete Workbook: **Project Title**"
@@ -27,47 +27,25 @@ Here are the step-by-step instructions you should follow:
 
 > Note: "Date" is the date of your "🔖 Complete Workbook: **Project Title**" commit
 
-### Format: `project-title.tsx`
-```tsx
-import type { NextPage } from "next";
-import Link from "next/link";
-import styles from "../../styles/Workbook.module.css";
+### Format: `project-title.mdx`
+```md
 import WorkbookLayout from "../../layouts/WorkbookLayout";
-// NexLiber component imports (if necessary): Code, Pic, Quiz -- refer to already-written Workbooks for examples
-// Other external imports (if necessary)
+<!--- NexLiber component imports (if necessary): Code, Pic, Quiz -- refer to already-written Workbooks for examples --->
+<!--- Other external imports (if necessary) --->
 
-const Workbook: NextPage = () => {
-    return (
-        <WorkbookLayout
-            projectTitle="Project Title"
-            content={
-                <>
-                    {/* Workbook content goes here */}
-                    <h1 className={styles.header}>The Header</h1>
-                    <p className={styles.paragraph}>
-                        A paragraph with{" "}
-                        <Link href="https://nexliber.com/">
-                            <a className={styles.link} target="_blank">
-                                a link
-                            </a>
-                        </Link>{" "}
-                        in it.
-                    </p>
-                    <p className={styles.paragraph}>
-                        Another paragraph with{" "}
-                        <span className={styles.highlight}>
-                            some highlighted text
-                        </span>
-                        .
-                    </p>
-                    {/* And so on and so forth */}
-                </>
-            }
-        />
-    );
-};
+# The Header
 
-export default Workbook;
+A paragraph.
+
+Another paragraph... this time with [a link](https://nexliber.com/).
+
+Here's some **highlighted text**!
+
+<!--- And so on and so forth --->
+
+export default ({ children }) => (
+    <WorkbookLayout projectTitle="Project Title" content={children} />
+);
 ```
 
 ## Create a Pull Request
