@@ -30,8 +30,8 @@ Here are the step-by-step instructions you should follow:
 ### Format: `project-title.mdx`
 ```md
 import WorkbookLayout from "../../layouts/WorkbookLayout";
-// NexLiber component imports (if necessary): Code, Pic, Quiz -- refer to already-written Workbooks for examples
-// Other external imports (if necessary)
+// NexLiber component imports -- refer to already-written Workbooks for examples
+// Other external imports
 
 # The Header
 
