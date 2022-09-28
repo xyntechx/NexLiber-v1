@@ -40,5 +40,12 @@
         "difficulty": "Intermediate",
         "creator": "Matthew Chan",
         "date": "Sep 07, 2022"
+    },
+    "Fresh Project Manager": {
+        "description": "A Fresh local storage-driven web app to manage projects",
+        "field": "Web Development",
+        "difficulty": "Advanced",
+        "creator": "Nyx Iskandar",
+        "date": "Sep 28, 2022"
     }
 }
