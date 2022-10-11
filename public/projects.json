@@ -47,5 +47,12 @@
         "difficulty": "Advanced",
         "creator": "Nyx Iskandar",
         "date": "Sep 28, 2022"
+    },
+    "roygbiv": {
+        "description": "A Next.js reaction time game",
+        "field": "Game/Web Development",
+        "difficulty": "Advanced",
+        "creator": "Nyx Iskandar",
+        "date": "Oct 12, 2022"
     }
 }
