@@ -37,7 +37,8 @@ const Library: NextPage = () => {
         const queryLength = query.length;
         const QUERY = query.toLowerCase();
 
-        for (let i = 0; i < Object.keys(projects).length; i++) {
+        for (let i = Object.keys(projects).length - 1; i >= 0; i--) {
+            // index i in reverse order
             const title = Object.keys(projects)[i];
             const details = projects[title];
             const field = details.field.toLowerCase();
