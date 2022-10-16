@@ -17,10 +17,10 @@ const Project = ({
     creator: string;
     date: string;
 }) => {
-    const [url, setUrl] = useState(title.toLowerCase().split(" ").join("-"));
+    const [url, _] = useState(title.toLowerCase().split(" ").join("-"));
 
     return (
-        <Link href={"/workbook/" + url}>
+        <Link href={`/workbook/${url}`}>
             <a className={styles.project}>
                 <h1 className={styles.title}>{title}</h1>
                 <p className={styles.text}>{description}</p>
