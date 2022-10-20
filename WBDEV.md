@@ -62,4 +62,4 @@ Your Workbook must be reviewed and approved by an admin before it is merged into
 Upon merging, your Workbook will be put up on NexLiber, and you will be a published NexLiber Creator!
 
 ## Discord Community
-If you have any questions regarding this process or NexLiber in general, raise it up on our [Discord](https://discord.gg/CvZGEjyzbR)!
+If you have any questions regarding this process or NexLiber in general, raise it up on our [Discord](/community)!

@@ -39,7 +39,7 @@ const Footer: NextPage = () => {
                     </Link>
                 </div>
                 <div className={styles.footeritemcol}>
-                    <Link href="https://discord.gg/CvZGEjyzbR">
+                    <Link href="/community">
                         <a className={styles.footerlink} target="_blank">
                             Discord
                         </a>
@@ -80,7 +80,7 @@ const Footer: NextPage = () => {
                         </Link>
                     </div>
                     <div className={styles.footeritemcol}>
-                        <Link href="https://discord.gg/CvZGEjyzbR">
+                        <Link href="/community">
                             <a className={styles.footerlink} target="_blank">
                                 Discord
                             </a>

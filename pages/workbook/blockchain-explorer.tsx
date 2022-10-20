@@ -473,7 +473,7 @@ getTokenBalance()
                         If you have questions about anything related to NexLiber
                         or this workbook, you&apos;re welcome to ask our
                         community on{" "}
-                        <Link href="https://discord.gg/CvZGEjyzbR">
+                        <Link href="/community">
                             <a className={styles.link} target="_blank">
                                 Discord
                             </a>

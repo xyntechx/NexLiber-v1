@@ -24,7 +24,7 @@ Create an Issue for any suggestions, questions, etc.
 Fork this repository and create a Pull Request for any new implementations, etc.
 
 ## 🗣 Community
-Connect with coders from all around the globe on the [NexLiber Discord](https://discord.gg/CvZGEjyzbR)!
+Connect with coders from all around the globe on the [NexLiber Discord](/community)!
 
 ## ✨ Author
 Nyx Audrey Angelo Iskandar ([@xyntechx](https://github.com/xyntechx))

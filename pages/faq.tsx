@@ -55,7 +55,7 @@ const FAQ: NextPage = () => {
                             Moreover, NexLiber requires no account creation on
                             the site itself, holding all community discussions
                             and Q&A on our{" "}
-                            <Link href="https://discord.gg/CvZGEjyzbR">
+                            <Link href="/community">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -75,7 +75,7 @@ const FAQ: NextPage = () => {
                             and try implementing a project! We have projects for
                             beginner, intermediate, and advanced coders in all
                             CS fields. Don&apos;t forget to join our{" "}
-                            <Link href="https://discord.gg/CvZGEjyzbR">
+                            <Link href="/community">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -101,7 +101,7 @@ const FAQ: NextPage = () => {
                                 </a>
                             </Link>
                             . Also, join our{" "}
-                            <Link href="https://discord.gg/CvZGEjyzbR">
+                            <Link href="/community">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -120,7 +120,7 @@ const FAQ: NextPage = () => {
                             </Link>{" "}
                             with new Workbooks and implementing new features on
                             NexLiber! To become a Developer, join our{" "}
-                            <Link href="https://discord.gg/CvZGEjyzbR">
+                            <Link href="/community">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -137,7 +137,7 @@ const FAQ: NextPage = () => {
                             you must first be a Creator who has launched at
                             least 5 Workbooks on NexLiber. You should also join
                             our{" "}
-                            <Link href="https://discord.gg/CvZGEjyzbR">
+                            <Link href="/community">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>
@@ -158,7 +158,7 @@ const FAQ: NextPage = () => {
                             will also stand to participate in giveaways after
                             referring 5 friends to join NexLiber as Creators
                             (see the #referral channel on{" "}
-                            <Link href="https://discord.gg/CvZGEjyzbR">
+                            <Link href="/community">
                                 <a className={styles.link} target="_blank">
                                     Discord
                                 </a>

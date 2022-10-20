@@ -27,7 +27,7 @@ const Topnav: NextPage = () => {
                         />
                     </a>
                 </Link>
-                <Link href="https://discord.gg/CvZGEjyzbR">
+                <Link href="/community">
                     <a target="_blank" className={styles.imglink}>
                         <Image
                             src="/discord.png"
