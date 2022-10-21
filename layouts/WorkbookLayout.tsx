@@ -29,7 +29,7 @@ const WorkbookLayout: React.FC<WorkbookLayoutProps> = (props) => {
                 <title>NexLiber | {projectTitle}</title>
                 <link rel="icon" href="/favicon.ico" />
                 <meta name="description" content="Create to Learn" />
-                <meta name="author" content="Nyx Iskandar" />
+                <meta name="author" content={projects[projectTitle].creator} />
                 <meta
                     property="og:title"
                     content={`NexLiber | ${projectTitle}`}
