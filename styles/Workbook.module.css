@@ -24,11 +24,21 @@
     margin-top: 1rem;
 }
 
-.paragraph {
+.paragraph,
+.list {
     margin: 0.5rem 0;
     text-align: left;
     font-size: 1rem;
     line-height: 1.5;
+}
+
+.list {
+    padding: 0 2rem;
+    padding-right: 0;
+}
+
+.listItem {
+    margin-bottom: 0.2rem;
 }
 
 .link {
@@ -54,7 +64,8 @@
         font-size: 1rem;
     }
 
-    .paragraph {
+    .paragraph,
+    .list {
         font-size: 0.8rem;
     }
 }

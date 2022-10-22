@@ -14,6 +14,9 @@ const customMDX = {
     ),
     strong: (props) => <span {...props} className={styles.highlight} />,
     code: (props) => <Code code={props.children} />,
+    ul: (props) => <ul {...props} className={styles.list} />,
+    ol: (props) => <ol {...props} className={styles.list} />,
+    li: (props) => <li {...props} className={styles.listItem} />,
 };
 
 export default customMDX;
