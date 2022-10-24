@@ -28,18 +28,30 @@ const WorkbookLayout: React.FC<WorkbookLayoutProps> = (props) => {
             <Head>
                 <title>NexLiber | {projectTitle}</title>
                 <link rel="icon" href="/favicon.ico" />
-                <meta name="description" content="Create to Learn" />
+                <meta
+                    name="description"
+                    content={projects[projectTitle].description}
+                />
                 <meta name="author" content={projects[projectTitle].creator} />
                 <meta
                     property="og:title"
                     content={`NexLiber | ${projectTitle}`}
                 />
-                <meta property="og:description" content="Create to Learn" />
+                <meta
+                    property="og:description"
+                    content={projects[projectTitle].description}
+                />
                 <meta
                     property="og:image"
                     content="https://nexliber.com/og-image.png"
                 />
-                <meta property="og:url" content="https://nexliber.com/" />
+                <meta
+                    property="og:url"
+                    content={`https://nexliber.com/workbook/${projectTitle
+                        .toLowerCase()
+                        .split(" ")
+                        .join("-")}`}
+                />
                 <meta property="og:type" content="website" />
             </Head>
 
