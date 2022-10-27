@@ -11,8 +11,7 @@ interface WorkbookLayoutProps {
     content: React.ReactNode;
 }
 
-const WorkbookLayout: React.FC<WorkbookLayoutProps> = (props) => {
-    const { projectTitle, content } = props;
+const WorkbookLayout = ({ projectTitle, content }: WorkbookLayoutProps) => {
     const [projects, _] = useState<{
         [key: string]: {
             description: string;
@@ -23,23 +22,22 @@ const WorkbookLayout: React.FC<WorkbookLayoutProps> = (props) => {
         };
     }>(PROJECTS);
 
+    const [projectDetails, __] = useState(projects[projectTitle]);
+
     return (
         <div>
             <Head>
                 <title>NexLiber | {projectTitle}</title>
                 <link rel="icon" href="/favicon.ico" />
-                <meta
-                    name="description"
-                    content={projects[projectTitle].description}
-                />
-                <meta name="author" content={projects[projectTitle].creator} />
+                <meta name="description" content={projectDetails.description} />
+                <meta name="author" content={projectDetails.creator} />
                 <meta
                     property="og:title"
                     content={`NexLiber | ${projectTitle}`}
                 />
                 <meta
                     property="og:description"
-                    content={projects[projectTitle].description}
+                    content={projectDetails.description}
                 />
                 <meta
                     property="og:image"
@@ -57,11 +55,8 @@ const WorkbookLayout: React.FC<WorkbookLayoutProps> = (props) => {
 
             <main className={styles.main}>
                 <Topnav />
-
-                <Title title={projectTitle} {...projects[projectTitle]} />
-
+                <Title title={projectTitle} {...projectDetails} />
                 <section className={styles.content}>{content}</section>
-
                 <Footer />
             </main>
         </div>
