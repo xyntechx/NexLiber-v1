@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import Code from "../../components/workbook/code";
+import NexLiberCode from "../../components/workbook/code";
 import Quiz from "../../components/workbook/quiz";
 import styles from "../../styles/Workbook.module.css";
 import WorkbookLayout from "../../layouts/WorkbookLayout";
@@ -87,7 +87,7 @@ const Workbook: NextPage = () => {
                         <span className={styles.highlight}>index.js</span> file
                         (in VSCode) and write:{" "}
                     </p>
-                    <Code code='console.log("1 + 1")' />
+                    <NexLiberCode code='console.log("1 + 1")' />
                     <p className={styles.paragraph}>
                         Then, open your command prompt, and run the server with{" "}
                         <span className={styles.highlight}>node index.js</span>
@@ -103,7 +103,7 @@ const Workbook: NextPage = () => {
                         Alright, let&apos;s install one more dependency in the
                         command prompt:
                     </p>
-                    <Code code="npm install --save ethers" />
+                    <NexLiberCode code="npm install --save ethers" />
                     <p className={styles.paragraph}>
                         …and let&apos;s get started!
                     </p>
@@ -145,19 +145,19 @@ const Workbook: NextPage = () => {
                         <span className={styles.highlight}>index.js</span>, and
                         import the ethers library.
                     </p>
-                    <Code code='const { ethers } = require("ethers");' />
+                    <NexLiberCode code='const { ethers } = require("ethers");' />
                     <p className={styles.paragraph}>
                         To connect with the blockchain, a{" "}
                         <span className={styles.highlight}>Provider</span> must
                         first be instantiated.
                     </p>
-                    <Code code="const provider = ethers.getDefaultProvider();" />
+                    <NexLiberCode code="const provider = ethers.getDefaultProvider();" />
                     <p className={styles.paragraph}>
                         With this, we now gain access to a range of asynchronous
                         utility functions. To provide a testbed for testing,
                         let&apos;s create a quick async/await function:
                     </p>
-                    <Code
+                    <NexLiberCode
                         code={`...
 async function getBalance() {
   // most ethers code goes here
@@ -171,11 +171,10 @@ getBalance();`}
                         and put this following code <u>inside the function</u>{" "}
                         you just created:
                     </p>
-                    <Code
-                        code={`  const address = "0x5555763613a12D8F3e73be831DFf8598089d3dCa";
-  const balance = await provider.getBalance(address);
-
-  console.log(balance);`}
+                    <NexLiberCode
+                        code={`const address = "0x5555763613a12D8F3e73be831DFf8598089d3dCa";
+const balance = await provider.getBalance(address);
+console.log(balance);`}
                     />
                     <p className={styles.paragraph}>
                         … and run the server again with{" "}
@@ -199,27 +198,27 @@ getBalance();`}
                         <span className={styles.highlight}>ethers/utils</span>{" "}
                         library first.
                     </p>
-                    <Code code='const { formatEther } = require("@ethersproject/units");' />
+                    <NexLiberCode code='const { formatEther } = require("@ethersproject/units");' />
                     <p className={styles.paragraph}>
                         and refactor the code from earlier into this:
                     </p>
-                    <Code
-                        code={`  // most ethers code goes here
-  const address = "0x5555763613a12D8F3e73be831DFf8598089d3dCa";
-  const balance = await provider.getBalance(address);
-  const parsedBalance = formatEther(balance)
+                    <NexLiberCode
+                        code={`// most ethers code goes here
+const address = "0x5555763613a12D8F3e73be831DFf8598089d3dCa";
+const balance = await provider.getBalance(address);
+const parsedBalance = formatEther(balance)
 
-  console.log(parsedBalance);
+console.log(parsedBalance);
 `}
                     />
                     <p className={styles.paragraph}>
                         Now let&apos;s just change the final logging statement
                         slightly:
                     </p>
-                    <Code
+                    <NexLiberCode
                         code={`console.log(
-    \`The address $\{requestedAddress\} has a balance of $\{parsedBalance\} ether.\`
-  );
+  \`The address $\{requestedAddress\} has a balance of $\{parsedBalance\} ether.\`
+);
 `}
                     />
                     <p className={styles.paragraph}>
@@ -270,13 +269,13 @@ getBalance();`}
                         <span className={styles.highlight}>prompt-sync</span>{" "}
                         through the terminal:
                     </p>
-                    <Code code="npm install prompt-sync" />
+                    <NexLiberCode code="npm install prompt-sync" />
                     <p className={styles.paragraph}>
                         Then, import{" "}
                         <span className={styles.highlight}>isAddress</span> and
                         this new library:
                     </p>
-                    <Code
+                    <NexLiberCode
                         code={`…
 const { isAddress } = require("@ethersproject/address");
 const prompt = require("prompt-sync")({ sigint: true });
@@ -289,21 +288,21 @@ const prompt = require("prompt-sync")({ sigint: true });
                         </span>{" "}
                         statement with
                     </p>
-                    <Code
-                        code={`  while (true) {
-    requestedAddress = prompt(
-      "Which address' balance would you like to query?: "
-    );
+                    <NexLiberCode
+                        code={`while (true) {
+  requestedAddress = prompt(
+    "Which address' balance would you like to query?: "
+  );
 
-    if (isAddress(requestedAddress)) {
-      console.log("retrieving balance...");
-      break;
-    } else {
-      console.log(
-        "Invalid address! Make sure to include the '0x' at the start..."
-      );
-    }
+  if (isAddress(requestedAddress)) {
+    console.log("retrieving balance...");
+    break;
+  } else {
+    console.log(
+      "Invalid address! Make sure to include the '0x' at the start..."
+    );
   }
+}
 `}
                     />
                     <p className={styles.paragraph}>
@@ -340,13 +339,12 @@ const prompt = require("prompt-sync")({ sigint: true });
                         interact with Dai, a ERC-20 (i.e. non-native) token.
                         Let&apos;s first create a new asynchronous function:
                     </p>
-                    <Code
+                    <NexLiberCode
                         code={`…
 getBalance()
 
 async function getTokenBalance() {
   // most ethers code goes here
-
 }
 getTokenBalance()
 `}
@@ -355,10 +353,10 @@ getTokenBalance()
                         In the function, we first create an abstraction of the
                         smart contract:
                     </p>
-                    <Code
-                        code={`  const daiAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
-  const daiAbi = ["function balanceOf(address) view returns (uint256)"];
-  const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
+                    <NexLiberCode
+                        code={`const daiAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
+const daiAbi = ["function balanceOf(address) view returns (uint256)"];
+const daiContract = new ethers.Contract(daiAddress, daiAbi, provider);
 `}
                     />
                     <p className={styles.paragraph}>
@@ -371,34 +369,34 @@ getTokenBalance()
                         We then get an address with the prompt we wrote earlier:
                     </p>
 
-                    <Code
-                        code={`  while (true) {
+                    <NexLiberCode
+                        code={`while (true) {
     requestedAddress = prompt(
-      "What address' balance would you like to retrieve?: "
+        "What address' balance would you like to retrieve?: "
     );
 
     if (isAddress(requestedAddress)) {
-      console.log("retrieving balance...");
-      break;
+        console.log("retrieving balance...");
+        break;
     } else {
-      console.log(
-        "Invalid address! Make sure to include the '0x' at the start..."
-      );
+        console.log(
+            "Invalid address! Make sure to include the '0x' at the start..."
+        );
     }
-  }
+}
 `}
                     />
                     <p className={styles.paragraph}>
                         and grab its balance of Dai with the following code:
                     </p>
-                    <Code
-                        code={`  const balance = await daiContract.balanceOf(requestedAddress);`}
+                    <NexLiberCode
+                        code={`const balance = await daiContract.balanceOf(requestedAddress);`}
                     />
                     <p className={styles.paragraph}>
                         To parse the balance, we must now use this code:
                     </p>
-                    <Code
-                        code={`  const parsedBalance = parseInt(balance._hex, 16) / 10 ** 18;`}
+                    <NexLiberCode
+                        code={`const parsedBalance = parseInt(balance._hex, 16) / 10 ** 18;`}
                     />
                     <p className={styles.paragraph}>
                         Again, it is worth noting that values are stored as
@@ -410,10 +408,10 @@ getTokenBalance()
                     <p className={styles.paragraph}>
                         Now, we log out the balance:
                     </p>
-                    <Code
-                        code={`  console.log(
+                    <NexLiberCode
+                        code={`console.log(
     \`The address $\{requestedAddress\} has a balance of $\{parsedBalance\} DAI.\`
-  );
+);
 `}
                     />
                     <p className={styles.paragraph}>
