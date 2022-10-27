@@ -7,7 +7,7 @@ const Code = ({ code }: { code: string }) => {
             <Head>
                 <script
                     async
-                    src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"
+                    src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"
                 />
                 <script defer>hljs.highlightAll();</script>
             </Head>
