@@ -5,6 +5,7 @@ import Footer from "../components/footer";
 import Title from "../components/workbook/title";
 import styles from "../styles/Workbook.module.css";
 import PROJECTS from "../public/projects.json";
+import "@code-hike/mdx/dist/index.css";
 
 interface WorkbookLayoutProps {
     projectTitle: string;
