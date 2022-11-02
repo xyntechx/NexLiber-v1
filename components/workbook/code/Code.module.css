@@ -7,7 +7,7 @@
 
 .code {
     font-size: 1rem;
-    background-color: #000;
+    background-color: var(--color-bg-box);
     color: #ffb13d;
     white-space: pre;
     padding: 0.5rem;

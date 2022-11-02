@@ -6,7 +6,7 @@
     flex-direction: column;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: #000;
+    background-color: var(--color-bg-box);
     color: #fff;
 }
 
@@ -25,11 +25,14 @@
     transition: 0.3s;
     cursor: pointer;
     padding: 0.5rem;
+    border: var(--color-bg-box) solid 1px;
 }
 
 .choice:hover,
 .choice:focus {
-    background-color: #f99c10;
+    color: var(--color-text-box);
+    background-color: var(--color-bg-box);
+    border-color: #ffb13d;
 }
 
 @media (max-width: 600px) {

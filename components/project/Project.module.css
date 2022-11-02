@@ -1,7 +1,7 @@
 .project {
     transition: 0.3s;
     border: none;
-    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 0 10px 4px var(--color-shadow);
     cursor: pointer;
     border-radius: 0.4rem;
     padding: 1rem;
@@ -13,7 +13,7 @@
 }
 
 .project:hover {
-    box-shadow: 0 20px 35px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 0 20px 8px var(--color-shadow);
 }
 
 .title,
@@ -77,8 +77,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--color-bg-box);
+    color: var(--color-text-box);
 }
 
 @media (max-width: 600px) {

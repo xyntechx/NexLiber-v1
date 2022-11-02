@@ -54,9 +54,11 @@
     width: 95%;
     padding: 0.3rem 0.5rem;
     outline: none;
-    border: 1px #000 solid;
+    background-color: var(--color-bg);
+    border: 1px var(--color-text) solid;
     border-radius: 0.4rem;
     font-size: 1rem;
+    color: var(--color-text);
 }
 
 .input:focus {
@@ -85,7 +87,7 @@
     margin-bottom: 1rem;
     cursor: pointer;
     outline: none;
-    border: transparent;
+    border: var(--color-bg) 1px solid;
     border-radius: 0.4rem;
     color: #1f2937;
     background-color: #ffb13d;
@@ -96,7 +98,9 @@
 
 .button:hover,
 .button:focus {
-    background-color: #f99c10;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border-color: #ffb13d;
 }
 
 @media (max-width: 600px) {

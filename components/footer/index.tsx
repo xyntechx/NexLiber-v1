@@ -1,16 +1,45 @@
 import type { NextPage } from "next";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const Footer: NextPage = () => {
+    const [activeTheme, setActiveTheme] = useState<string>();
+
+    useEffect(() => {
+        if (localStorage.getItem("theme")) {
+            setActiveTheme(localStorage.getItem("theme")!);
+        } else {
+            setActiveTheme(
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light"
+            );
+        }
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("themeUpdate", () => {
+            if (localStorage.getItem("theme")) {
+                setActiveTheme(localStorage.getItem("theme")!);
+            } else {
+                setActiveTheme(
+                    window.matchMedia("(prefers-color-scheme: dark)").matches
+                        ? "dark"
+                        : "light"
+                );
+            }
+        });
+    });
+
     return (
         <>
             {/* For Desktop */}
             <footer className={styles.footer}>
                 <div className={styles.footeritemrow}>
                     <Image
-                        src="/logo/light.svg"
+                        src={`/${activeTheme}/nexliber.svg`}
                         alt="NexLiber Logo"
                         width={80}
                         height={80}
@@ -101,7 +130,7 @@ const Footer: NextPage = () => {
                 </div>
                 <div className={styles.footeritemrow}>
                     <Image
-                        src="/logo/light.svg"
+                        src={`/${activeTheme}/nexliber.svg`}
                         alt="NexLiber Logo"
                         width={50}
                         height={50}
