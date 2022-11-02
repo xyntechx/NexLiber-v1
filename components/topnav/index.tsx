@@ -9,7 +9,7 @@ const Topnav: NextPage = () => {
             <Link href="/">
                 <a>
                     <Image
-                        src="/logo.png"
+                        src="/logo/light-bg.svg"
                         alt="NexLiber Logo"
                         width={80}
                         height={80}
