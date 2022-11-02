@@ -72,9 +72,7 @@ const Topnav: NextPage = () => {
                     </a>
                 </Link>
                 <Link href="/faq">
-                    <a target="_blank" className={styles.link}>
-                        FAQ
-                    </a>
+                    <a className={styles.link}>FAQ</a>
                 </Link>
                 <Link href="/library">
                     <a className={styles.speciallink}>Library</a>
