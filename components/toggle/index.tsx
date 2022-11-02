@@ -9,7 +9,7 @@ const Toggle = () => {
 
     useEffect(() => {
         document.body.dataset.theme = activeTheme;
-        localStorage.setItem("theme", JSON.stringify(activeTheme));
+        localStorage.setItem("theme", activeTheme);
         window.dispatchEvent(new Event("themeUpdate")); // for responsiveness of other components
     }, [activeTheme]);
 

@@ -8,8 +8,8 @@ const Footer: NextPage = () => {
     const [activeTheme, setActiveTheme] = useState<string>();
 
     useEffect(() => {
-        if (JSON.parse(localStorage.getItem("theme")!)) {
-            setActiveTheme(JSON.parse(localStorage.getItem("theme")!));
+        if (localStorage.getItem("theme")) {
+            setActiveTheme(localStorage.getItem("theme")!);
         } else {
             setActiveTheme(
                 window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -22,17 +22,14 @@ const Footer: NextPage = () => {
     useEffect(() => {
         window.addEventListener("themeUpdate", () => {
             if (localStorage.getItem("theme")) {
-                setActiveTheme(JSON.parse(localStorage.getItem("theme")!));
-                console.log("FROM LOCAL STORAGE");
+                setActiveTheme(localStorage.getItem("theme")!);
             } else {
                 setActiveTheme(
                     window.matchMedia("(prefers-color-scheme: dark)").matches
                         ? "dark"
                         : "light"
                 );
-                console.log("FROM USER SETTINGS");
             }
-            console.log("active theme:", activeTheme);
         });
     });
 

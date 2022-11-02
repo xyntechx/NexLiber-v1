@@ -13,8 +13,8 @@ const Topnav: NextPage = () => {
     const [activeTheme, setActiveTheme] = useState<string>();
 
     useEffect(() => {
-        if (JSON.parse(localStorage.getItem("theme")!)) {
-            setActiveTheme(JSON.parse(localStorage.getItem("theme")!));
+        if (localStorage.getItem("theme")) {
+            setActiveTheme(localStorage.getItem("theme")!);
         } else {
             setActiveTheme(
                 window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -26,8 +26,8 @@ const Topnav: NextPage = () => {
 
     useEffect(() => {
         window.addEventListener("themeUpdate", () => {
-            if (JSON.parse(localStorage.getItem("theme")!)) {
-                setActiveTheme(JSON.parse(localStorage.getItem("theme")!));
+            if (localStorage.getItem("theme")) {
+                setActiveTheme(localStorage.getItem("theme")!);
             } else {
                 setActiveTheme(
                     window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -77,7 +77,7 @@ const Topnav: NextPage = () => {
                     </a>
                 </Link>
                 <Link href="/library">
-                    <a className={styles.speciallink}>Start</a>
+                    <a className={styles.speciallink}>Library</a>
                 </Link>
 
                 <Toggle />
