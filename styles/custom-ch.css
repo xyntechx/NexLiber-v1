@@ -8,7 +8,7 @@
 
 .ch-code-scroll-parent,
 .ch-code-scroll-content {
-    background-color: #22272f !important;
+    background-color: var(--color-bg-box) !important;
 }
 
 @media (max-width: 600px) {

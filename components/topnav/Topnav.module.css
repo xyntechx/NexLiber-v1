@@ -36,13 +36,16 @@
 .speciallink {
     color: #1f2937;
     background-color: #ffb13d;
+    border: var(--color-bg) 1px solid;
     border-radius: 0.4rem;
     padding: 0.3rem 0.8rem;
     transition: 0.3s;
 }
 
 .speciallink:hover {
-    background-color: #f99c10;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    border-color: #ffb13d;
 }
 
 @media (max-width: 1000px) {

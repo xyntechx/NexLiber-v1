@@ -70,18 +70,22 @@
     border-radius: 0.4rem;
     transition: 0.3s;
     border: none;
-    box-shadow: 0 4px 14px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 0 10px 4px var(--color-shadow);
     font-size: 1.5rem;
     padding: 0.5rem 1rem;
 }
 
+.button {
+    color: #111827;
+}
+
 .buttonwhite {
-    background-color: #ffffff;
+    background-color: var(--color-bg);
 }
 
 .button:hover,
 .buttonwhite:hover {
-    box-shadow: 0 20px 35px 0 rgb(0 0 0 / 10%);
+    box-shadow: 0 0 20px 8px var(--color-shadow);
 }
 
 .grid {
@@ -91,6 +95,7 @@
     margin: 0 2rem;
     margin-top: 2rem;
     column-gap: 2rem;
+    color: #111827;
 }
 
 .griditem {
@@ -99,7 +104,7 @@
     justify-content: center;
     flex-direction: column;
     border-radius: 0.3rem;
-    border: #a0a0a0 solid 1px;
+    border: var(--color-text) solid 2px;
     padding: 1.5rem 2rem;
     background-color: #ffb13d;
 }
