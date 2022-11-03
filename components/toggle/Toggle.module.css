@@ -1,38 +1,24 @@
-.button {
-    --toggle-width: 80px;
-    --toggle-height: 38px;
-    --toggle-padding: 4px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+.toggle {
     font-size: 1.5rem;
-    line-height: 1;
-    width: var(--toggle-width);
-    height: var(--toggle-height);
-    padding: var(--toggle-padding);
+    padding: 0.2rem 0.8rem;
     border: none;
-    border-radius: calc(var(--toggle-width) / 2);
+    border-radius: 1rem;
     cursor: pointer;
     background-color: var(--color-toggle);
-    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.button:focus,
-.button:focus:not(:focus-visible) {
+.toggle:focus,
+.toggle:focus:not(:focus-visible) {
     outline: none;
 }
 
-.button:hover {
+.toggle:hover {
     box-shadow: 0 0 5px 2px var(--color-toggle);
 }
 
-.thumb {
-    position: absolute;
-    top: var(--toggle-padding);
-    left: var(--toggle-padding);
-    width: calc(var(--toggle-height) - (var(--toggle-padding) * 2));
-    height: calc(var(--toggle-height) - (var(--toggle-padding) * 2));
-    border-radius: 50%;
-    background-color: white;
+@media (max-width: 600px) {
+    .toggle {
+        font-size: 1.2rem;
+    }
 }
