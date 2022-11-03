@@ -1,7 +1,7 @@
 .project {
     transition: 0.3s;
     border: none;
-    box-shadow: 0 0 10px 4px var(--color-shadow);
+    box-shadow: var(--shadow);
     cursor: pointer;
     border-radius: 0.4rem;
     padding: 1rem;
@@ -13,7 +13,7 @@
 }
 
 .project:hover {
-    box-shadow: 0 0 20px 8px var(--color-shadow);
+    box-shadow: var(--shadow-hover);
 }
 
 .title,
