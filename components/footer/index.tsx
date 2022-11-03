@@ -47,7 +47,7 @@ const Footer: NextPage = () => {
                     <div className={styles.subfooteritem}>
                         <p>MIT License</p>
                         <br />
-                        <p>Copyright (c) Nyx Audrey Angelo Iskandar</p>
+                        <p>Copyright &copy; 2022 Nyx Audrey Angelo Iskandar</p>
                     </div>
                 </div>
                 <div className={styles.footeritemcol}>
