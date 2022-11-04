@@ -40,6 +40,14 @@ const Home: NextPage = () => {
                             <span>all things Computer Science</span>
                         </div>
                         <div className={styles.buttondiv}>
+                            <Link href="https://github.com/xyntechx/NexLiber">
+                                <a
+                                    target="_blank"
+                                    className={styles.buttonwhite}
+                                >
+                                    Source
+                                </a>
+                            </Link>
                             <Link href="/library">
                                 <a className={styles.button}>Get Started</a>
                             </Link>
@@ -66,9 +74,9 @@ const Home: NextPage = () => {
                             <h6>Community-driven</h6>
                             <br />
                             <p>
-                                All projects on NexLiber are created by
-                                experienced coders who will help you succeed in
-                                any Computer Science field.
+                                All projects and their Workbooks on NexLiber are
+                                created by experienced coders who will help you
+                                succeed in any Computer Science field.
                             </p>
                         </div>
                         <div className={styles.griditem}>
@@ -76,7 +84,8 @@ const Home: NextPage = () => {
                             <br />
                             <p>
                                 Reinforce your learning by coding real projects
-                                with the help of guides and milestone quizzes.
+                                with the help of detailed guides and milestone
+                                quizzes in our Workbooks.
                             </p>
                         </div>
                         <div className={styles.griditem}>
@@ -89,6 +98,15 @@ const Home: NextPage = () => {
                             </p>
                         </div>
                     </div>
+                    <p className={styles.text}>
+                        Want to create projects and write Workbooks? Become a{" "}
+                        <Link href="https://github.com/xyntechx/NexLiber#-contributing">
+                            <a target="_blank" style={{ color: "#ffb13d" }}>
+                                Creator
+                            </a>
+                        </Link>
+                        !
+                    </p>
                 </section>
                 <Footer />
             </main>
