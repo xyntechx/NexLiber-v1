@@ -87,7 +87,7 @@
     margin-bottom: 1rem;
     cursor: pointer;
     outline: none;
-    border: var(--color-bg) 1px solid;
+    border: none;
     border-radius: 0.4rem;
     color: #1f2937;
     background-color: #ffb13d;
@@ -98,9 +98,7 @@
 
 .button:hover,
 .button:focus {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    border-color: #ffb13d;
+    box-shadow: 0 0 5px 2px #ffb13d;
 }
 
 @media (max-width: 600px) {

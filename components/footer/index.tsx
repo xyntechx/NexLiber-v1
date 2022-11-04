@@ -36,75 +36,87 @@ const Footer: NextPage = () => {
     return (
         <>
             {/* For Desktop */}
-            <footer className={styles.footer}>
-                <div className={styles.footeritemrow}>
-                    <Image
-                        src={`/${activeTheme}/nexliber.svg`}
-                        alt="NexLiber Logo"
-                        width={80}
-                        height={80}
-                    />
-                    <div className={styles.subfooteritem}>
-                        <p>MIT License</p>
-                        <br />
-                        <p>Copyright (c) Nyx Audrey Angelo Iskandar</p>
+            <footer className={styles.footercontainer}>
+                <nav className={styles.footer}>
+                    <div className={styles.footeritemrow}>
+                        <Image
+                            src={`/${activeTheme}/nexliber-banner.svg`}
+                            alt="NexLiber Logo"
+                            width={300}
+                            height={105}
+                        />
                     </div>
-                </div>
-                <div className={styles.footeritemcol}>
-                    <Link href="/faq">
-                        <a className={styles.footerlink}>FAQ</a>
-                    </Link>
-                    <br />
+                    <div className={styles.footeritemcol}>
+                        <Link href="/library">
+                            <a className={styles.footerlink}>Library</a>
+                        </Link>
+                        <br />
+                        <Link href="/faq">
+                            <a className={styles.footerlink}>FAQ</a>
+                        </Link>
+                        <br />
+                        <Link href="https://github.com/xyntechx/NexLiber">
+                            <a target="_blank" className={styles.footerlink}>
+                                GitHub
+                            </a>
+                        </Link>
+                    </div>
+                    <div className={styles.footeritemcol}>
+                        <Link href="/community">
+                            <a className={styles.footerlink} target="_blank">
+                                Discord
+                            </a>
+                        </Link>
+                        <br />
+                        <Link href="https://www.instagram.com/nexliber/">
+                            <a className={styles.footerlink} target="_blank">
+                                Instagram
+                            </a>
+                        </Link>
+                        <br />
+                        <Link href="https://www.linkedin.com/company/nexliber/">
+                            <a className={styles.footerlink} target="_blank">
+                                LinkedIn
+                            </a>
+                        </Link>
+                    </div>
+                </nav>
+                <div className={styles.bottom}>
                     <Link href="https://www.buymeacoffee.com/xyntechx">
-                        <a className={styles.footerlink} target="_blank">
-                            Buy Me a Coffee
+                        <a target="_blank">
+                            <Image
+                                src={`/${activeTheme}/bmc.png`}
+                                alt="Buy Me a Coffee"
+                                width={182}
+                                height={51}
+                            />
                         </a>
                     </Link>
-                    <br />
-                    <Link href="https://github.com/xyntechx/NexLiber">
-                        <a className={styles.footerlink} target="_blank">
-                            Contribute
-                        </a>
-                    </Link>
-                </div>
-                <div className={styles.footeritemcol}>
-                    <Link href="/community">
-                        <a className={styles.footerlink} target="_blank">
-                            Discord
-                        </a>
-                    </Link>
-                    <br />
-                    <Link href="https://www.instagram.com/nexliber/">
-                        <a className={styles.footerlink} target="_blank">
-                            Instagram
-                        </a>
-                    </Link>
-                    <br />
-                    <Link href="https://www.linkedin.com/company/nexliber/">
-                        <a className={styles.footerlink} target="_blank">
-                            LinkedIn
-                        </a>
-                    </Link>
+                    <sub>Copyright &copy; 2022 Nyx Audrey Angelo Iskandar</sub>
                 </div>
             </footer>
 
             {/* For Mobile */}
             <footer className={styles.footermobile}>
+                <Image
+                    src={`/${activeTheme}/nexliber-banner.svg`}
+                    alt="NexLiber Logo"
+                    width={200}
+                    height={70}
+                />
                 <div className={styles.subfooter}>
                     <div className={styles.footeritemcol}>
+                        <Link href="/library">
+                            <a className={styles.footerlink}>Library</a>
+                        </Link>
+                        <br />
                         <Link href="/faq">
                             <a className={styles.footerlink}>FAQ</a>
                         </Link>
                         <br />
-                        <Link href="https://www.buymeacoffee.com/xyntechx">
-                            <a className={styles.footerlink} target="_blank">
-                                Buy Me a Coffee
-                            </a>
-                        </Link>
-                        <br />
                         <Link href="https://github.com/xyntechx/NexLiber">
-                            <a className={styles.footerlink} target="_blank">
-                                Contribute
+                            <a target="_blank" className={styles.footerlink}>
+                                GitHub
                             </a>
                         </Link>
                     </div>
@@ -128,18 +140,18 @@ const Footer: NextPage = () => {
                         </Link>
                     </div>
                 </div>
-                <div className={styles.footeritemrow}>
-                    <Image
-                        src={`/${activeTheme}/nexliber.svg`}
-                        alt="NexLiber Logo"
-                        width={50}
-                        height={50}
-                    />
-                    <div className={styles.subfooteritem}>
-                        <p>MIT License</p>
-                        <br />
-                        <p>Copyright (c) Nyx Audrey Angelo Iskandar</p>
-                    </div>
+                <div className={styles.bottom}>
+                    <Link href="https://www.buymeacoffee.com/xyntechx">
+                        <a target="_blank">
+                            <Image
+                                src={`/${activeTheme}/bmc.png`}
+                                alt="Buy Me a Coffee"
+                                width={145.6}
+                                height={40.8}
+                            />
+                        </a>
+                    </Link>
+                    <sub>Copyright &copy; 2022 Nyx Audrey Angelo Iskandar</sub>
                 </div>
             </footer>
         </>

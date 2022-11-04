@@ -36,16 +36,15 @@
 .speciallink {
     color: #1f2937;
     background-color: #ffb13d;
-    border: var(--color-bg) 1px solid;
+    border: none;
     border-radius: 0.4rem;
     padding: 0.3rem 0.8rem;
     transition: 0.3s;
 }
 
-.speciallink:hover {
-    background-color: var(--color-bg);
-    color: var(--color-text);
-    border-color: #ffb13d;
+.speciallink:hover,
+.speciallink:focus {
+    box-shadow: 0 0 5px 2px #ffb13d;
 }
 
 @media (max-width: 1000px) {
@@ -60,7 +59,7 @@
     }
 
     .navlinks {
-        font-size: 1rem;
+        font-size: 0.8rem;
         column-gap: 0.7rem;
         padding: 1rem;
         margin-left: 1.5rem;

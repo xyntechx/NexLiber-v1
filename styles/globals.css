@@ -7,7 +7,9 @@ body[data-theme="light"] {
     --color-text: #111827;
     --color-text-box: #e3e3e3;
     --color-toggle: #15232d;
-    --color-shadow: #0000001a;
+    --color-shadow: #0000004a;
+    --shadow: 0 0 5px 2px var(--color-shadow);
+    --shadow-hover: 0 0 10px 4px var(--color-shadow);
 }
 
 body[data-theme="dark"] {
@@ -16,7 +18,9 @@ body[data-theme="dark"] {
     --color-text: #e3e3e3;
     --color-text-box: #e3e3e3;
     --color-toggle: #ffb13d;
-    --color-shadow: #ffb13d4d;
+    --color-shadow: #ffb13d;
+    --shadow: 0 0 5px 2px var(--color-shadow);
+    --shadow-hover: 0 0 10px 4px var(--color-shadow);
 }
 
 html,

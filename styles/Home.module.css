@@ -33,11 +33,9 @@
 }
 
 .buttondiv {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 80%;
     column-gap: 2rem;
     margin-top: 1rem;
     row-gap: 0;
@@ -70,9 +68,10 @@
     border-radius: 0.4rem;
     transition: 0.3s;
     border: none;
-    box-shadow: 0 0 10px 4px var(--color-shadow);
+    box-shadow: var(--shadow);
     font-size: 1.5rem;
     padding: 0.5rem 1rem;
+    text-align: center;
 }
 
 .button {
@@ -85,7 +84,7 @@
 
 .button:hover,
 .buttonwhite:hover {
-    box-shadow: 0 0 20px 8px var(--color-shadow);
+    box-shadow: var(--shadow-hover);
 }
 
 .grid {
@@ -181,6 +180,12 @@
     .div {
         min-height: 90vh;
     }
+
+    .buttondiv {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        row-gap: 1rem;
+        column-gap: 0;
+    }
 }
 
 @media (max-width: 600px) {
@@ -195,12 +200,6 @@
 
     .titlediv {
         margin: 0 1.5rem;
-    }
-
-    .buttondiv {
-        flex-direction: column;
-        row-gap: 1rem;
-        column-gap: 0;
     }
 
     .grid {

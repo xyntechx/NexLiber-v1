@@ -6,6 +6,7 @@ const Toggle = () => {
         document.body.dataset.theme!
     );
     const inactiveTheme = activeTheme === "dark" ? "light" : "dark";
+    const emoji = activeTheme === "dark" ? "🌑" : "☀️";
 
     useEffect(() => {
         document.body.dataset.theme = activeTheme;
@@ -16,21 +17,11 @@ const Toggle = () => {
     return (
         <button
             onClick={() => setActiveTheme(inactiveTheme)}
-            className={styles.button}
+            className={styles.toggle}
             aria-label={`Change to ${inactiveTheme} mode`}
             title={`Change to ${inactiveTheme} mode`}
         >
-            <span
-                className={styles.thumb}
-                style={{
-                    transform:
-                        activeTheme === "dark"
-                            ? "translate3d(calc(var(--toggle-width) - var(--toggle-height)), 0, 0)"
-                            : "none",
-                }}
-            ></span>
-            <span aria-hidden={true}>🌑</span>
-            <span aria-hidden={true}>☀️</span>
+            {emoji}
         </button>
     );
 };
