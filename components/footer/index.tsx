@@ -81,19 +81,19 @@ const Footer: NextPage = () => {
                         </Link>
                     </div>
                 </nav>
-                <div className={styles.bottom}>
-                    <Link href="https://www.buymeacoffee.com/xyntechx">
-                        <a target="_blank">
-                            <Image
-                                src={`/${activeTheme}/bmc.png`}
-                                alt="Buy Me a Coffee"
-                                width={182}
-                                height={51}
-                            />
-                        </a>
-                    </Link>
-                    <sub>Copyright &copy; 2022 Nyx Audrey Angelo Iskandar</sub>
-                </div>
+                <Link href="https://www.buymeacoffee.com/xyntechx">
+                    <a target="_blank">
+                        <Image
+                            src={`/${activeTheme}/bmc.png`}
+                            alt="Buy Me a Coffee"
+                            width={182}
+                            height={51}
+                        />
+                    </a>
+                </Link>
+                <sub className={styles.copyright}>
+                    Copyright &copy; 2022 Nyx Audrey Angelo Iskandar
+                </sub>
             </footer>
 
             {/* For Mobile */}
@@ -140,19 +140,19 @@ const Footer: NextPage = () => {
                         </Link>
                     </div>
                 </div>
-                <div className={styles.bottom}>
-                    <Link href="https://www.buymeacoffee.com/xyntechx">
-                        <a target="_blank">
-                            <Image
-                                src={`/${activeTheme}/bmc.png`}
-                                alt="Buy Me a Coffee"
-                                width={145.6}
-                                height={40.8}
-                            />
-                        </a>
-                    </Link>
-                    <sub>Copyright &copy; 2022 Nyx Audrey Angelo Iskandar</sub>
-                </div>
+                <Link href="https://www.buymeacoffee.com/xyntechx">
+                    <a target="_blank">
+                        <Image
+                            src={`/${activeTheme}/bmc.png`}
+                            alt="Buy Me a Coffee"
+                            width={145.6}
+                            height={40.8}
+                        />
+                    </a>
+                </Link>
+                <sub className={styles.copyright}>
+                    Copyright &copy; 2022 Nyx Audrey Angelo Iskandar
+                </sub>
             </footer>
         </>
     );
