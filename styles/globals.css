@@ -5,6 +5,7 @@ body[data-theme="light"] {
     --color-bg: #fff;
     --color-bg-box: #000;
     --color-text: #111827;
+    --color-text-dim: #111827a0;
     --color-text-box: #e3e3e3;
     --color-toggle: #15232d;
     --color-shadow: #0000004a;
@@ -16,6 +17,7 @@ body[data-theme="dark"] {
     --color-bg: #000;
     --color-bg-box: #232324;
     --color-text: #e3e3e3;
+    --color-text-dim: #e3e3e3a0;
     --color-text-box: #e3e3e3;
     --color-toggle: #ffb13d;
     --color-shadow: #ffb13d;

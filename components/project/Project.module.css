@@ -55,7 +55,7 @@
 .creator,
 .date {
     text-align: right;
-    color: #696969;
+    color: var(--color-text-dim);
     margin-bottom: 0;
 }
 
