@@ -18,6 +18,11 @@ const Project = ({
     date: string;
 }) => {
     const [url, _] = useState(title.toLowerCase().split(" ").join("-"));
+    const difficultyColor: { [key: string]: string } = {
+        Beginner: styles.textGreen,
+        Intermediate: styles.textYellow,
+        Advanced: styles.textRed,
+    };
 
     return (
         <Link href={`/workbook/${url}`}>
@@ -26,33 +31,7 @@ const Project = ({
                 <p className={styles.text}>{description}</p>
                 <span className={styles.specs}>
                     <p className={styles.text}>{field}</p>
-                    <p
-                        className={
-                            difficulty.toLowerCase() === "beginner"
-                                ? styles.textGreen
-                                : styles.hidden
-                        }
-                    >
-                        Beginner
-                    </p>
-                    <p
-                        className={
-                            difficulty.toLowerCase() === "intermediate"
-                                ? styles.textYellow
-                                : styles.hidden
-                        }
-                    >
-                        Intermediate
-                    </p>
-                    <p
-                        className={
-                            difficulty.toLowerCase() === "advanced"
-                                ? styles.textRed
-                                : styles.hidden
-                        }
-                    >
-                        Advanced
-                    </p>
+                    <p className={difficultyColor[difficulty]}>{difficulty}</p>
                 </span>
                 <p className={styles.creator}>Creator: {creator}</p>
                 <p className={styles.date}>{date}</p>
