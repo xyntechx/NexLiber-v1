@@ -1,8 +1,8 @@
-// Special component for the blockchain-explorer notebook.
+// Special component for the blockchain-explorer Workbook.
 
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-const Quiz = dynamic(() => import("../quiz"))
+const Quiz = dynamic(() => import("../quiz"));
 import { ethers } from "ethers";
 
 export const fetchBalance = async () => {
@@ -21,10 +21,10 @@ export const fetchBalance = async () => {
             await provider.getBalance(addresses[1]),
             await daiContract.balanceOf(addresses[2]),
         ];
-        const parsedBalances: number[] = balances.map((balance) =>
-            parseInt(balance._hex, 16) / 10 ** 18
+        const parsedBalances: number[] = balances.map(
+            (balance) => parseInt(balance._hex, 16) / 10 ** 18
         );
-        return parsedBalances
+        return parsedBalances;
     } catch (error) {
         console.log(error);
     }
@@ -40,35 +40,35 @@ const AsyncQuiz = ({
     correctAnsIndex,
     correctMessage,
     wrongMessage,
-  }: {
+}: {
     question: string;
-    balanceIndex: number,
-    weights: number[], 
+    balanceIndex: number;
+    weights: number[];
     correctAnsIndex: number;
     correctMessage: string;
     wrongMessage: string;
-  }) => {
+}) => {
     const [loaded, setLoaded] = useState(false);
     const [choices, setChoices] = useState(["0", "0", "0", "0"]);
     useEffect(() => {
-      const loadChoices = async () => {
-        const balances = await fetchBalance() ?? [0, 0, 0, 0];
-        const balance = balances[balanceIndex];
-        setChoices(weights.map((e) => parseBalance(balance, e)));
-        setLoaded(true)
-      };
-      loadChoices();
+        const loadChoices = async () => {
+            const balances = (await fetchBalance()) ?? [0, 0, 0, 0];
+            const balance = balances[balanceIndex];
+            setChoices(weights.map((e) => parseBalance(balance, e)));
+            setLoaded(true);
+        };
+        loadChoices();
     }, []);
     return (
-      <Quiz
-        question={question}
-        choices={choices}
-        correctAnsIndex={correctAnsIndex}
-        correctMessage={correctMessage}
-        wrongMessage={wrongMessage}
-        hasLoaded={loaded}
-      />
+        <Quiz
+            question={question}
+            choices={choices}
+            correctAnsIndex={correctAnsIndex}
+            correctMessage={correctMessage}
+            wrongMessage={wrongMessage}
+            hasLoaded={loaded}
+        />
     );
-  };
+};
 
 export default AsyncQuiz;
