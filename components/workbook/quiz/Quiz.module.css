@@ -26,6 +26,7 @@
     cursor: pointer;
     padding: 0.5rem;
     border: var(--color-bg-box) solid 1px;
+    color: #111827;
 }
 
 .choice:hover,
@@ -33,6 +34,7 @@
     color: var(--color-text-box);
     background-color: var(--color-bg-box);
     border-color: #ffb13d;
+    outline: none;
 }
 
 @media (max-width: 600px) {
