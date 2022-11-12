@@ -9,6 +9,7 @@
 .ch-code-scroll-parent,
 .ch-code-scroll-content {
     background-color: var(--color-bg-box) !important;
+    border-radius: 1rem !important;
 }
 
 @media (max-width: 600px) {
