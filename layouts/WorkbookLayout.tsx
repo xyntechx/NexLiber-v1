@@ -3,6 +3,7 @@ import { useState } from "react";
 import Topnav from "../components/topnav";
 import Footer from "../components/footer";
 import Title from "../components/workbook/title";
+import Sponsor from "../components/workbook/sponsor";
 import styles from "../styles/Workbook.module.css";
 import PROJECTS from "../public/projects.json";
 import "@code-hike/mdx/dist/index.css";
@@ -58,6 +59,7 @@ const WorkbookLayout = ({ projectTitle, content }: WorkbookLayoutProps) => {
                 <Topnav />
                 <Title title={projectTitle} {...projectDetails} />
                 <section className={styles.content}>{content}</section>
+                <Sponsor />
                 <Footer />
             </main>
         </div>
