@@ -9,13 +9,13 @@
 .ch-code-scroll-content {
     background-color: var(--color-bg-box) !important;
     border-radius: 1rem !important;
+    overflow-y: hidden !important;
 }
 
 @media (max-width: 600px) {
     .ch-codeblock,
     .ch-codegroup,
     .ch-preview {
-        overflow-x: scroll !important;
         width: 80vw !important;
     }
 
