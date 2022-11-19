@@ -1,7 +1,6 @@
 .ch-codeblock,
 .ch-codegroup,
 .ch-preview {
-    overflow-x: scroll !important;
     width: 70vw !important;
     font-size: 1rem !important;
 }
