@@ -69,7 +69,7 @@
     font-size: 1.5rem;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
     .popup {
         width: 90vw;
         height: 50vh;
