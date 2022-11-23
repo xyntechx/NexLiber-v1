@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import Footer from "../components/footer";
+import Popup from "../components/popup"; // Temporary: To be removed once 2.0.0 launches
 import Topnav from "../components/topnav";
 import styles from "../styles/Home.module.css";
 
@@ -24,6 +25,9 @@ const Home: NextPage = () => {
             </Head>
 
             <main className={styles.main}>
+
+                <Popup /> {/* Temporary: To be removed once 2.0.0 launches */}
+
                 <Topnav />
                 <section className={styles.maindiv}>
                     <div className={styles.titlediv}>
