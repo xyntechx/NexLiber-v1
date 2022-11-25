@@ -3,7 +3,7 @@
     bottom: 0;
     width: 100%;
     height: 40vh;
-    background: var(--color-blur);
+    background-color: var(--color-blur);
     border-radius: 50px 50px 0 0;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
