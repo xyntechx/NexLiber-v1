@@ -11,6 +11,7 @@ body[data-theme="light"] {
     --color-shadow: #0000004a;
     --color-blur: #ffffffaa;
     --color-blur-border: #0000004d;
+    --color-faq-bubble: #f0f0f0;
     --shadow: 0 0 5px 2px var(--color-shadow);
     --shadow-hover: 0 0 10px 4px var(--color-shadow);
 }
@@ -25,6 +26,7 @@ body[data-theme="dark"] {
     --color-shadow: #ffb13d;
     --color-blur: #000000aa;
     --color-blur-border: #ffffff4d;
+    --color-faq-bubble: #232324;
     --shadow: 0 0 5px 2px var(--color-shadow);
     --shadow-hover: 0 0 10px 4px var(--color-shadow);
 }

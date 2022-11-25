@@ -10,13 +10,9 @@
 
 .title {
     margin: 0;
-    font-size: 6rem;
     text-align: center;
     width: 80%;
     font-family: "Inter", sans-serif;
-}
-
-.title {
     font-size: 3rem;
 }
 
@@ -24,35 +20,100 @@
     width: 70vw;
     min-height: 40vh;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin-bottom: -5rem;
+    row-gap: 1rem;
 }
 
-.question,
-.answer {
-    font-size: 1.2rem;
+.questionWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.question {
-    cursor: pointer;
-    margin-top: 1.5rem;
+.answerWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.questionBubble,
+.answerBubble {
+    width: 50%;
+    background-color: var(--color-faq-bubble);
+    border-radius: 50px 50px 50px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0.5rem 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.answerBubble {
+    width: 70%;
+    border-radius: 50px 50px 10px 50px;
+    margin-bottom: 3rem;
+}
+
+.text {
+    font-size: 1rem;
     text-align: left;
+    margin: 1rem 0;
+    color: var(--color-text);
+    line-height: 1.5;
 }
 
-.answer {
-    margin-left: 20px;
-    margin-top: 0.5rem;
+.button {
+    font-size: 1rem;
+    outline: none;
     background-color: #ffb13d;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    text-align: justify;
+    transition: 0.3s;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0.2rem;
     color: #111827;
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+.button:hover,
+.button:focus {
+    background-color: transparent;
+    border-color: #ffb13d;
+    color: var(--color-text);
 }
 
 .link {
-    color: #fff;
+    font-weight: bold;
+    color: #ffb13dbb;
+    transition: 0.3s;
+}
+
+.link:hover,
+.link:focus {
+    color: #ffb13d;
+}
+
+@media (max-width: 800px) {
+    .questionBubble,
+    .answerBubble {
+        width: 90%;
+        padding: 0.5rem 1rem;
+    }
+
+    .questionBubble {
+        border-radius: 30px 30px 30px 5px;
+    }
+
+    .answerBubble {
+        border-radius: 30px 30px 5px 30px;
+    }
 }
 
 @media (max-width: 600px) {
@@ -65,8 +126,8 @@
         margin-bottom: 0;
     }
 
-    .question,
-    .answer {
+    .text,
+    .button {
         font-size: 0.8rem;
     }
 }
