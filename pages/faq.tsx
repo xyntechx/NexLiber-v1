@@ -20,8 +20,6 @@ const FAQ: NextPage = () => {
             url="/faq"
         >
             <h1 className={styles.title}>FAQ</h1>
-            <br />
-            <br />
             <section className={styles.content}>
                 <div className={styles.questionWrapper}>
                     <div className={styles.questionBubble}>

@@ -14,6 +14,7 @@
     width: 80%;
     font-family: "Inter", sans-serif;
     font-size: 3rem;
+    margin-bottom: 3rem;
 }
 
 .content {
@@ -27,18 +28,21 @@
     row-gap: 1rem;
 }
 
-.questionWrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
+.questionWrapper,
 .answerWrapper {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.questionWrapper {
+    align-items: flex-start;
+}
+
+.answerWrapper {
+    align-items: flex-end;
 }
 
 .questionBubble,
@@ -58,6 +62,7 @@
     width: 70%;
     border-radius: 50px 50px 10px 50px;
     margin-bottom: 3rem;
+    background-color: #ffb13d7a;
 }
 
 .text {
@@ -91,13 +96,15 @@
 
 .link {
     font-weight: bold;
-    color: #ffb13dbb;
+    color: var(--color-text);
+    opacity: 0.6;
+    text-decoration: underline;
     transition: 0.3s;
 }
 
 .link:hover,
 .link:focus {
-    color: #ffb13d;
+    opacity: 1;
 }
 
 @media (max-width: 800px) {
