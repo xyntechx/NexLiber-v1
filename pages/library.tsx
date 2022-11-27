@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Project from "../components/project";
 import MainLayout from "../layouts/MainLayout";
 import styles from "../styles/Library.module.css";
-import PROJECTS from "../public/projects.json";
+import PROJECTS from "../creator/projects.json";
 
 const Library: NextPage = () => {
     const [projects, _] = useState<{
@@ -35,8 +35,7 @@ const Library: NextPage = () => {
         const queryLength = query.length;
         const QUERY = query.toLowerCase();
 
-        for (let i = Object.keys(projects).length - 1; i >= 0; i--) {
-            // index i in reverse order
+        for (let i = 0; i < Object.keys(projects).length; i++) {
             const title = Object.keys(projects)[i];
             const details = projects[title];
             const field = details.field.toLowerCase();
@@ -105,15 +104,13 @@ const Library: NextPage = () => {
                     )}
                     <h1 className={styles.label}>All Projects</h1>
                     <section className={styles.content}>
-                        {Object.keys(projects)
-                            .reverse()
-                            .map((title) => (
-                                <Project
-                                    key={title}
-                                    title={title}
-                                    {...projects[title]}
-                                />
-                            ))}
+                        {Object.keys(projects).map((title) => (
+                            <Project
+                                key={title}
+                                title={title}
+                                {...projects[title]}
+                            />
+                        ))}
                     </section>
                 </>
             ) : (
