@@ -7,7 +7,7 @@ Since you do not have write access to `xyntechx/NexLiber`, you have to fork this
 ## Add Your Workbook
 Here are the step-by-step instructions you should follow:
 - Run `npm i` in the terminal to install all the necessary packages
-- Add your project details into `public/projects.json` -- follow the format [here](#format-projectsjson)
+- Add your project details to the top of `public/projects.json` -- follow the format [here](#format-projectsjson)
 - Add your Workbook (`project-title.mdx`) into `pages/workbook/` -- follow the format [here](#format-project-titlemdx)
 - While writing your Workbook, review it by running `npm run dev` in the terminal and visiting `http://localhost:3000/` in your browser
 - Once you are satisfied with your Workbook, test it for any bugs by running `npm run build` in the terminal
@@ -22,7 +22,8 @@ Here are the step-by-step instructions you should follow:
     "difficulty": "Difficulty",
     "creator": "Creator Name",
     "date": "Mon DD, YYYY"
-}
+},
+// Older projects here
 ```
 
 > Note: "Date" is the date of your "🔖 Complete Workbook: **Project Title**" commit

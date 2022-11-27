@@ -1,45 +1,10 @@
 {
-    "Free Scrabble": {
-        "description": "A one-try, one-player Scrabble game written in Python",
-        "field": "Vanilla (Python)",
-        "difficulty": "Beginner",
+    "roygbiv": {
+        "description": "A Next.js reaction time game",
+        "field": "Game/Web Development",
+        "difficulty": "Advanced",
         "creator": "Nyx Iskandar",
-        "date": "May 29, 2022"
-    },
-    "Personal Portfolio Website": {
-        "description": "A personal portfolio website built using Next.js",
-        "field": "Web Development",
-        "difficulty": "Intermediate",
-        "creator": "Nyx Iskandar",
-        "date": "Jun 02, 2022"
-    },
-    "Dragon Ball Classifier": {
-        "description": "An image classification model for Dragon Ball characters",
-        "field": "Machine Learning",
-        "difficulty": "Intermediate",
-        "creator": "Nyx Iskandar",
-        "date": "Jun 19, 2022"
-    },
-    "Fresh Jokes": {
-        "description": "A joke generator built with Fresh",
-        "field": "Web Development",
-        "difficulty": "Intermediate",
-        "creator": "Nyx Iskandar",
-        "date": "Jul 09, 2022"
-    },
-    "Typing Test": {
-        "description": "A typing speed and accuracy test written purely in Python",
-        "field": "Vanilla (Python)",
-        "difficulty": "Intermediate",
-        "creator": "Nyx Iskandar",
-        "date": "Aug 26, 2022"
-    },
-    "Blockchain Explorer": {
-        "description": "An introduction to the blockchain, and related JavaScript Libraries",
-        "field": "Web3 / Crypto",
-        "difficulty": "Intermediate",
-        "creator": "Matthew Chan",
-        "date": "Sep 07, 2022"
+        "date": "Oct 12, 2022"
     },
     "Fresh Project Manager": {
         "description": "A Fresh local storage-driven web app to manage projects",
@@ -48,11 +13,46 @@
         "creator": "Nyx Iskandar",
         "date": "Sep 28, 2022"
     },
-    "roygbiv": {
-        "description": "A Next.js reaction time game",
-        "field": "Game/Web Development",
-        "difficulty": "Advanced",
+    "Blockchain Explorer": {
+        "description": "An introduction to the blockchain, and related JavaScript Libraries",
+        "field": "Web3 / Crypto",
+        "difficulty": "Intermediate",
+        "creator": "Matthew Chan",
+        "date": "Sep 07, 2022"
+    },
+    "Typing Test": {
+        "description": "A typing speed and accuracy test written purely in Python",
+        "field": "Vanilla (Python)",
+        "difficulty": "Intermediate",
         "creator": "Nyx Iskandar",
-        "date": "Oct 12, 2022"
+        "date": "Aug 26, 2022"
+    },
+    "Fresh Jokes": {
+        "description": "A joke generator built with Fresh",
+        "field": "Web Development",
+        "difficulty": "Intermediate",
+        "creator": "Nyx Iskandar",
+        "date": "Jul 09, 2022"
+    },
+    "Dragon Ball Classifier": {
+        "description": "An image classification model for Dragon Ball characters",
+        "field": "Machine Learning",
+        "difficulty": "Intermediate",
+        "creator": "Nyx Iskandar",
+        "date": "Jun 19, 2022"
+    },
+    "Personal Portfolio Website": {
+        "description": "A personal portfolio website built using Next.js",
+        "field": "Web Development",
+        "difficulty": "Intermediate",
+        "creator": "Nyx Iskandar",
+        "date": "Jun 02, 2022"
+    },
+    "Free Scrabble": {
+        "description": "A one-try, one-player Scrabble game written in Python",
+        "field": "Vanilla (Python)",
+        "difficulty": "Beginner",
+        "creator": "Nyx Iskandar",
+        "date": "May 29, 2022"
     }
 }
