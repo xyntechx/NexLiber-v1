@@ -1,13 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap");
 
-.main {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 .title,
 .label {
     margin: 0;
@@ -108,23 +100,6 @@
     border-color: #ffb13d !important;
 }
 
-.info,
-.infoActive {
-    text-align: center;
-    width: 5%;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.infoActive {
-    color: #ffb13d;
-}
-
-.info:hover {
-    color: #ffb13d;
-}
-
 .button {
     margin: 0;
     margin-bottom: 1rem;
@@ -197,12 +172,6 @@
     .fields,
     .alert {
         width: 80vw;
-    }
-
-    .info,
-    .infoActive {
-        width: 10%;
-        font-size: 1rem;
     }
 
     .button {
