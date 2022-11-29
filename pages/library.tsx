@@ -197,7 +197,7 @@ const Library: NextPage = () => {
                     {notFound && (
                         <p className={styles.alert}>No Workbooks found!</p>
                     )}
-                    <h1 className={styles.label}>All Projects</h1>
+                    <h1 className={styles.label}>All Workbooks</h1>
                     <section className={styles.content}>
                         {Object.keys(projects).map((title) => (
                             <Project
