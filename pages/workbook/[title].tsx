@@ -36,12 +36,12 @@ const Workbook = () => {
     useEffect(() => {
         if (loadingIndex > 3) {
             setShowContent(true);
-            return;
+            return () => clearTimeout(timer);
         }
 
         const timer = setTimeout(() => {
             setLoadingIndex(loadingIndex + 1);
-        }, 1000);
+        }, 500);
 
         return () => clearTimeout(timer);
     }, [loadingIndex]);
