@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useState, useRef } from "react";
+import Link from "next/link";
 import Project from "../components/project";
 import MainLayout from "../layouts/MainLayout";
 import styles from "../styles/Library.module.css";
@@ -59,7 +60,7 @@ const Library: NextPage = () => {
 
             const timer = setTimeout(() => {
                 setNotFound(false);
-            }, 2000);
+            }, 4000);
 
             return () => clearTimeout(timer);
         }
@@ -195,7 +196,18 @@ const Library: NextPage = () => {
             {result.length === 0 ? (
                 <>
                     {notFound && (
-                        <p className={styles.alert}>No Workbooks found!</p>
+                        <p className={styles.alert}>
+                            No Workbooks found! Request for it on{" "}
+                            <Link href="/community">
+                                <a
+                                    style={{ textDecoration: "underline" }}
+                                    target="_blank"
+                                >
+                                    Discord
+                                </a>
+                            </Link>
+                            .
+                        </p>
                     )}
                     <h1 className={styles.label}>All Workbooks</h1>
                     <section className={styles.content}>
