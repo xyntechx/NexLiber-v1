@@ -25,7 +25,7 @@ const Library: NextPage = () => {
     const difficultyInput = useRef(["Beginner", "Intermediate", "Advanced"]);
 
     const search = () => {
-        setResult([]);
+        const searchResult = [];
 
         const titleQuery = titleInput.current!.value.toLowerCase();
         const fieldQuery = fieldInput.current!.value.toLowerCase();
@@ -48,10 +48,21 @@ const Library: NextPage = () => {
                 creator.slice(0, creatorQuery.length).includes(creatorQuery) &&
                 difficultyQuery.includes(difficulty);
 
-            if (found) setResult((result) => [...result, title]);
+            if (found) searchResult.push(title);
         }
 
-        if (result.length === 0) setNotFound(true);
+        setResult(searchResult);
+
+        // For "No Workbooks found" alert animation
+        if (searchResult.length === 0) {
+            setNotFound(true);
+
+            const timer = setTimeout(() => {
+                setNotFound(false);
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
     };
 
     return (
@@ -184,7 +195,7 @@ const Library: NextPage = () => {
             {result.length === 0 ? (
                 <>
                     {notFound && (
-                        <p className={styles.alert}>No projects found!</p>
+                        <p className={styles.alert}>No Workbooks found!</p>
                     )}
                     <h1 className={styles.label}>All Projects</h1>
                     <section className={styles.content}>

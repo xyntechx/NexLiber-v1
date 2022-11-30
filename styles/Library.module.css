@@ -17,7 +17,6 @@
 }
 
 .alert {
-    width: fit-content;
     background-color: #ffb13d7a;
     width: 50vw;
     padding: 0.5rem;
@@ -26,6 +25,10 @@
     font-size: 1rem;
     text-align: center;
     border-radius: 0.5rem;
+    opacity: 0;
+    animation: reveal 2s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
 }
 
 .content {
@@ -117,6 +120,21 @@
 .button:hover,
 .button:focus {
     box-shadow: 0 0 5px 2px #ffb13d;
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @media (max-width: 1300px) {
