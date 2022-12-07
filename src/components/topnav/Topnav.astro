@@ -1,0 +1,13 @@
+---
+import { Toggle, Logo } from "./Theme";
+import styles from "./Topnav.module.css";
+---
+
+<nav class={styles.topnav}>
+    <Logo client:only />
+    <div class={styles.links}>
+        <a href="/library" class={styles.link}>Library</a>
+        <a href="/docs" class={styles.link}>Docs</a>
+    </div>
+    <Toggle client:only />
+</nav>
