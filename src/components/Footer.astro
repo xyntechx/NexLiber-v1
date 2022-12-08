@@ -1,0 +1,64 @@
+<footer>
+    <div>
+        <a href="/library">Library</a>
+        <a href="/docs">Docs</a>
+        <a href="/community" target="_blank">Discord</a>
+        <a href="https://github.com/xyntechx/NexLiber" target="_blank">GitHub</a
+        >
+    </div>
+    <sub>Copyright &copy; 2022 Nyx Audrey Angelo Iskandar</sub>
+</footer>
+
+<style>
+    footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: fit-content;
+        width: 80%;
+        row-gap: 2rem;
+        padding: 2rem 0;
+        margin-top: 5rem;
+        border-top: 1px solid var(--color-text-blur);
+    }
+
+    div {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        width: 50%;
+        column-gap: 2rem;
+        row-gap: 0;
+    }
+
+    a {
+        font-size: 1rem;
+        color: var(--color-text-blur);
+        text-align: center;
+        transition: 0.15s;
+    }
+
+    a:hover {
+        color: var(--color-theme);
+    }
+
+    sub {
+        font-size: 1rem;
+        color: var(--color-text-blur);
+        text-align: center;
+    }
+
+    @media (max-width: 700px) {
+        footer {
+            padding: 1rem;
+            width: 90%;
+        }
+
+        div {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 1rem;
+            row-gap: 1rem;
+            width: 70%;
+        }
+    }
+</style>
