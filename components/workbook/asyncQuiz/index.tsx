@@ -7,7 +7,7 @@ import { ethers } from "ethers";
 
 export const fetchBalance = async () => {
     try {
-        const provider = new ethers.providers.EtherscanProvider("homestead", process.env.API_KEY);
+        const provider = new ethers.providers.EtherscanProvider("homestead", process.env.NEXT_PUBLIC_API_KEY);
         provider.pollingInterval = 4000;
         const daiAddress = "0x6B175474E89094C44Da98b954EedeAC495271d0F";
         const daiAbi = ["function balanceOf(address) view returns (uint256)"];
