@@ -55,8 +55,8 @@
         "creator": "Nyx Iskandar",
         "date": "Oct 12, 2022"
     },
-    "Hand Drawn Digit Classifier": {
-        "description": "A HandDrawn-Digit classifying Neural Network built in Python",
+    "Hand-Drawn Digit Classifier": {
+        "description": "A neural network classifying hand-drawn digits built in Python",
         "field": "Machine Learning",
         "difficulty": "Intermediate",
         "creator": "Bhvya Sahni",
