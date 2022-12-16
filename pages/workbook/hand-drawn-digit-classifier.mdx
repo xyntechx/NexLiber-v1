@@ -1,0 +1,141 @@
+import WorkbookLayout from "../../layouts/WorkbookLayout";
+import Quiz from "../../components/workbook/quiz";
+
+# Setup
+
+This project can be done on Google Colaboratory (Colab). However, to do so, you will need to sign into your Google Account. Once you have done so, visit [Colab](https://research.google.com/colaboratory/) and create a new **.ipynb** file by clicking **New Notebook**. You will see a new empty notebook with a single empty code cell.
+
+# About the Project
+
+You will be building an image classifier using [Keras](https://keras.io/). The machine learning model used is a [CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network) (Convolutional Neural Network) and will be classifying hand-drawn digits from the renowned [MNIST](https://en.wikipedia.org/wiki/MNIST_database) dataset.
+
+# Preparing the Dataset
+
+Our **CNN** needs images to train on, specifically images of the hand-drawn digits. Thankfully, **Keras** has a built-in method to load the dataset. Let's import **Keras** and use that method.
+
+```py
+from keras.datasets import mnist
+data = mnist.load_data()
+```
+
+# Splitting Data
+
+Our **data** variable is currently a **tuple**. We need to split it into **train** and **test** sections. Why we do so is quite simple: to prevent our model from overfitting and to accurately evaluate our model.
+
+```py
+(X_train, y_train), (X_test, y_test) = data
+```
+
+There are 2 types of train and test lists, X and Y. X stores all the values for the pixels of each image, while Y stores the labels for each image. Our end goal is to ensure that our machine can read the values in X and produce labels close to the corresponding labels of those values in Y.
+
+Each element in **X_train** is an image. Kinda. Each digit is drawn on a canvas **28 by 28 pixels** in size. Each pixel has a value ranging from 0 to 255 (its intensity). There is data for 60,000 images in **X_train**. This can be seen when running the line below.
+
+```py
+X_train.shape()
+```
+
+<Quiz
+    question="What do you think the dimensions of a list with shape (5,6) would be?"
+    choices={[`6 by 5`, `5 by 6`, `30`]}
+    correctAnsIndex={1}
+    correctMessage="That's right!"
+    wrongMessage="Are you sure? Try again."
+/>
+
+# Shaping the Data
+
+We have to **shape** the data to make sure that our model can understand it well. To do so, we reshape the lists so that their pixel values range from 0 to 1 instead of 0 to 255.
+
+```py
+X_train = X_train.reshape((X_train.shape[0], 28*28)).astype('float32')
+X_test = X_test.reshape((X_test.shape[0], 28*28)).astype('float32')
+X_train = X_train / 255
+X_test = X_test / 255
+```
+
+The Y lists contain labels for the images (e.g. '1', '2', ...). These next lines catergorize the lists.
+
+```py
+from keras.utils import np_utils
+
+y_train = np_utils.to_categorical(y_train)
+y_test = np_utils.to_categorical(y_test)
+```
+
+# Building the Model
+
+Every machine learning model is different. In our case, we are using a CNN. A CNN runs on **layers**. Each layer takes in certain inputs and produces certain outputs.
+
+In our CNN for this task, we will need to use 2 types of layers. We import the **Sequential** (a layer-by-layer based model) model and the [**Dense**](https://analyticsindiamag.com/a-complete-understanding-of-dense-layers-in-neural-networks/#:~:text=Sign%20up-,What%20is%20a%20Dense%20Layer%3F,in%20artificial%20neural%20network%20networks) layer. These are pre-defined tools we can use to make it significantly faster to make a CNN.
+
+We also need [activation functions](https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6). They determine whether a neuron should be activated or not by finding weighted sums and further adding some bias to it. These functions exist to add non-linearity into the output of a neuron.
+
+```py
+from keras.models import Sequential
+from keras.layers import Dense
+
+# Instantiate the model
+model = Sequential()
+
+# Define the first Layer of the model --> A Dense layer which takes in an input of size 28 by 28 and has an output of size 32
+model.add(Dense(32, input_dim=28*28, activation='relu'))
+# Second layer
+model.add(Dense(64, activation='relu'))
+# Third layer
+model.add(Dense(10, activation='softmax'))
+```
+
+Next, we compile the model. We use a loss function which compares the target and predicted output values and measures how well the neural network models the training data. The optimizer used is **Adam** as it is fast and easy to run. Lastly, we use the metrics of **accuracy** to determine the model's effectiveness.
+
+```py
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.summary()
+```
+
+The summary shows information about our model.
+
+# Training the Model
+
+It's the part you've been waiting for! Time to train our model! We **fit** the model by providing the data we want it to analyse, the correct answers, the number of epochs (how many cycles of training it goes through) and the batch size (the number of training examples used in one epoch).
+This might take some time, so go grab a drink!
+
+```py
+model.fit(X_train, y_train, epochs=10, batch_size=100)
+```
+
+It might not seem like it, but now you have a fully functioning neural network ready to be tested!
+
+# Testing the Model
+
+Our model is done! To make sure it has learnt correctly, we must give it a test! We can evaluate the model based on the metric of **accuracy** as we stated above. The value returned is between 0 and 1, so multiplying it by 100 shows the percentage accuracy.
+
+```py
+scores = model.evaluate(X_test, y_test)
+print('Accuracy: ', scores[1] * 100)
+```
+
+I hope the accuracy of yours is above 95! That should be a good mark of a 'good enough' CNN for our case. Now, we can save the model using the code below and finally be able to tell others that 'I can make a Neural Network that can classify the digits you write!'
+
+```py
+model_name = input('What is the name of the model?: ')
+model.save(model_name)
+```
+
+# Conclusion
+
+I hope you have learnt the basics of how Python can be used to easily create and develop machine learning projects. Do learn and explore more! This is just the tip of the iceberg.
+
+# Reference
+
+If you would like to see the complete code, you can do so [here](https://github.com/xyntechx/NexLiber-Projects/tree/main/Hand-Drawn%20Digit%20Classifier)!
+
+# Discord Community
+
+If you have questions about anything related to NexLiber or this workbook, you're welcome to ask our community on [Discord](/community)!
+
+export default ({ children }) => (
+    <WorkbookLayout
+        projectTitle="Hand-Drawn Digit Classifier"
+        content={children}
+    />
+);
