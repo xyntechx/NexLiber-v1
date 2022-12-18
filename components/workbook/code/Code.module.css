@@ -1,0 +1,25 @@
+.container {
+    width: 70vw;
+    display: flex;
+    overflow-x: auto;
+    border-radius: 0.5rem;
+}
+
+.code {
+    font-size: 1rem;
+    background-color: #000;
+    color: #ffb13d;
+    white-space: pre;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 80vw;
+    }
+
+    .code {
+        font-size: 0.8rem;
+    }
+}

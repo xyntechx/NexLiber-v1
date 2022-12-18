@@ -1,0 +1,595 @@
+import WorkbookLayout from "../../layouts/WorkbookLayout";
+import Quiz from "../../components/workbook/quiz";
+
+# Setup
+
+Follow the [Getting Started](https://nextjs.org/docs/getting-started) section of the Next.js documentation. This project is built with TypeScript and Tailwind CSS, so write the command below when setting up your project.
+
+```
+npx create-next-app@latest --typescript --example with-tailwindcss roygbiv
+```
+
+Once you've created your project and opened it on VSCode or any IDE/code editor of your choice, run
+
+```
+npm run dev
+```
+
+and navigate to **http://localhost:3000** to view the website!
+
+# About the Project
+
+This Workbook teaches you how to recreate [roygbiv](https://roygbiv.vercel.app/), a reaction time game where the player has to match written colors with the correct colored buttons as fast as possible before the timer runs out. The player gains a point for every correct match but gains (and loses) nothing for every wrong match.
+
+The game has 4 levels: Easy, Medium, Hard, and Custom.
+
+Easy gives the player 30 seconds to match as many colors as possible where the colored buttons are ordered properly (R O Y G B I V). Also, when the written color says "ORANGE", it is written in orange.
+
+Medium also gives the player 30 seconds to match as many colors as possible where the colored buttons are ordered properly (R O Y G B I V). However, when the written color says "ORANGE", it can be written in another color (e.g. blue).
+
+Hard gives the player 30 seconds to match as many colors as possible where the colored buttons are not ordered properly (not R O Y G B I V). Similar to Medium, when the written color says "ORANGE", it can be written in another color (e.g. green).
+
+Custom allows the player to toggle the game play in terms of choosing the timer duration, whether the buttons are ordered properly, and/or whether the written color is written in that color.
+
+To fully understand the gameplay, try it out yourself [here](https://roygbiv.vercel.app/)!
+
+# Cleaning Up
+
+Make sure that your project has the folders and files as seen [here](https://github.com/xyntechx/NexLiber-Projects/tree/main/roygbiv). You don't need to write anything in each file yet; this Workbook will walk you through the development of the game. Feel free to reference the [GitHub repo](https://github.com/xyntechx/NexLiber-Projects/tree/main/roygbiv) while going through this Workbook.
+
+For the **/public** folder, download the assets to your local machine.
+
+# Assumed Knowledge
+
+Hopefully, you have worked with TypeScript, Tailwind CSS, and Next.js before. This Workbook will bring these technologies together to create a rather addictive game ;)
+
+Let's test your understanding of Tailwind CSS.
+
+<Quiz
+    question="What is the vanilla CSS equivalent of p-4?"
+    choices={[
+        `padding: 1rem;`,
+        `padding: 4rem;`,
+        `padding-top: 1rem;`,
+        `padding-left: 4rem;`,
+    ]}
+    correctAnsIndex={0}
+    correctMessage="Correct! Check out https://tailwindcss.com/docs/padding and other sections of the documentation to learn what each Tailwind class represents."
+    wrongMessage="Try again!"
+/>
+
+What about your Next.js knowledge?
+
+<Quiz
+    question="In which localhost URL can you view the page coded in /pages/game/easy.tsx?"
+    choices={[
+        `http://localhost:3000/pages/game/easy.tsx`,
+        `http://localhost:3000/pages/game/easy`,
+        `http://localhost:3000/game/easy.tsx`,
+        `http://localhost:3000/game/easy`,
+    ]}
+    correctAnsIndex={3}
+    correctMessage="That's right!"
+    wrongMessage="Try again!"
+/>
+
+# Main Menu
+
+The main menu should be succinct. We'll display 4 buttons to navigate to each of the levels: Easy, Medium, Hard, and Custom. For a more organized view and an easier UI to make mobile responsive (presentable in mobile/smaller screens), we should order the buttons vertically.
+
+In **/pages/index.tsx**, write
+
+```tsx
+<Link href="/game/easy">
+    <a className="border border-green-400 rounded-lg py-2 px-5 w-1/5 text-center text-green-600 text-lg hover:bg-green-400 hover:text-black transition-colors mb-3">
+        Easy
+    </a>
+</Link>
+<Link href="/game/medium">
+    <a className="border border-yellow-400 rounded-lg py-2 px-5 w-1/5 text-center text-yellow-500 text-lg hover:bg-yellow-400 hover:text-black transition-colors mb-3">
+        Medium
+    </a>
+</Link>
+<Link href="/game/hard">
+    <a className="border border-red-400 rounded-lg py-2 px-5 w-1/5 text-center text-red-500 text-lg hover:bg-red-400 hover:text-black transition-colors mb-3">
+        Hard
+    </a>
+</Link>
+<Link href="/game/custom">
+    <a className="border border-blue-400 rounded-lg py-2 px-5 w-1/5 text-center text-blue-600 text-lg hover:bg-blue-400 hover:text-black transition-colors mb-3">
+        Custom
+    </a>
+</Link>
+```
+
+Looks kind of repetitive, huh? Let's make a reusable custom component called **ButtonLink** so that we won't have to keep on writing the same code over and over again. Since the links are not completely identical, we'll have to introduce some logic in the **ButtonLink** component using **switch** statements.
+
+In **/components/ButtonLink.tsx**, write
+
+```tsx
+<Link href={url}>
+    <a
+        className={`border rounded-lg py-2 px-5 w-3/5 md:w-1/5 text-center text-lg hover:text-black transition-colors my-2 ${(() => {
+            switch (color) {
+                case "red":
+                    return "text-red-500 border-red-400 hover:bg-red-400";
+                case "yellow":
+                    return "text-yellow-500 border-yellow-400 hover:bg-yellow-400";
+                case "green":
+                    return "text-green-600 border-green-400 hover:bg-green-400";
+                case "blue":
+                    return "text-blue-600 border-blue-400 hover:bg-blue-400";
+                default:
+                    return "text-black";
+            }
+        })()}`}
+    >
+        {text}
+    </a>
+</Link>
+```
+
+With this, we can now simplify **/pages/index.tsx** to
+
+```tsx
+<ButtonLink url="/game/easy" text="Easy" color="green" />
+<ButtonLink url="/game/medium" text="Medium" color="yellow" />
+<ButtonLink url="/game/hard" text="Hard" color="red" />
+<ButtonLink url="/game/custom" text="Custom" color="blue" />
+```
+
+Other than the buttons to choose the level, let's also have a small Help button at the bottom right corner to navigate to **/help** where the player can learn how to play the game.
+
+```tsx
+<Link href="/help">
+    <a className="border-4 border-blue-600 rounded-full py-1 px-3 text-center text-blue-600 text-lg hover:bg-blue-600 hover:text-white transition-colors fixed bottom-10 right-10 font-bold animate-bounce">
+        ?
+    </a>
+</Link>
+```
+
+The help page will display the 3 images in **/public/help** which you've downloaded from the GitHub repo.
+
+# Standby Page
+
+We should let the player get ready before starting the timer/game. Let's do this by defining a state called **start** and displaying a standby page with the gameplay details of each level when **start** is **false**.
+
+We'll use the code for Easy as an example.
+
+In **/pages/game/easy.tsx**, outside the **return** block, write
+
+```tsx
+const [start, setStart] = useState(false);
+const [timer, setTimer] = useState<number>();
+```
+
+We'll place a start button to start the game by setting **start** to **true** and **timer** to the predetermined value of **30** seconds when it is clicked.
+
+In **/pages/game/easy.tsx**, inside the **return** block, write
+
+```tsx
+{
+    start ? (
+        <>{/* For the actual game */}</>
+    ) : (
+        <>
+            <h1 className="font-bold text-5xl">Easy</h1>
+            <ul className="list-disc text-lg md:text-xl mt-5 px-1 text-center md:text-left">
+                <li>You have 30 seconds to match as many colors as possible</li>
+                <li>The buttons are not scrambled</li>
+                <li>The color of the display matches the display</li>
+            </ul>
+            <button
+                onClick={() => {
+                    setStart(true);
+                    setTimer(30);
+                }}
+                className="border border-blue-400 rounded-lg py-2 px-5 w-3/5 md:w-1/5 text-center text-blue-600 text-lg hover:bg-blue-400 hover:text-black transition-colors mt-10 mb-3"
+            >
+                Start
+            </button>
+            <ButtonLink url="/" text="Back" color="red" />
+        </>
+    );
+}
+```
+
+# Standby Page: Custom
+
+The standby page for Custom is slightly different to that of the other levels. Since the player is free to choose the gameplay settings for this level, an input box is needed for the player to enter the duration of the timer, and checkboxes are needed to choose whether the buttons will be scrambled and whether the display and display color will match.
+
+Outside the **return** block, in **/pages/game/custom.tsx**, write
+
+```tsx
+const timerValue = useRef(30);
+const [scramble, setScramble] = useState(false);
+const [mismatch, setMismatch] = useState(false);
+```
+
+In the **return** block, write
+
+```tsx
+<h1 className="font-bold text-5xl mb-5">Custom</h1>
+
+<div className="flex flex-row w-1/5 items-center justify-between gap-x-5">
+    <label htmlFor="Timer duration">Timer duration</label>
+    <input
+        type="number"
+        className="border border-black focus:border-emerald-600 rounded-lg outline-none focus:outline-none text-center w-[80px]"
+        defaultValue={30}
+        onChange={(e) =>
+            (timerValue.current = Number(e.target.value))
+        }
+    />
+</div>
+
+<div className="flex flex-row w-1/5 items-center justify-between gap-x-5">
+    <label htmlFor="Scramble buttons">
+        Scramble buttons
+    </label>
+    <input
+        name="Scramble buttons"
+        type="checkbox"
+        className="accent-emerald-600"
+        onChange={() =>
+            setScramble((scramble) => !scramble)
+        }
+    />
+</div>
+
+<div className="flex flex-row w-1/5 items-center justify-between gap-x-5">
+    <label htmlFor="Mismatch">
+        Mismatch display and display color
+    </label>
+    <input
+        name="Mismatch"
+        type="checkbox"
+        className="accent-emerald-600"
+        onChange={() =>
+            setMismatch((mismatch) => !mismatch)
+        }
+    />
+</div>
+
+<button
+    onClick={() => {
+        setStart(true);
+        setTimer(timerValue.current);
+    }}
+    className="border border-blue-400 rounded-lg py-2 px-5 w-3/5 md:w-1/5 text-center text-blue-600 text-lg hover:bg-blue-400 hover:text-black transition-colors mt-10 mb-3"
+>
+    Start
+</button>
+<ButtonLink url="/" text="Back" color="red" />
+```
+
+# ROYGBIV Buttons
+
+The reason why roygbiv is named roygbiv is because of the 7 colored buttons the player has to press to match with the displayed color text. We'll define this set of buttons as a reusable custom component named **Buttons**. Before we group the 7 buttons as a set, let's define each button first.
+
+In **/components/Buttons.tsx**, write
+
+```tsx
+interface ButtonProps {
+    color: string;
+    setAnswer: (color: string) => void;
+    toggle: boolean;
+    setToggle: (toggle: boolean) => void;
+}
+
+const Button = ({ color, setAnswer, toggle, setToggle }: ButtonProps) => {
+    return (
+        <button
+            onClick={() => {
+                setAnswer(color);
+                setToggle(!toggle);
+            }}
+            className={`${(() => {
+                switch (color) {
+                    case "red":
+                        return "bg-red-500";
+                    case "orange":
+                        return "bg-orange-500";
+                    case "yellow":
+                        return "bg-yellow-500";
+                    case "green":
+                        return "bg-green-500";
+                    case "blue":
+                        return "bg-blue-500";
+                    case "indigo":
+                        return "bg-indigo-500";
+                    case "violet":
+                        return "bg-violet-500";
+                    default:
+                        return "bg-white";
+                }
+            })()} md:p-14 p-5 md:mx-5 mx-1 hover:scale-110 transition-transform`}
+        />
+    );
+};
+```
+
+The props of this **Button** component are the color of the particular button (e.g. red), a function to set the player's answer (which is the color of the button), a state to detect whether the player has selected an answer/whether the answer has changed, and a function to change that state.
+
+The exported component, however, would be the collective **Buttons** component. Let's first define the **COLORS** array to hold the 7 colors in both a fixed and scrambled arrangement in a separate **/utils/colors.ts** file to declutter **/components/Buttons.tsx**.
+
+```ts
+const FIXED_COLORS = [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "violet",
+];
+
+let SCRAMBLED_COLORS: string[] = [];
+while (SCRAMBLED_COLORS.length !== 7) {
+    const color = FIXED_COLORS[Math.floor(Math.random() * 7)];
+    if (!SCRAMBLED_COLORS.includes(color)) SCRAMBLED_COLORS.push(color);
+}
+
+const COLORS = {
+    fixed: FIXED_COLORS,
+    scrambled: SCRAMBLED_COLORS,
+};
+
+export default COLORS;
+```
+
+Back to **/components/Buttons.tsx**, using a CSS grid, we'll group the individual buttons into a single row of 7 and color them using the **COLORS** array.
+
+```tsx
+import COLORS from "../utils/colors";
+
+interface ButtonsProps {
+    setAnswer: (color: string) => void;
+    toggle: boolean;
+    setToggle: (toggle: boolean) => void;
+    scramble?: boolean;
+}
+
+const Buttons = ({
+    setAnswer,
+    toggle,
+    setToggle,
+    scramble = false,
+}: ButtonsProps) => {
+    return (
+        <div className="grid-cols-7">
+            {scramble ? (
+                <>
+                    {COLORS.scrambled.map((color) => (
+                        <Button
+                            key={color}
+                            color={color}
+                            setAnswer={setAnswer}
+                            toggle={toggle}
+                            setToggle={setToggle}
+                        />
+                    ))}
+                </>
+            ) : (
+                <>
+                    {COLORS.fixed.map((color) => (
+                        <Button
+                            key={color}
+                            color={color}
+                            setAnswer={setAnswer}
+                            toggle={toggle}
+                            setToggle={setToggle}
+                        />
+                    ))}
+                </>
+            )}
+        </div>
+    );
+};
+
+export default Buttons;
+```
+
+Now we're ready to tackle the actual game!
+
+# Level: Easy
+
+In the game, we need to keep track of the player's answer, the display (the color to be matched), the duration of the timer left, and the player's score. Let's define those 4 states in **/pages/game/easy.tsx**.
+
+```tsx
+const [answer, setAnswer] = useState("");
+const [display, setDisplay] = useState(
+    COLORS.fixed[Math.floor(Math.random() * 7)] // get a random color from COLORS.fixed
+);
+const [timer, setTimer] = useState<number>();
+const [score, setScore] = useState(0);
+```
+
+To make the game more engaging, we should also add some sounds. We'll define 2 states, **correctAudio** and **wrongAudio** for when the player presses the correct and wrong colored button respectively. The 2 **.wav** files can be downloaded from **/public/audio**. The relevant audio is assigned to each state when the page is first mounted.
+
+```tsx
+const [correctAudio, setCorrectAudio] = useState<HTMLAudioElement>();
+const [wrongAudio, setWrongAudio] = useState<HTMLAudioElement>();
+
+useEffect(() => {
+    setCorrectAudio(new Audio("/audio/correct-audio.wav"));
+    setWrongAudio(new Audio("/audio/wrong-audio.wav"));
+}, []);
+```
+
+You might remember that we had **toggle** and **setToggle** be props of **Buttons**. Let's define them now.
+
+```tsx
+const [toggle, setToggle] = useState(true);
+```
+
+The purpose of **toggle** is to fire up a **useEffect** hook which calls **checkAnswer()**, a function to check whether the player has matched the colors correctly and awards points accordingly while playing the relevant audio.
+
+```tsx
+useEffect(() => {
+    setDisplay(() => COLORS.fixed[Math.floor(Math.random() * 7)]);
+    checkAnswer();
+}, [toggle]);
+
+const checkAnswer = () => {
+    if (answer.length > 0) {
+        if (answer === display) {
+            setScore((score) => (score += 1));
+            correctAudio!.play();
+        } else {
+            wrongAudio!.play();
+        }
+    }
+};
+```
+
+Let's also code up the logic of our timer using **setTimeout**. We'll wrap it in a **useEffect** hook which is activated when **timer** changes. **timer** decrements to 0. Once **timer** reaches 0, we stop the game and navigate to **/summary** where we can see our final score.
+
+```tsx
+useEffect(() => {
+    if (timer! <= 0) window.location.href = "/summary";
+    const intervalID = setTimeout(() => {
+        setTimer((timer) => (timer! -= 1));
+    }, 1000);
+    return () => clearInterval(intervalID);
+}, [timer]);
+```
+
+Since we want to "transfer" our score from **/easy** to **/summary**, we should leverage **localStorage** to keep track of **score**. In the above **useEffect** hook, include
+
+```tsx
+localStorage.setItem("ROYGBIV Score", JSON.stringify(score));
+```
+
+so that **score** is saved to **localStorage** every time **timer** changes.
+
+Awesome! Now we can start coding the UI.
+
+We'd want to display the timer duration left, the player's score, the displayed color, and of course, our ROYGBIV buttons. Displaying **timer**, **score**, and **Buttons** is simple.
+
+```tsx
+<h1 className="font-bold text-5xl fixed top-10">{timer}</h1>
+<p className="text-2xl mb-5 font-bold">{score}</p>
+
+{/* display */}
+
+<Buttons
+    setAnswer={setAnswer}
+    toggle={toggle}
+    setToggle={setToggle}
+/>
+```
+
+Displaying **display** warrants a **switch** statement to determine its text color (which is the same as the text itself since this is Easy). For aesthetic purposes, let's also have **display** in ALL CAPS.
+
+```tsx
+<h1
+    className={`font-bold text-3xl md:text-5xl mb-10 md:mb-20 ${(() => {
+        switch (display) {
+            case "red":
+                return "text-red-500";
+            case "orange":
+                return "text-orange-500";
+            case "yellow":
+                return "text-yellow-500";
+            case "green":
+                return "text-green-500";
+            case "blue":
+                return "text-blue-500";
+            case "indigo":
+                return "text-indigo-500";
+            case "violet":
+                return "text-violet-500";
+            default:
+                return "text-black";
+        }
+    })()}`}
+>
+    {display.toUpperCase()}
+</h1>
+```
+
+# Level: Medium
+
+Medium is nearly identical to Easy, except that the text color of **display** does not match the text of **display** itself. We achieve this by defining a new state, **displayColor**, which is also chosen at random.
+
+```tsx
+const [displayColor, setDisplayColor] = useState(
+    COLORS.fixed[Math.floor(Math.random() * 7)]
+);
+```
+
+Hence, our **switch** statement will watch **displayColor** instead of **display**.
+
+```tsx
+<h1
+    className={`font-bold text-3xl md:text-5xl mb-10 md:mb-20 ${(() => {
+        switch (displayColor) {
+            case "red":
+                return "text-red-500";
+            case "orange":
+                return "text-orange-500";
+            case "yellow":
+                return "text-yellow-500";
+            case "green":
+                return "text-green-500";
+            case "blue":
+                return "text-blue-500";
+            case "indigo":
+                return "text-indigo-500";
+            case "violet":
+                return "text-violet-500";
+            default:
+                return "text-black";
+        }
+    })()}`}
+>
+    {display.toUpperCase()}
+</h1>
+```
+
+# Level: Hard
+
+The only difference between Hard and Medium is the fact that the buttons are scrambled. We've already taken care of that in **/components/Buttons.tsx** and **/utils/colors.ts**, so we can simply write
+
+```tsx
+<Buttons
+    setAnswer={setAnswer}
+    toggle={toggle}
+    setToggle={setToggle}
+    scramble={true}
+/>
+```
+
+# Level: Custom
+
+Custom is a combination of Easy, Medium, and Hard. Use **if-else** statements to determine whether the page will show a mismatched display and display color and whether the buttons are scrambled. **timer** is also not definitely set to **30** at the start. I'll leave it up to you to read **/game/custom.tsx**.
+
+# Summary Page
+
+After finishing the game, the player should be allowed to review his final score. You can define the UI how ever you want, but make sure to use **localStorage.getItem()** to retrieve the previously stored **score**.
+
+In **/pages/summary.tsx**, write
+
+```tsx
+useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("ROYGBIV Score")!);
+    setScore(stored);
+});
+```
+
+# Conclusion
+
+That's it! Have fun playing the game and coding improvements/any changes to the current version :D
+
+# Reference
+
+If you haven't yet, feel free to browse through the complete code [here](https://github.com/xyntechx/NexLiber-Projects/tree/main/roygbiv)!
+
+# Discord Community
+
+If you have questions about anything related to NexLiber or this workbook, you're welcome to ask our community on [Discord](/community)!
+
+export default ({ children }) => (
+    <WorkbookLayout projectTitle="roygbiv" content={children} />
+);

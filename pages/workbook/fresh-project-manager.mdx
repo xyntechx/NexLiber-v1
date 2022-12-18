@@ -1,0 +1,555 @@
+import WorkbookLayout from "../../layouts/WorkbookLayout";
+import Quiz from "../../components/workbook/quiz";
+import Pic from "../../components/workbook/pic";
+
+# Setup
+
+Follow the Get Started section of the [Fresh documentation](https://fresh.deno.dev/#getting-started). Enter **y** for the prompt **Fresh has built in support for styling using Tailwind CSS. Do you want to use this?** and **Do you use VS Code?** (if you use VSCode). You can view the website on **localhost:8000**.
+
+# About the Project
+
+This web application aims to encourage the decomposition of a large project into smaller achievable tasks. It leverages **localStorage** to save all the data it receives from the user. The web app allows users to have an overview of all their projects, add/delete projects, and add/complete/delete tasks for each project.
+
+Here's how the completed homepage should look like.
+
+<Pic
+    src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Project%20Manager/nexliber-pics/9.png"
+    alt="Completed homepage"
+    width={400}
+    height={260}
+/>
+
+And this is how the project view should look like.
+
+<Pic
+    src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Project%20Manager/nexliber-pics/8.png"
+    alt="Completed homepage"
+    width={400}
+    height={260}
+/>
+
+# Cleaning Up
+
+Let's delete some files and folders first before we start developing our web app. Delete the folder **/components**, all files in **/islands**, and all files and folders in **/routes**.
+
+Let's get started!
+
+# Homepage: Alpha Version
+
+Our homepage is written in **/routes/index.tsx**, so create that file now! We will define a function called **Home()** as per normal. We'll want to add a meta title to the web app so that we can see its name, so let's import and add a **Head** tag in the return block of the function. Finally, let's add some placeholder UI first!
+
+```tsx
+import { Head } from "$fresh/runtime.ts";
+
+export default function Home() {
+    return (
+        <>
+            <Head>
+                <title>Fresh Project Manager</title>
+            </Head>
+            <main class="p-4 mx-auto max-w-screen-md">
+                <p class="my-6">Fresh Project Manager</p>
+            </main>
+        </>
+    );
+}
+```
+
+# Project View: Alpha Version
+
+We will leverage dynamic URLs for the project pages since we don't know ahead of time what the users will call their projects. With that, let's create **[project].tsx** in **/routes**. Similar to the homepage, we'll add a **Head** tag along with some placeholder UI. The placeholder UI will display the path of the project page.
+
+```tsx
+import { Head } from "$fresh/runtime.ts";
+import { PageProps } from "$fresh/server.ts";
+
+export default function Project(props: PageProps) {
+    return (
+        <>
+            <Head>
+                <title>{props.params.project}</title>
+            </Head>
+            <p>Project Title: {props.params.project}</p>
+        </>
+    );
+}
+```
+
+<Quiz
+    question="Navigate to http://localhost:8000/my-project/. What is displayed?"
+    choices={[`Project Title`, `my-project`, `Project Title: my-project`]}
+    correctAnsIndex={2}
+    correctMessage="Yup! If you navigate to http://localhost:8000/your-project/ instead for example, the page will display Project Title: your-project"
+    wrongMessage="Try again!"
+/>
+
+# Adding a Project
+
+We'll create a new file in **/routes** called **new-project.tsx**. This creates the page **/new-project** for the web app such that users will visit this page when adding a new project. Since we need some interactivity when adding a project, we have to import an island into **new-project.tsx**. So, let's create an island in **/islands** (we'll call it **AddProject.tsx**) in which we will allow users to set the project title and description, and save those details into **localStorage**.
+
+```tsx
+import AddProject from "../islands/AddProject.tsx";
+
+export default function NewProject() {
+    return (
+        <main class="flex flex-col items-center justify-center mx-auto max-w-screen-lg h-screen">
+            <h1 class="text-2xl">Add Project</h1>
+            <AddProject />
+        </main>
+    );
+}
+```
+
+Of course, **AddProject.tsx** calls for **useState**. We'll also need to create a form, which is what the **AddProject()** function returns, for the user to enter the details of the project and submit them. The submit button will call **localStorage.setItem()** to save the details, which will be saved as a stringified object consisting of the keys **title**, **description**, and **tasks**. We haven't added any tasks to the new project yet, so the value of **tasks** is just an empty array.
+
+Upon submission, the user will be redirected back to the homepage.
+
+```tsx
+import { useState } from "preact/hooks";
+
+export default function AddProject() {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+
+    const addProject = () => {
+        localStorage.setItem(
+            "Fresh Project Manager: " + title,
+            JSON.stringify({
+                title: title,
+                description: description,
+                tasks: [],
+            })
+        );
+        window.location.href = "/";
+    };
+
+    return (
+        <>
+            <input
+                type="text"
+                placeholder="Project Title"
+                onChange={(e) => setTitle((e.target as HTMLInputElement).value)}
+                class="w-4/5 border-2 rounded-md mt-2 px-2 py-1 text-center border-blue-500 focus:border-blue-600 outline-none"
+            />
+            <textarea
+                type="text"
+                placeholder="Project Description"
+                onChange={(e) =>
+                    setDescription((e.target as HTMLInputElement).value)
+                }
+                rows={10}
+                class="w-4/5 border-2 rounded-md mt-2 px-2 py-1 text-left border-blue-500 focus:border-blue-600 outline-none"
+            />
+            <div class="w-4/5 flex items-center justify-between">
+                <a
+                    href="/"
+                    class="bg-red-500 hover:bg-red-600 rounded-md py-1 px-10 text-gray-100 transition-colors focus:outline-none outline-none mt-5"
+                >
+                    Cancel
+                </a>
+                <button
+                    onClick={() => addProject()}
+                    class="bg-blue-500 hover:bg-blue-600 rounded-md py-1 px-10 text-gray-100 transition-colors focus:outline-none outline-none mt-5"
+                >
+                    Add
+                </button>
+            </div>
+        </>
+    );
+}
+```
+
+Once we add a project, we would surely want to be able to view it. We'll make the homepage the project overview page!
+
+However, we again need some interactivity, hence we would need a new island to call **localStorage.getItem()** and loop over all the created projects to display them. We'll have the "displayed projects" be links to their respective project pages, which are more comprehensive views of the projects along with their tasks. We'll call this island **Projects.tsx**.
+
+```tsx
+import { useEffect, useState } from "preact/hooks";
+
+interface ProjectData {
+    title: string;
+    description: string;
+    tasks: string[];
+}
+
+export default function Projects() {
+    const [projects, setProjects] = useState<ProjectData[]>([
+        {
+            title: "",
+            description: "",
+            tasks: [],
+        },
+    ]);
+
+    useEffect(() => {
+        let tempProjects = [];
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (key?.includes("Fresh Project Manager")) {
+                const stored = JSON.parse(localStorage.getItem(key)!);
+                tempProjects.push(stored);
+            }
+        }
+        setProjects(tempProjects);
+    }, []);
+
+    return (
+        <>
+            <div class="grid grid-cols-1 gap-y-5 md:(grid-cols-2 gap-x-20 gap-y-10) w-full">
+                {projects.length > 0 && projects[0].title.length > 0 && (
+                    <>
+                        {projects!.map((project) => (
+                            <a
+                                key={project.title}
+                                href={`/${project.title}`}
+                                class="border rounded-md border-gray-300 hover:border-gray-400 py-3 px-5 transition cursor-pointer flex items-center justify-start"
+                            >
+                                <div class="w-3/5">
+                                    <h1 class="font-bold">{project.title}</h1>
+                                    <p class="text-gray-500">
+                                        {project.description}
+                                    </p>
+                                </div>
+                                <div class="flex items-center justify-end w-2/5">
+                                    <a
+                                        href={`/${project.title}`}
+                                        class="bg-blue-500 hover:bg-blue-600 rounded-md py-1 px-2 text-gray-100 transition-colors"
+                                    >
+                                        View
+                                    </a>
+                                </div>
+                            </a>
+                        ))}
+                    </>
+                )}
+            </div>
+            {!projects[0].title.length && (
+                <div class="flex w-full m-0">
+                    <h1 class="my-6 w-full text-left m-0">No projects yet</h1>
+                </div>
+            )}
+        </>
+    );
+}
+```
+
+<Quiz
+    question="What does the useEffect block do?"
+    choices={[
+        `Stores the details of all projects into the projects array when the page is first loaded`,
+        `Updates the details of all projects when the page is first loaded`,
+        `Stores the details of all projects into the projects array every time each project changes`,
+    ]}
+    correctAnsIndex={0}
+    correctMessage="That's right! The useEffect hook takes as arguments 2 things: a function to be executed and a dependency array. For this case, the function serves to grab the details of each project already created by the user, and the dependency array is empty to tell useEffect to only run when the page is just mounted."
+    wrongMessage="Try again!"
+/>
+
+In **/routes/index.tsx**, we'll replace the placeholder UI with the following code, remembering to import **Projects.tsx**!
+
+```tsx
+<main class="flex flex-col items-center justify-start my-10 p-4 mx-auto max-w-screen-lg">
+    <div class="w-full flex justify-between mb-10">
+        <h1 class="font-bold text-2xl w-3/5 text-left">My Projects</h1>
+        <a
+            href="/new-project"
+            class="bg-blue-500 hover:bg-blue-600 rounded-md py-1 px-2 text-gray-100 transition-colors w-2/5 md:w-1/5 flex items-center justify-center"
+        >
+            + Add Project
+        </a>
+    </div>
+    <Projects />
+</main>
+```
+
+With these changes, the homepage should look like this.
+
+<Pic
+    src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Project%20Manager/nexliber-pics/4.png"
+    alt="Project structure"
+    width={400}
+    height={260}
+/>
+
+And the **/new-project** page should look like this.
+
+<Pic
+    src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Project%20Manager/nexliber-pics/2.png"
+    alt="Project structure"
+    width={400}
+    height={260}
+/>
+
+# Project View
+
+Now, let's improve **[project].tsx** with better designs and new features (delete project and add/complete/delete tasks of the project). Again, interactivity is necessary, so we'll create an island named **ProjectData.tsx** to be imported into **[project].tsx**. We'll define 3 states: **description**, **tasks**, and **isAddingTask**. You know what the first 2 are, so just to explain **isAddingTask**, it is **false** when the user is not adding a task, and **true** otherwise.
+
+```tsx
+import { useEffect, useState } from "preact/hooks";
+
+export default function ProjectData({ title }: { title: string }) {
+    const [description, setDescription] = useState("");
+    const [tasks, setTasks] = useState([""]);
+    const [isAddingTask, setIsAddingTask] = useState(false);
+
+    // useEffect and functions here
+
+    return <>{/* UI here */}</>;
+}
+```
+
+In the island, we'll grab the details of the specific project based on the path (which is the title of the project) when the page first loads. We'll then need to store those details with the states we've already defined. Thus, we need a **useEffect** hook and some setStates.
+
+```tsx
+useEffect(() => {
+    const stored = JSON.parse(
+        localStorage.getItem(`Fresh Project Manager: ${title}`)!
+    );
+    setDescription(stored.description);
+    setTasks(stored.tasks);
+}, []);
+```
+
+We'll then display those details in the page. For navigation purposes, let's also add a back button for the user to go back to the homepage once they're done with viewing the project. We'll also add a **Delete** button to delete the project (the function to do so will be defined later).
+
+```tsx
+<div class="w-full flex items-center justify-between flex-col md:flex-row">
+    <div class="w-full md:w-4/5 flex items-center justify-start flex-col">
+        <a
+            href="/"
+            class="text-gray-500 hover:text-blue-500 transition-colors w-full text-left mb-5"
+        >
+            ⬅️ Back
+        </a>
+        <h1 class="font-bold text-2xl text-left w-full">{title}</h1>
+        <p class="text-left w-full">{description}</p>
+    </div>
+    <div class="w-full md:w-1/5 flex items-center justify-start md:justify-end">
+        <button
+            onClick={() => deleteProject()}
+            class="bg-red-500 hover:bg-red-600 rounded-md py-1 px-10 text-gray-100 transition-colors focus:outline-none outline-none mt-5"
+        >
+            Delete
+        </button>
+    </div>
+</div>
+```
+
+We should add a button to enable the user to add a new task to the project. This button should be below every component in the page, so let's define it at the end of the return block. When the button is clicked, **isAddingTask** is set to **true** since the user would be adding a task when they press that button.
+
+```tsx
+<button
+    onClick={() => setIsAddingTask(true)}
+    class="text-gray-500 border border-gray-500 hover:(text-blue-500 border-blue-500) rounded-md py-1 px-2 transition-colors flex items-center justify-center mt-5 focus:outline-none"
+>
+    + Add Task
+</button>
+```
+
+Now, we need to define a component which serves as a form to add new tasks. We'll define it under the exported **ProjectData()** function, name it **AddTask**, and display it above the button. **AddTask** asks the user for the task description and appends it to the array of tasks for that specific project in **localStorage** upon submission.
+
+```tsx
+interface AddTaskProps {
+    projectTitle: string;
+    description: string;
+    tasks: string[];
+    isAddingTask: boolean;
+    setIsAddingTask: (isAddingTask: boolean) => void;
+}
+
+function AddTask({
+    projectTitle,
+    description,
+    tasks,
+    isAddingTask,
+    setIsAddingTask,
+}: AddTaskProps) {
+    const [task, setTask] = useState("");
+
+    const addTask = () => {
+        let newTasks: string[] = [];
+
+        if (task) {
+            if (tasks[0] === "") newTasks = [task];
+            else newTasks = [...tasks, task];
+
+            localStorage.setItem(
+                "Fresh Project Manager: " + projectTitle,
+                JSON.stringify({
+                    title: projectTitle,
+                    description: description,
+                    tasks: newTasks,
+                })
+            );
+        }
+
+        window.location.href = `/${projectTitle}`;
+
+        setIsAddingTask(false);
+    };
+
+    return (
+        <div class={isAddingTask ? "block w-full mt-5" : "hidden"}>
+            <input
+                type="text"
+                placeholder="Task Description"
+                onChange={(e) => setTask((e.target as HTMLInputElement).value)}
+                class="w-full border-2 rounded-md mt-2 p-5 text-left border-blue-500 focus:border-blue-600 outline-none"
+            />
+            <div class="w-full flex items-center justify-between">
+                <button
+                    onClick={() => setIsAddingTask(false)}
+                    class="bg-red-500 hover:bg-red-600 rounded-md py-1 px-10 text-gray-100 transition-colors focus:outline-none outline-none mt-5"
+                >
+                    Cancel
+                </button>
+                <button
+                    onClick={() => addTask()}
+                    class="bg-blue-500 hover:bg-blue-600 rounded-md py-1 px-10 text-gray-100 transition-colors focus:outline-none outline-none mt-5"
+                >
+                    Add
+                </button>
+            </div>
+        </div>
+    );
+}
+```
+
+In **ProjectData()**, write the following above the code defining the button.
+
+```tsx
+<AddTask
+    projectTitle={title}
+    description={description}
+    tasks={tasks}
+    isAddingTask={isAddingTask}
+    setIsAddingTask={setIsAddingTask}
+/>
+```
+
+Once we add a task, we would want the web app to grab the newly created task as well right? To do so, let's define a **useEffect** hook which is triggered whenever the **isAddingTask** state changes.
+
+```tsx
+useEffect(() => {
+    const stored = JSON.parse(
+        localStorage.getItem(`Fresh Project Manager: ${title}`)!
+    );
+    setTasks(stored.tasks);
+}, [isAddingTask]);
+```
+
+Now that we can add tasks, we need to display them! Above the **AddTask** component in **ProjectData()**, we'll loop over all the tasks of the project and display them. We'll also enable the user to complete/delete the task so that their project view won't be cluttered with irrelevant/past tasks.
+
+```tsx
+<div class="flex flex-col items-start justify-start w-full mt-5 gap-y-5">
+    {tasks.map((task) => (
+        <div class="border w-full p-5 rounded-md flex items-center justify-between flex-col md:flex-row">
+            <p class="text-left w-full md:w-3/5">{task}</p>
+            <div class="flex items-center justify-center md:justify-end w-full md:w-2/5 gap-x-2 md:gap-x-5 mt-2 md:mt-0">
+                <button
+                    onClick={() => deleteTask(task)}
+                    class="border border-green-500 hover:bg-green-500 rounded-md py-1 px-5 text-green-500 hover:text-gray-100 transition-colors focus:outline-none outline-none"
+                >
+                    Complete
+                </button>
+                <button
+                    onClick={() => deleteTask(task)}
+                    class="border border-red-500 hover:bg-red-500 rounded-md py-1 px-5 text-red-500 hover:text-gray-100 transition-colors focus:outline-none outline-none"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    ))}
+</div>
+```
+
+The **deleteTask()** function should be defined outside of the return block. We will modify the array of tasks by removing the deleted task and hence update the stored details of the project.
+
+```tsx
+const deleteTask = (task: string) => {
+    const tempTasks = tasks.filter((t) => t !== task);
+    localStorage.setItem(
+        "Fresh Project Manager: " + title,
+        JSON.stringify({
+            title: title,
+            description: description,
+            tasks: tempTasks,
+        })
+    );
+    location.reload();
+};
+```
+
+Let's also define **deleteProject()**, which is similarly defined outside of the return block. This function calls **localStorage.removeItem()** since the entire project is deleted. We then need to navigate back to the homepage since the project would no longer exist.
+
+```tsx
+const deleteProject = () => {
+    localStorage.removeItem(`Fresh Project Manager: ${title}`);
+    window.location.href = "/";
+};
+```
+
+Great! Now that we have the island settled, let's implement it in **/routes/[project].tsx**.
+
+```tsx
+import { Head } from "$fresh/runtime.ts";
+import { PageProps } from "$fresh/server.ts";
+import ProjectData from "../islands/ProjectData.tsx";
+
+export default function Project(props: PageProps) {
+    return (
+        <>
+            <Head>
+                <title>{props.params.project.split("%20").join(" ")}</title>
+            </Head>
+            <main class="flex flex-col items-center justify-start my-10 p-4 mx-auto max-w-screen-lg">
+                <ProjectData
+                    title={props.params.project.split("%20").join(" ")}
+                />
+            </main>
+        </>
+    );
+}
+```
+
+Now, the project view should look like this.
+
+<Pic
+    src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Project%20Manager/nexliber-pics/6.png"
+    alt="Project structure"
+    width={400}
+    height={260}
+/>
+
+When adding a task, it should look like this.
+
+<Pic
+    src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Fresh%20Project%20Manager/nexliber-pics/7.png"
+    alt="Project structure"
+    width={400}
+    height={260}
+/>
+
+To make the homepage more useful, we should display the number of tasks each project has. In **/islands/Projects.tsx**, include the following code right below the code displaying the project description.
+
+```tsx
+<p class="text-gray-500 mt-2">
+    {project.tasks.length}{" "}
+    <span>{project.tasks.length === 1 ? <>task</> : <>tasks</>}</span>
+</p>
+```
+
+That's it for the project!
+
+# Reference
+
+If you would like to see the complete code, you can do so [here](https://github.com/xyntechx/NexLiber-Projects/tree/main/Fresh%20Project%20Manager)!
+
+# Discord Community
+
+If you have questions about anything related to NexLiber or this workbook, you're welcome to ask our community on [Discord](/community)!
+
+export default ({ children }) => (
+    <WorkbookLayout projectTitle="Fresh Project Manager" content={children} />
+);

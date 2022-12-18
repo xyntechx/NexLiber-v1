@@ -16,7 +16,7 @@ NexLiber is licensed under the terms of the MIT license. Anyone is welcome to co
 ### NexLiber Creators
 Follow the instructions in the [Guide for Creators](https://github.com/xyntechx/NexLiber-Projects)!
 
-Once your project is approved and merged into `xyntechx/NexLiber-Projects`, please read the [Workbook Dev Guide](https://github.com/xyntechx/NexLiber/blob/main/creator/GUIDE.md) before writing and pushing your Workbook to this repository!
+Once your project is approved and merged into `xyntechx/NexLiber-Projects`, please read the [Workbook Dev Guide](https://github.com/xyntechx/NexLiber/blob/main/WBDEV.md) before writing and pushing your Workbook to this repository!
 
 ### Other Contributors
 Create an Issue for any suggestions, questions, etc.
