@@ -36,12 +36,18 @@ const Popup = () => {
                         </Link>
                         ! If you&apos;d like to suggest or build new features
                         for 2.0.0, visit NexLiber&apos;s{" "}
-                        <Link href="https://github.com/xyntechx/NexLiber/tree/2.0.0">
+                        <Link href="https://github.com/xyntechx/NexLiber/issues">
                             <a target="_blank" className={styles.link}>
                                 GitHub
                             </a>
                         </Link>{" "}
-                        repo.
+                        repo. Visit{" "}
+                        <Link href="https://nexliber-2.vercel.app/">
+                            <a target="_blank" className={styles.link}>
+                                this
+                            </a>
+                        </Link>{" "}
+                        website to follow the progress of NexLiber 2.0.0.
                     </p>
                     <p className={styles.text}>
                         Of course, this doesn&apos;t mean that you can&apos;t
