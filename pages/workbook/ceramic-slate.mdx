@@ -6,20 +6,19 @@ import Quiz from "../../components/workbook/quiz";
 
 This project is built with Next 13 and uses the experimental app directory features.
 
-Visit it live [GitHub](https://ceramic-slate.vercel.app)
+Visit it live on [GitHub](https://ceramic-slate.vercel.app).
 
-Get the project from [GitHub](https://github.com/xyntechx/NexLiber-Projects/tree/main/Ceramic%20Slate)
+Get the project from [GitHub](https://github.com/xyntechx/NexLiber-Projects/tree/main/Ceramic%20Slate).
 
-Use **npm i** to install the packages
+Use **npm i** to install the packages.
 
 # About the Project
 
-Ceramic Slate is a decentralized journal to express your thoughts stored on [Ceramic network](https://ceramic.network), a data network built on [IPFS](https://ceramic.network). It was made for the DreamUP challenge 2022, learn more [here](https://discord.gg/unPhKJKM)
+Ceramic Slate is a decentralized journal to express your thoughts stored on [Ceramic network](https://ceramic.network), a data network built on [IPFS](https://ceramic.network). It was made for the DreamUP challenge 2022, learn more [here](https://discord.gg/unPhKJKM).
 
-This project aims to go through some guides on how to store data on [Ceramic network](https://ceramic.network)
+This project aims to go through some guides on how to store data on [Ceramic network](https://ceramic.network).
 
-
-NOTE: Ceramic has released a much composable database aptly called ComposeDB, which we aren't using just yet, I'll release an update on for that in the future if requested.
+NOTE: Ceramic has released a much composable database aptly called ComposeDB, which we aren't using just yet; I'll release an update on for that in the future if requested.
 
 # Project Structure
 
@@ -37,11 +36,11 @@ NOTE: Ceramic has released a much composable database aptly called ComposeDB, wh
 
 </pre>
 
-# Good To know
+# Good To Know
 
 Ceramic is a decentralized data network, the hosted data is publicly accessible from the parent node, but can only be mutated by the creator, using a W3C standard decentralized identity, also called a DID. The structure of the data can be enforced using a [JSON Schema](https://JSON-schema.org/learn/getting-started-step-by-step.html). A motivation for using a decentralized store is to build apps with interoperable, user-controlled data storage.
 
-In this project we use some experimental NextJS features and packages, but we'll be focusing on packages which we've paired with the Ceramic SDK in to enhance our dx, the first being [web3-react](https://github.com/Uniswap/web3-react) for interacting with ou and surely not the least [immer](https://immerjs.github.io/immer/). 
+In this project we use some experimental NextJS features and packages, but we'll be focusing on packages which we've paired with the Ceramic SDK in to enhance our dx, the first being [web3-react](https://github.com/Uniswap/web3-react) for interacting with ou and surely not the least [immer](https://immerjs.github.io/immer/).
 
 Here's What we'll cover:
 
@@ -50,171 +49,167 @@ Here's What we'll cover:
 3. Ceramic Data
 4. Deterministic Data Fetching
 
-
-
 # Authentication
 
-In Ceramic the authentication handled using a DID. The DID is a decentralized identity, that doesn't require a centralized authority to provide authorization certificates. There are multiple types of DID but we'll be focusing on the Account DID created, you can learn more about dids [here](https://www.w3.org/TR/did-core/).
+In Ceramic, the authentication is handled using a DID. The DID is a decentralized identity that doesn't require a centralized authority to provide authorization certificates. There are multiple types of DID but we'll be focusing on the Account DID created. You can learn more about dids [here](https://www.w3.org/TR/did-core/).
 
-To authenticate a user, first we get the users selected **account** from the wallet they use e.g MetaMask or WalletConnect, then we get an Ethereum JavaScript provider API as specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) from the wallet in the case of MetaMask it injects that into any website which is stored in the **ethereum** variable. 
+To authenticate a user, we first get the user's selected **account** from the wallet they use (e.g MetaMask or WalletConnect). Then, we get an Ethereum JavaScript provider API as specified by [EIP-1193](https://eips.ethereum.org/EIPS/eip-1193) from the wallet. In the case of MetaMask, it injects that into any website which is stored in the **ethereum** variable.
 
-
-```
-    const account = await provider.listAccounts();
-    const ethereum = provider.provider;
-```
-
-Then we pass the **account** and **ethereum** references to the **EthereumAuthProvider** Class from 3ID Connect. 3ID Connect is an in-browser 3ID DID provider, using blockchain wallets to create deterministic authentication secrets using to control a DID learn more [here](https://blog.ceramic.network/what-is-3id-connect/). **EthereumAuthProvider** Class is used to specify that we're working with ethereum based blockchains and is saved in the **authProvider** reference.
-
-```
-    import { EthereumAuthProvider } from "@3id/connect";
-
-    const authProvider = new EthereumAuthProvider(ethereum, account[0]);
+```tsx
+const account = await provider.listAccounts();
+const ethereum = provider.provider;
 ```
 
-Next we connect the **authProvider** to the 3ID connect instance so it can generate the authentication secret
+Then, we pass the **account** and **ethereum** references to the **EthereumAuthProvider** Class from 3ID Connect. 3ID Connect is an in-browser 3ID DID provider, using blockchain wallets to create deterministic authentication secrets using to control a DID (you can learn more [here](https://blog.ceramic.network/what-is-3id-connect/)). **EthereumAuthProvider** Class is used to specify that we're working with ethereum-based blockchains and is saved in the **authProvider** reference.
 
+```tsx
+import { EthereumAuthProvider } from "@3id/connect";
+
+const authProvider = new EthereumAuthProvider(ethereum, account[0]);
 ```
-    import { ThreeIdConnect } from "@3id/connect";
 
-    const threeID = new ThreeIdConnect();
-    await threeID.connect(authProvider);
+Next, we connect the **authProvider** to the 3ID connect instance so it can generate the authentication secret.
+
+```tsx
+import { ThreeIdConnect } from "@3id/connect";
+
+const threeID = new ThreeIdConnect();
+await threeID.connect(authProvider);
 ```
 
-Lastly we create a **CeramicClient** instance an this interacts with a remote Ceramic daemon, and it's needed by the 3ID DID resolver to load DID documents. When we instantiate the **DID** class we assign that to the **did** reference and replace the did key in the **ceramic** object with the value of **did**.
+Lastly, we create a **CeramicClient** instance which interacts with a remote Ceramic daemon, and it's needed by the 3ID DID resolver to load DID documents. When we instantiate the **DID** class, we assign that to the **did** reference and replace the **did** key in the **ceramic** object with the value of **did**.
 
-```
-    import { getResolver } from "@ceramicnetwork/3id-did-resolver";
-    import { CeramicClient } from "@ceramicnetwork/http-client";
-    import { DID } from "dids";
+```tsx
+import { getResolver } from "@ceramicnetwork/3id-did-resolver";
+import { CeramicClient } from "@ceramicnetwork/http-client";
+import { DID } from "dids";
 
+const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");
 
-    const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");
-
-    const did = new DID({
-      provider: threeID.getDidProvider(),
-      resolver: {
+const did = new DID({
+    provider: threeID.getDidProvider(),
+    resolver: {
         ...getResolver(ceramic),
-      },
-    });
-    await did.authenticate();
+    },
+});
+await did.authenticate();
 
-    ceramic.did = did;
+ceramic.did = did;
 ```
 
 That brings us to the end of Authentication with DIDs on Ceramic here's everything from above. To see the full code for the auth do go into the services folder, then the ceramic.ts file, and view the auth function.
 
-```
-    const account = await provider.listAccounts();
-    const ethereum = provider.provider;
-    const authProvider = new EthereumAuthProvider(ethereum, account[0]);
+```tsx
+const account = await provider.listAccounts();
+const ethereum = provider.provider;
+const authProvider = new EthereumAuthProvider(ethereum, account[0]);
 
-    const threeID = new ThreeIdConnect();
-    await threeID.connect(authProvider);
+const threeID = new ThreeIdConnect();
+await threeID.connect(authProvider);
 
-    const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");
+const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");
 
-    const did = new DID({
-      provider: threeID.getDidProvider(),
-      resolver: {
+const did = new DID({
+    provider: threeID.getDidProvider(),
+    resolver: {
         ...getResolver(ceramic),
-      },
-    });
-    await did.authenticate();
+    },
+});
+await did.authenticate();
 
-    ceramic.did = did;
+ceramic.did = did;
 ```
 
 # Model Alias
 
-To be assured that the data you store stays consistent it's good to use a data schema.
+To be assured that the data you store stays consistent, it's good to use a data schema.
 
 The schema below is an example schema used to specify **Ceramic Slate** project data.
 
-``` 
-    {
-      "type": "object",
-      "title": "Slate",
-      "$schema": "http://JSON-schema.org/draft-07/schema#",
-      "required": ["data"],
-      "properties": {
+```json
+{
+    "type": "object",
+    "title": "Slate",
+    "$schema": "http://JSON-schema.org/draft-07/schema#",
+    "required": ["data"],
+    "properties": {
         "data": {
-          "type": "array",
-          "default": [],
-          "description": "Journals",
-          "uniqueItems": true,
-          "items": {
-            "type": "object",
-            "required": ["id", "title", "body", "createdAt"],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "body": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "createdAt": {
-                "type": "integer"
-              }
-            },
-            "additionalProperties": false
-          },
+            "type": "array",
+            "default": [],
+            "description": "Journals",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "required": ["id", "title", "body", "createdAt"],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "body": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "createdAt": {
+                        "type": "integer"
+                    }
+                },
+                "additionalProperties": false
+            }
         }
-      },
-      "additionalProperties": false
-    }
+    },
+    "additionalProperties": false
+}
 ```
 
-You should use an online [JSON Schema validator](https://www.jsonschemavalidator.net) to check whether the JSON matches with your expected data. The JSON below would match the JSON Schema above, with no validation errors
+You should use an online [JSON Schema validator](https://www.jsonschemavalidator.net) to check whether the JSON matches with your expected data. The JSON below would match the JSON Schema above, with no validation errors.
 
-```
-    {
-      data: [
+```json
+{
+    "data": [
         {
-          id: "883-jdso",
-          title: "Hello Slate",
-          body: "...",
-          createdAt: 0
+            "id": "883-jdso",
+            "title": "Hello Slate",
+            "body": "...",
+            "createdAt": 0
         },
         {
-          id: "9309-sewe",
-          title: "Memoirs",
-          body: "...",
-          createdAt: 0
-        },
-      ]
-    }
+            "id": "9309-sewe",
+            "title": "Memoirs",
+            "body": "...",
+            "createdAt": 0
+        }
+    ]
+}
 ```
 
-To quicky create your Model Alias use Cermodel, 
+To quicky create your Model Alias use Cermodel,
 
 1. Go to [Cermodel](https://cermodel.vercel.app)
-2. Click the Settings icon, exactly input a seed of 32 characters long,
-3. Paste your JSON Schema into the field, 
-4. (optional) To batch your models click the plus button and add as many JSON Schemas 
-5. Click on the download button on the far right to create your 
-6. start the process and wait
+2. Click the Settings icon, exactly input a seed of 32 characters long
+3. Paste your JSON Schema into the field
+4. (optional) To batch your models, click the plus button and add as many JSON Schemas
+5. Click on the download button on the far right
+6. Start the process and wait
 
-A model like this will be shown as a result 
+A model like this will be shown as a result
 
-```
-    {
-      "definitions": {
+```json
+{
+    "definitions": {
         "slate": "kjzl6cwe1jw14a56j5t8vnpbdwfziyxze7rc110wyhp4ddhagyjdxbrcuurc3h6"
-      },
-      "schemas": {
+    },
+    "schemas": {
         "Slate": "ceramic://k3y52l7qbv1frxitx8okktc4gzi7kupdf8xqjwb290vzwzq21r5waiyy08lpkepkw"
-      },
-      "tiles": {}
-    }
+    },
+    "tiles": {}
+}
 ```
 
-You should then save it in JavaScript as 
+You should then save it in JavaScript as
 
-```
+```json
     const aliases = {
       definitions: {
         slate: "kjzl6cwe1jw14a56j5t8vnpbdwfziyxze7rc110wyhp4ddhagyjdxbrcuurc3h6",
@@ -230,69 +225,67 @@ You should then save it in JavaScript as
 
 Once you've got your model alias it's quick to read, and save data to the store. Pass the **ceramic** and **alias** objects created earlier to an instance of **DataModel** and then pass that reference to the **DIDDataStore** instance.
 
+```tsx
+import { DataModel } from "@glazed/datamodel";
+import { DIDDataStore } from "@glazed/did-datastore";
+
+const model = new DataModel({ ceramic, aliases });
+const dataStore = new DIDDataStore({ ceramic, model });
 ```
-    import { DataModel } from "@glazed/datamodel";
-    import { DIDDataStore } from "@glazed/did-datastore";
 
-    const model = new DataModel({ ceramic, aliases });
-    const dataStore = new DIDDataStore({ ceramic, model });
-```
+Next, we can use the **get** and **set** methods on dataStore to mutate the store so far it was created by our DID. To get and set our store, we need to pass the definition name from the model aliases, in this case it's **slate**. For set, we'll also pass in a data that is valid to the schema we defined earlier or else the node will reject our updates to the store; this makes the store consistent with the data schema.
 
-Next we can use the **get** and **set** methods on dataStore to mutate the store so far it was created by our DID. To get and set our store we need to pass the definition name from the model aliases, in this case it's **slate**, for set we'll also pass in a data that is valid to the schema we defined earlier or else the node will reject our updates to the store, this makes the store consistent with the data schema.
+```tsx
+const modelDefinition = "slate";
 
-```
-    const modelDefinition = "slate"
-
-    const doc = await dataStore.get(modelDefinition);
-    const updatedDocObj = 
-
-    await dataStore.set(modelDefinition, updatedDocObj);
+const doc = await dataStore.get(modelDefinition);
+const updatedDocObj = await dataStore.set(modelDefinition, updatedDocObj);
 ```
 
 # Deterministic Data Fetching
 
-Data on Ceramic is public by default, we can easily search for data associated with a specific DID using a deterministic search that involves two parameters
+Data on Ceramic is public by default, we can easily search for data associated with a specific DID using a deterministic search that involves two parameters:
 
-1. the DID of the user
-2. the model alias definition that represents a specific data on Ceramic
+1. The DID of the user
+2. The model alias definition that represents a specific data on Ceramic
 
-We pass the DID of the user as the controller of data represented by the family which is the Model alias definition. This will get the data stored by the owner of the DID 
+We pass the DID of the user as the controller of data represented by the family which is the Model alias definition. This will get the data stored by the owner of the DID.
 
-```
-    async function deterministic({
-      controller,
-      family,
-    }: {
-      controller: string;
-      family: string;
-    }) {
-      const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");
+```tsx
+async function deterministic({
+    controller,
+    family,
+}: {
+    controller: string;
+    family: string;
+}) {
+    const ceramic = new CeramicClient("https://ceramic-clay.3boxlabs.com");
 
-      const doc = await TileDocument.deterministic(ceramic as any, {
+    const doc = await TileDocument.deterministic(ceramic as any, {
         // Did of the tile controller.
         controllers: [controller],
 
         // Deployed model aliases definition.
         family,
-      });
+    });
 
-      const data: any = doc.content;
-      return data;
-    }
+    const data: any = doc.content;
+    return data;
+}
 ```
 
 # Conclusion
 
-This brings us to the end of this workbook. Note that you can encrypt data in Ceramic using [Lit Protocol](https://litprotocol.com) this ensures that your data though public can only be read by those with access to the decryption privilege.
+This brings us to the end of this Workbook. Note that you can encrypt data in Ceramic using [Lit Protocol](https://litprotocol.com). This ensures that your data, though public, can only be read by those with access to the decryption privilege.
 
 # Reference
 
-If you would like to see the complete code, check it out on [GitHub](https://github.com/xyntechx/NexLiber-Projects/tree/main/Ceramic%20Slate)
+If you would like to see the complete code, check it out on [GitHub](https://github.com/xyntechx/NexLiber-Projects/tree/main/Ceramic%20Slate)!
 
 # Discord Community
 
 If you have questions about anything related to NexLiber or this workbook, you're welcome to ask our community on [Discord](/community)!
 
 export default ({ children }) => (
-  <WorkbookLayout projectTitle="Ceramic Slate" content={children} />
+    <WorkbookLayout projectTitle="Ceramic Slate" content={children} />
 );
