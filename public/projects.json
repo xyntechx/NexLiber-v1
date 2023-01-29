@@ -61,5 +61,12 @@
         "difficulty": "Intermediate",
         "creator": "Bhvya Sahni",
         "date": "Dec 16, 2022"
+    },
+    "Ceramic Slate": {
+        "description": "A journal powered by ceramic",
+        "field": "Web Development",
+        "difficulty": "Intermediate",
+        "creator": "Kelvin Praises",
+        "date": "Jan 28, 2023"
     }
 }
