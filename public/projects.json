@@ -61,5 +61,12 @@
         "difficulty": "Intermediate",
         "creator": "Bhvya Sahni",
         "date": "Dec 16, 2022"
+    },
+    "Interactive Rating": {
+        "description": "A project displaying an interactive rating component for users",
+        "field": "Web Development",
+        "difficulty": "Beginner",
+        "creator": "Okeke Chidera",
+        "date": "Jan 31, 2023"
     }
 }
