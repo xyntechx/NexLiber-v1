@@ -1,10 +1,9 @@
 import WorkbookLayout from "../../layouts/WorkbookLayout";
 import Pic from "../../components/workbook/pic";
 
-
 # Setup
 
-This project can be done on an **Integrated Development Environnmen** such as Microsoft Visual Studio Code. it will also require a destop browser of your choice to render the code. Download the starter file from [Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-rating-component-koxpeBUmI).
+This project can be done on an **Integrated Development Environnment** such as Microsoft Visual Studio Code. It will also require a desktop browser of your choice to render the code. Download the starter file from [Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-rating-component-koxpeBUmI).
 
 # About the Project
 
@@ -19,50 +18,53 @@ The website will look something like this...
     height={260}
 />
 
-# Let get started
+# Let's Get Started
 
-Yeah, we are about to start off. What better place to commence than with the html file. In your index.html file add the following lines of code.
+Yeah, we are about to start off. What better place to commence than with the html file. In your index.html file, add the following lines of code.
 
 ```html
 <body>
-
     <main class="container">
         <section class="rating">
-            <div class="star"><img src="./images/icon-star.svg" alt="" aria-hidden=“true”></div>
-            <h1> How did we do? </h1>
-            <p class="description"> Please let us know how we did with your support request. All feedback is appreciated to help us improve our offering! </p>
+            <div class="star">
+                <img src="./images/icon-star.svg" alt="" aria-hidden="“true”" />
+            </div>
+            <h1>How did we do?</h1>
+            <p class="description">
+                Please let us know how we did with your support request. All
+                feedback is appreciated to help us improve our offering!
+            </p>
             <div class="flexbox">
                 <button>1</button>
                 <button>2</button>
                 <button>3</button>
                 <button>4</button>
                 <button>5</button>
-
             </div>
 
             <button class="submit">SUBMIT</button>
         </section>
 
         <section class="thank-you">
-            <div><img src="./images/illustration-thank-you.svg" alt=""></div>
+            <div><img src="./images/illustration-thank-you.svg" alt="" /></div>
             <div class="selected">
                 <p>You selected <span id="value"></span> out of 5</p>
             </div>
-            <h1> Thank you! </h1>
-            <p class="thank-description"> We appreciate you taking the time to give a rating. If you ever need more support, don’t hesitate to get in touch! </p>
-
+            <h1>Thank you!</h1>
+            <p class="thank-description">
+                We appreciate you taking the time to give a rating. If you ever
+                need more support, don’t hesitate to get in touch!
+            </p>
         </section>
     </main>
 
     <script src="script.js"></script>
-
-
 </body>
 ```
 
-# Styling our design
+# Styling Our Design
 
-In your style.css add these lines of code
+In your style.css, add these lines of code.
 
 ```css
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap");
@@ -72,7 +74,7 @@ In your style.css add these lines of code
     padding: 0;
 }
 
- :root {
+:root {
     --orange: hsl(25, 97%, 53%);
     --white: hsl(0, 0%, 100%);
     --light-grey: hsl(217, 12%, 63%);
@@ -92,7 +94,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: "Red Hat Display", sans-serif;
 }
 
 .container {
@@ -111,7 +113,7 @@ body {
 h1 {
     font-size: 1.6rem;
     font-weight: 700;
-    line-height: 1.0;
+    line-height: 1;
 }
 
 .star {
@@ -135,7 +137,7 @@ h1 {
     gap: 2rem;
 }
 
-.flexbox>button {
+.flexbox > button {
     background-color: var(--medium-blue);
     border-radius: 50%;
     width: 3rem;
@@ -145,7 +147,7 @@ h1 {
     margin: 1rem 0;
 }
 
-.flexbox>button:hover {
+.flexbox > button:hover {
     background-color: var(--orange);
     color: var(--white);
     cursor: pointer;
@@ -196,7 +198,7 @@ h1 {
     margin: 0;
 }
 
-.selected>p {
+.selected > p {
     margin: 0.5rem;
 }
 
@@ -218,7 +220,7 @@ h1 {
 }
 ```
 
-# Responsive design
+# Responsive Design
 
 To make our implementation **responsive**, add the following lines of code.
 
@@ -234,7 +236,6 @@ To make our implementation **responsive**, add the following lines of code.
     }
 }
 
-
 /* Small devices (portrait tablets and large phones, 600px and up) */
 
 @media only screen and (min-width: 600px) {
@@ -242,7 +243,6 @@ To make our implementation **responsive**, add the following lines of code.
         width: 80%;
     }
 }
-
 
 /* Medium devices (landscape tablets, 768px and up) */
 
@@ -252,7 +252,6 @@ To make our implementation **responsive**, add the following lines of code.
     }
 }
 
-
 /* Large devices (laptops/desktops, 992px and up) */
 
 @media only screen and (min-width: 992px) {
@@ -260,7 +259,6 @@ To make our implementation **responsive**, add the following lines of code.
         width: 50%;
     }
 }
-
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 
@@ -271,29 +269,28 @@ To make our implementation **responsive**, add the following lines of code.
 }
 ```
 
-# Onto the javascript
+# Onto the JavaScript
 
-So our app is not really interative until we add javascript.
+So our app is not really interative until we add JavaScript.
 
 ```js
-let rateDOM = document.querySelector('.flexbox').children;
-let submitDOM = document.querySelector('.submit');
-let success = document.querySelector('#value');
-let ratingState = document.querySelector('.rating');
-let thankState = document.querySelector('.thank-you')
+let rateDOM = document.querySelector(".flexbox").children;
+let submitDOM = document.querySelector(".submit");
+let success = document.querySelector("#value");
+let ratingState = document.querySelector(".rating");
+let thankState = document.querySelector(".thank-you");
 let rate = 0;
 for (num of rateDOM) {
-    num.addEventListener('click', function() {
-        rate = this.innerHTML
+    num.addEventListener("click", function () {
+        rate = this.innerHTML;
         for (btn of rateDOM) {
-            btn.classList.remove('active');
+            btn.classList.remove("active");
         }
 
-        this.classList.add('active');
+        this.classList.add("active");
     });
 }
 submitDOM.addEventListener("click", () => displayRate(rate));
-
 
 function displayRate(rate) {
     if (rate === 0) {
@@ -308,7 +305,7 @@ function displayRate(rate) {
 
 # Conclusion
 
-I hope you have learnt the basics of how to create an interactive rating component using vanilla javascript.
+I hope you have learnt the basics of how to create an interactive rating component using vanilla JavaScript.
 
 # Reference
 
@@ -319,7 +316,5 @@ If you would like to see the complete code, you can do so [here](https://github.
 If you have questions about anything related to NexLiber or this workbook, you're welcome to ask our community on [Discord](/community)!
 
 export default ({ children }) => (
-    <WorkbookLayout 
-        projectTitle="Interactive Rating" 
-        content={children} />
+    <WorkbookLayout projectTitle="Interactive Rating" content={children} />
 );
