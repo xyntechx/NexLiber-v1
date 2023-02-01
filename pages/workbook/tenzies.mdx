@@ -2,23 +2,21 @@ import WorkbookLayout from "../../layouts/WorkbookLayout";
 import Quiz from "../../components/workbook/quiz";
 import Pic from "../../components/workbook/pic";
 
-## Setup
-
-### Prerequisite Applications
+# Prerequisite Applications
 
 Make sure that you have installed [Node](https://nodejs.org/en/download/) on your machine before getting started with the project. Also, check that you have a code editor/IDE installed; if you don't have one, I recommend installing [Visual Studio Code](https://code.visualstudio.com/download).
 
-### Prerequisite Knowledge
+# Prerequisite Knowledge
 
-This project requires the basic knowledge of react and typescript.
+This project requires the basic knowledge of React and TypeScript.
 
 We would be using vite to scaffold a template for the project. Go to a folder you want this project and open up the command line in the project folder and write
 
 ```
-  npm create vite@latest tenzies --template react-ts
+npm create vite@latest tenzies --template react-ts
 ```
 
-And follow the prompts. For more details, check [here](https://vitejs.dev/guide/)
+And follow the prompts. For more details, check [here](https://vitejs.dev/guide/).
 
 Now, run your code!
 
@@ -39,6 +37,54 @@ Tenzies is a game where the player must match 10 dice having the same number on 
 Now that we understand what we're going to do, let's begin coding!
 
 Before we start coding, let's clean up our folder and only leave the files we need. So after clean up, the folder sturcture will be like this
+
+<Pic
+  src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Tenzies/tenzies-assets/tenzies-project-folder-structure.PNG"
+  alt="Tenzies Project Folder Structure"
+  width={233}
+  height={490}
+/>
+
+In the hooks folder, we will be creating a custom hook which we would use later down the line. Create a `windowSize.tsx` file and add the following code there
+
+```javascript
+import { useEffect, useState } from "react";
+
+// Define general type for useWindowSize hook, which includes width and height
+interface Size {
+  width: number | undefined;
+  height: number | undefined;
+}
+
+export default function useWindowSize(): Size {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] =
+    useState <
+    Size >
+    {
+      width: undefined,
+      height: undefined,
+    };
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
+```
 
 <Pic
   src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Tenzies/tenzies-assets/tenzies-project-folder-structure.png"
@@ -88,7 +134,14 @@ export default function useWindowSize(): Size {
 }
 ```
 
-In our App.ts, let's put the following code there
+<Pic
+  src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Tenzies/tenzies-assets/tenzies-project-folder-structure.PNG"
+  alt="Tenzies Project Structure"
+  width={233}
+  height={490}
+/>
+
+In our App.ts, let's put the following code.
 
 ```javascript
 import React from "react";
@@ -106,7 +159,7 @@ export default function App() {
 }
 ```
 
-And in the index.css, add the following css codes so we don't focus on writing css
+And in the index.css, add the following css codes so we don't focus on writing css.
 
 ```css
 :root {
@@ -219,7 +272,7 @@ This gives us a basic look of our game interface. Now let's create a die compone
 
 # Creating the Die Component
 
-In our component folder, create a file "Die.tsx" and write the following code
+In our component folder, create a file "Die.tsx" and write the following code.
 
 ```javascript
 import React from "react";
@@ -236,7 +289,7 @@ export default function Die() {
 
 The die value is hardcorded for now, we would dynamically set it later.
 
-Let us write a function, generateNewDie, that can returns random numbers between 1 and 6 and another function, allNewDice, that returns an array of 10 number
+Let us write a function, generateNewDie, that returns random numbers between 1 and 6 and another function, allNewDice, that returns an array of 10 numbers.
 
 ```javascript
 function genereateNewDie() {
@@ -254,9 +307,9 @@ function allNewDice() {
 }
 ```
 
-`generateNewDie()` returns an object with one key-value pair whose value is between 1 and 6
+**generateNewDie()** returns an object with one key-value pair whose value is between 1 and 6.
 
-In `allNewDice()`, we create an empty array then we use a regular for loop to perform a push to the empty array 10 times. We call the `generateNewDie()` for each loop.
+In **allNewDice()**, we create an empty array then we use a regular for loop to perform a push to the empty array 10 times. We call the **generateNewDie()** for each loop.
 
 Checking our console, we got
 
@@ -275,11 +328,13 @@ Checking our console, we got
 ];
 ```
 
+From our results, we have an array of 10 objects having a value property whose value ranges between 1 and 6.
+
 # Setting State
 
 Next, let's set up a state that will store our array of 10 numbers when the react components mounts. We will then map through the data in the state to set 10 instances of the Die component.
 
-Add this to the App.tsx
+Add this to App.tsx.
 
 ```javascript
 // first import useState from react
@@ -306,7 +361,7 @@ return (
 );
 ```
 
-Due to using map without a key-value pair in variable `mappedDice`, the following error always shows up with the console
+Due to using map without a key-value pair in variable **mappedDice**, the following error always shows up with the console.
 
 ```
 Warning: Each child in an array should have a unique key prop
@@ -314,7 +369,7 @@ Warning: Each child in an array should have a unique key prop
 
 To fix this error, we can use the use the index of the elements as the key value but we would be using an npm package [nanoID](https://www.npmjs.com/package/nanoid) to create custom ID for us.
 
-So we install it with `npm i nanoid` and add the following to our App.tsx
+So we install it with **npm i nanoid** and add the following to our App.tsx.
 
 ```javascript
 //  at the top of the App.tsx
@@ -365,7 +420,7 @@ const mappedDice = dice.map((die) => {
 });
 ```
 
-Next we create a function for rolling of the dice. This would require a button that once clicked it will roll the dice and change the numbers
+Next we create a function for rolling of the dice. This would require a button that once clicked it will roll the dice and change the numbers.
 
 ```javascript
 //  add to the app.tsx
@@ -382,11 +437,11 @@ function rollDice() {
 </button>;
 ```
 
-`rollDice()` maps through the dice state and returns the `generateNewDie()` which will then be saved to the state. Anytime the button is clicked, the `rollDice()` is called and the numbers on the screen change.
+**rollDice()** maps through the dice state and returns the **generateNewDie()** which will then be saved to the state. Anytime the button is clicked, the **rollDice()** is called and the numbers on the screen change.
 
 # Holding the die
 
-The problem now is that when we click a die we cannot hold that die and generate new numbers for the rest of the die that were not held. So, let us create a function for this
+The problem now is that when we click a die we cannot hold that die and generate new numbers for the rest of the die that were not held. So, let us create a function for this.
 
 ```javascript
 // the generateNewDie becomes,
@@ -410,9 +465,9 @@ function holdDice(id: string) {
 }
 ```
 
-`holdDice()` is taking a parameter, Id, which is to check if the id passed is equal to the id of the component. If truthy, it creates a shallow copy of the object in state and changes the value of the `isHeld` variable to the opposite. And if falsy, just return the die object like that.
+**holdDice()** is taking a parameter, Id, which is to check if the id passed is equal to the id of the component. If truthy, it creates a shallow copy of the object in state and changes the value of the **isHeld** variable to the opposite. If falsy, just return the die object like that.
 
-For the `holdDice()` and `isHeld` to work, they need to be passed as props to the Die component. So, adding these new changes
+For **holdDice()** and **isHeld** to work, they need to be passed as props to the Die component. So, add these new changes.
 
 ```javascript
 const mappedDice = dice.map((die) => {
@@ -449,7 +504,7 @@ export default function Die({ id, value, isHeld, hold }: DiePropsType) {
 
 # Winning the game
 
-To win the game, we have to check if all the dice are held and if they all have the same value. And if truthy, we change the button text to start a new game. For this, let's write the following
+To win the game, we have to check if all the dice are held and if they all have the same value. if truthy, we change the button text to start a new game. For this, let's write the following.
 
 ```javascript
 const [tenzies, setTenzies] = React.useState(false);
@@ -577,9 +632,9 @@ export default function App() {
 }
 ```
 
-### Conclusion
+# Discord Community
 
-We saw how to build a tenzies game with react-typescript. I hope you learnt something,If you would like to see the complete code, you can do so [here](https://github.com/xyntechx/NexLiber-Projects/tree/main/Tenzies)!
+If you have questions about anything related to NexLiber or this Workbook, you're welcome to ask our community on [Discord](/community)!
 
 export default ({ children }) => (
   <WorkbookLayout projectTitle="Tenzies" content={children} />
