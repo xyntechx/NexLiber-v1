@@ -336,7 +336,7 @@ And the error message is gone.
 
 # Dynamically Rendering the Die Value
 
-Now we are getting values from our state when the component mounts and we need the **die** component to display this value. So we want to pass it down as a prop and since we are using typescript we would need to specify the type for the props that will be passed.
+Now, we are getting values from our state when the component mounts and we need the **die** component to display this value. So, we want to pass it down as a prop. Since we are using TypeScript, we would need to specify the type of the props that will be passed.
 
 To learn more about React with TypeScript, click [here](https://react-typescript-cheatsheet.netlify.app/).
 
@@ -365,7 +365,7 @@ const mappedDice = dice.map((die) => {
 });
 ```
 
-Next we create a function for rolling of the dice. This would require a button that once clicked it will roll the dice and change the numbers.
+Next, we create a function to roll the dice. This would require a button that, once clicked, will roll the dice and change the numbers.
 
 ```javascript
 //  add to the app.tsx
@@ -475,13 +475,13 @@ function newGame() {
 </button>;
 ```
 
-We use the higher order funtion [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) to check if every object in the array is true and also we select the first value and check if all the values in every object matches it. If truthy, then the game ends and tenzies is set to true and the button text turns to New Game for the start of a new Game.
+We use the higher order function [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) to check if every object in the array is true, and we select the first value and check if all the values in every object matches it. If truthy, then the game ends and tenzies is set to true, and the button text turns to New Game for the start of a new game.
 
 The **newGame()** function sets tenzies to false and changes the **dice** state to be random numbers.
 
 ### Wrapping Up
 
-Just before that, let us display some confetti that will signal to the user that the game has been won. We can do this with the [react-confetti package](https://www.npmjs.com/package/react-confetti).
+Just before that, let us display some confetti that will signal to the user that the game has been won. We can do this with [react-confetti](https://www.npmjs.com/package/react-confetti).
 
 We install it with **npm i react-confetti** and import **Confetti** from the package. According to the docs, we need to pass this **Confetti** component height and width props to allow the confetti to work on the full screen. The **windowSize.tsx** file in the hooks folder returns just that, so we can destructure what we need from there.
 
