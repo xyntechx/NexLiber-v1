@@ -68,5 +68,12 @@
         "difficulty": "Intermediate",
         "creator": "Kelvin Praises",
         "date": "Jan 28, 2023"
+    },
+    "Tenzies": {
+        "description": "A React game where you roll 10 dice until all the dice are the same",
+        "field": "Web Development",
+        "difficulty": "Beginner",
+        "creator": "Dave Aronmwan",
+        "date": "Feb 01, 2023"
     }
 }
