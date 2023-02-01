@@ -47,6 +47,47 @@ Before we start coding, let's clean up our folder and only leave the files we ne
   height={300}
 />
 
+In the hooks folder, we will be creating a custom hook which we would use later down the line. Create a `windowSize.tsx` file and add the following code there
+
+```javascript
+import { useEffect, useState } from "react";
+
+// Define general type for useWindowSize hook, which includes width and height
+interface Size {
+  width: number | undefined;
+  height: number | undefined;
+}
+
+export default function useWindowSize(): Size {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] =
+    useState <
+    Size >
+    {
+      width: undefined,
+      height: undefined,
+    };
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
+```
+
 In our App.ts, let's put the following code there
 
 ```javascript
@@ -182,7 +223,7 @@ In our component folder, create a file "Die.tsx" and write the following code
 
 ```javascript
 import React from "react";
-// This does not do anything
+// Just to show that it is a react app
 
 export default function Die() {
   return (
@@ -234,8 +275,6 @@ Checking our console, we got
 ];
 ```
 
-From our results, we have an array of 10 objects having a value property whose value ranges between 1 and 6
-
 # Setting State
 
 Next, let's set up a state that will store our array of 10 numbers when the react components mounts. We will then map through the data in the state to set 10 instances of the Die component.
@@ -273,7 +312,7 @@ Due to using map without a key-value pair in variable `mappedDice`, the followin
 Warning: Each child in an array should have a unique key prop
 ```
 
-To fix this error, we would be using an npm package [nanoID](https://www.npmjs.com/package/nanoid) to create custom ID for us.
+To fix this error, we can use the use the index of the elements as the key value but we would be using an npm package [nanoID](https://www.npmjs.com/package/nanoid) to create custom ID for us.
 
 So we install it with `npm i nanoid` and add the following to our App.tsx
 
@@ -297,9 +336,11 @@ And the error message is gone.
 
 # Dynamically Rendering the Die Value
 
-Now we are getting values from our state when the component mounts and we need the die component to display this value. So we want to pass it down as props and since we are using typescript we would need to specify the type for the props that will be passed
+Now we are getting values from our state when the component mounts and we need the `die` component to display this value. So we want to pass it down as a prop and since we are using typescript we would need to specify the type for the props that will be passed.
 
-We update our die component by adding props in the app.tsx and receiving them in the die component jsx
+To learn more about react with typescript, click [here](https://react-typescript-cheatsheet.netlify.app/)
+
+We update our `die` component by adding props in the app.tsx and receiving them in the die component jsx
 
 ```javascript
 // the Die component in component
@@ -313,7 +354,7 @@ export default function Die({ value }: DiePropsType) {
   return (
     <div>
       <p className="die-value">{value}</p>
-      {/* if theres an error here saying 'number cannot be assigned to React.Node', then convert the number to string and  replace the 'value' in the paragraph with the new value */}
+      {/* if there is an error here saying 'number cannot be assigned to React.Node', then convert the number to string and  replace the 'value' in the paragraph with the new value */}
     </div>
   );
 }
@@ -371,7 +412,7 @@ function holdDice(id: string) {
 
 `holdDice()` is taking a parameter, Id, which is to check if the id passed is equal to the id of the component. If truthy, it creates a shallow copy of the object in state and changes the value of the `isHeld` variable to the opposite. And if falsy, just return the die object like that.
 
-for the `holdDice()` and `isHeld` to work, they need to be passed as props to the Die component. So, add these new changes
+For the `holdDice()` and `isHeld` to work, they need to be passed as props to the Die component. So, adding these new changes
 
 ```javascript
 const mappedDice = dice.map((die) => {
@@ -413,7 +454,7 @@ To win the game, we have to check if all the dice are held and if they all have 
 ```javascript
 const [tenzies, setTenzies] = React.useState(false);
 
-// using a useEffect because we want the logic to check after the component has mounted
+// using a useEffect because we want to check after the component has mounted
 React.useEffect(() => {
   const allIsHeld = dice.every((die) => die.isHeld);
   const firstValue = dice[0].value;
@@ -434,7 +475,107 @@ function newGame() {
 </button>;
 ```
 
-We use the higher order funtion "every" to check if every object in the array is true and also we select the first value and check if all the values in every object matches it. If truthy, then the game is ends and tenzies is set to true
+We use the higher order funtion [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) to check if every object in the array is true and also we select the first value and check if all the values in every object matches it. If truthy, then the game ends and tenzies is set to true and the button text turns to New Game for the start of a new Game.
+
+The `newGame()` function sets tenzies to false and changes the `dice` state to be random numbers
+
+### Wrapping Up
+
+Just before that, let us display some confetti that will signal to the user that the game has been won. We can do this with the [react-confetti package](https://www.npmjs.com/package/react-confetti).
+
+We install it with `npm i react-confetti` and import `Confetti` from the package. From the docs we need to pass this `Confetti` component height and width props which is just to allow the confetti work on the full screen. The `windowSize.tsx` file in the hooks folder which returns just that, so we can destructure what we need from there.
+
+The codebase becomes
+
+```javascript
+import React from "react";
+import Die from "./components/Die";
+import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
+import useWindowSize from "./hooks/windowSize";
+
+export default function App() {
+  const [dice, setDice] = React.useState(allNewDice());
+  const [tenzies, setTenzies] = React.useState(false);
+  const { width, height } = useWindowSize();
+
+  React.useEffect(() => {
+    const allIsHeld = dice.every((die) => die.isHeld);
+    const firstValue = dice[0].value;
+    const allSameValue = dice.every((die) => die.value === firstValue);
+
+    if (allIsHeld && allSameValue) {
+      setTenzies(true);
+      console.log("Dice changed");
+    }
+  }, [dice]);
+
+  const mappedDice = dice.map((die) => {
+    return (
+      <Die
+        key={die.id}
+        value={die.value}
+        isHeld={die.isHeld}
+        id={die.id}
+        hold={holdDice}
+      />
+    );
+  });
+
+  function genereateNewDie() {
+    return {
+      value: Math.floor(Math.random() * 6) + 1,
+      isHeld: false,
+      id: nanoid(),
+    };
+  }
+
+  function allNewDice() {
+    const dieValueArray = [];
+    for (let i = 0; i < 10; i++) {
+      dieValueArray.push(genereateNewDie());
+    }
+    return dieValueArray;
+  }
+
+  function rollDice() {
+    const newRollDice = dice.map((die) => {
+      return die.isHeld ? die : genereateNewDie();
+    });
+    setDice(newRollDice);
+  }
+
+  function holdDice(id: string) {
+    const holdedDie = dice.map((die) => {
+      if (die.id === id) {
+        return { ...die, isHeld: !die.isHeld };
+      } else {
+        return die;
+      }
+    });
+    setDice(holdedDie);
+  }
+
+  function newGame() {
+    return setTenzies(false), setDice(allNewDice());
+  }
+
+  return (
+    <main>
+      {tenzies && <Confetti width={width} height={height} />}
+      <h1 className="title">Tenzies</h1>
+      <p className="instruction">
+        Roll until all dice are the same. Click each die to freeze it at its
+        current value between rolls
+      </p>
+      <div className="die-container">{mappedDice}</div>
+      <button onClick={tenzies ? newGame : rollDice} className="roll-btn">
+        {tenzies ? "New Game" : "Roll"}
+      </button>
+    </main>
+  );
+}
+```
 
 ### Conclusion
 
