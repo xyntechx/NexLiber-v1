@@ -86,61 +86,6 @@ export default function useWindowSize(): Size {
 }
 ```
 
-<Pic
-  src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Tenzies/tenzies-assets/tenzies-project-folder-structure.png"
-  alt="Tenzies project folder structure"
-  width={200}
-  height={300}
-/>
-
-In the hooks folder, we will be creating a custom hook which we would use later down the line. Create a `windowSize.tsx` file and add the following code there
-
-```javascript
-import { useEffect, useState } from "react";
-
-// Define general type for useWindowSize hook, which includes width and height
-interface Size {
-  width: number | undefined;
-  height: number | undefined;
-}
-
-export default function useWindowSize(): Size {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] =
-    useState <
-    Size >
-    {
-      width: undefined,
-      height: undefined,
-    };
-  useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize;
-}
-```
-
-<Pic
-  src="https://raw.githubusercontent.com/xyntechx/NexLiber-Projects/main/Tenzies/tenzies-assets/tenzies-project-folder-structure.PNG"
-  alt="Tenzies Project Structure"
-  width={233}
-  height={490}
-/>
-
 In our App.ts, let's put the following code.
 
 ```javascript
@@ -433,7 +378,7 @@ function rollDice() {
 
 // add to the jsx of App.tsx after the div with the className of 'die-container'
 <button onClick={rollDice} className="roll-btn">
-  "Roll"
+  Roll
 </button>;
 ```
 
@@ -532,7 +477,7 @@ function newGame() {
 
 We use the higher order funtion [every](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) to check if every object in the array is true and also we select the first value and check if all the values in every object matches it. If truthy, then the game ends and tenzies is set to true and the button text turns to New Game for the start of a new Game.
 
-The `newGame()` function sets tenzies to false and changes the `dice` state to be random numbers
+The **newGame()** function sets tenzies to false and changes the **dice** state to be random numbers
 
 ### Wrapping Up
 
