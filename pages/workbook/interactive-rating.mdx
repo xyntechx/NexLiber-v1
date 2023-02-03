@@ -14,13 +14,17 @@ The website will look something like this...
 <Pic
     src="https://raw.githubusercontent.com/Chidera-Ok/interactive-rating-component/main/design/desktop-design.jpg"
     alt="Complete Personal Portfolio Website"
-    width={400}
-    height={260}
+    width={500}
+    height={300}
 />
+
+# The Live Site
+
+Have a preview of the [live site](https://chidera-ok.github.io/interactive-rating-component/) before we begin to code.
 
 # Let's Get Started
 
-Yeah, we are about to start off. What better place to commence than with the html file. In your index.html file, add the following lines of code.
+Yeah, we are about to start off. What better place to commence than with the html file. The **index.html** file contains codes that determine the skeleton of the page. Semantic html 5 elements help to properly delineate the structure of the web page. In the body element add the following lines of code.
 
 ```html
 <body>
@@ -64,10 +68,38 @@ Yeah, we are about to start off. What better place to commence than with the htm
 
 # Styling Our Design
 
-In your style.css, add these lines of code.
+CSS adds beauty to the webpage, a totally indispensible function I must say.  Lets start off by removing the default property values using the wildcard selector. This is a recommended practice each time you want to code, yeah it actually comes in handy. 
+
+```css
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+```
+
+The :root selector matches the document's root element. In webpage, the root element is the html element. In :root selector, css variables can be created. 
+
+```css
+:root {
+    --orange: hsl(25, 97%, 53%);
+    --white: hsl(0, 0%, 100%);
+    --light-grey: hsl(217, 12%, 63%);
+    --medium-grey: hsl(216, 12%, 54%);
+    --dark-blue: hsl(213, 19%, 18%);
+    --medium-blue: hsl(213, 19%, 25%);
+    --very-dark-blue: hsl(216, 12%, 8%);
+    font-size: 15px;
+}
+```
+
+
+We will use css **flexbox** for our layout, [Google Fonts](https://fonts.google.com/knowledge) for our custome fonts, **relative units** such as rem and percentages for better responsiveness. Finally, your **style.css** page should look like this.
 
 ```css
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap");
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -222,7 +254,7 @@ h1 {
 
 # Responsive Design
 
-To make our implementation **responsive**, add the following lines of code.
+To make our implementation **responsive** for the different viewports, css media query will be employed. Add the following lines of code.
 
 ```css
 /* Extra small devices (phones, 600px and down) */
@@ -271,7 +303,18 @@ To make our implementation **responsive**, add the following lines of code.
 
 # Onto the JavaScript
 
-So our app is not really interative until we add JavaScript.
+So our app is not really interative until we add JavaScript. What we really want to implement is a functionality that returns the rating given by the user on a new page.
+
+
+Here is what it looks like
+<Pic
+    src="https://raw.githubusercontent.com/Chidera-Ok/interactive-rating-component/main/design/desktop-thank-you-state.jpg"
+    alt="Complete Personal Portfolio Website"
+    width={500}
+    height={300}
+/>
+
+Start off by quering the DOM (Document Object Model) for required elements. The querySelector method returns a NodeList with the first element that matches the CSS selector(s). A node list is a list (collection) of nodes extracted from a document and is almost the same as an HTMLCollection object. 
 
 ```js
 let rateDOM = document.querySelector(".flexbox").children;
@@ -280,16 +323,21 @@ let success = document.querySelector("#value");
 let ratingState = document.querySelector(".rating");
 let thankState = document.querySelector(".thank-you");
 let rate = 0;
+```
+
+We will loop through the rateDOM as it is a collection that stores the five clickable buttons. So for each button loop through it, listen for a **click** event, then return the inner html content. This could be **3** if I clicked it for instance. Then, add the class "active" - check the css code - to the correct button you clicked. 
+```js
 for (num of rateDOM) {
     num.addEventListener("click", function () {
         rate = this.innerHTML;
-        for (btn of rateDOM) {
-            btn.classList.remove("active");
-        }
-
         this.classList.add("active");
     });
 }
+```
+
+The last task is to tie the click event to a function that will render the thank you state and hid the original rating state. This will implemented by toggling display property on and off in a simple sense.
+
+```js
 submitDOM.addEventListener("click", () => displayRate(rate));
 
 function displayRate(rate) {
@@ -302,6 +350,36 @@ function displayRate(rate) {
     }
 }
 ```
+
+The **script.js** file should look somewhat like this.
+
+```
+let rateDOM = document.querySelector('.flexbox').children;
+let submitDOM = document.querySelector('.submit');
+let success = document.querySelector('#value');
+let ratingState = document.querySelector('.rating');
+let thankState = document.querySelector('.thank-you')
+let rate = 0;
+for (num of rateDOM) {
+    num.addEventListener('click', function() {
+        rate = this.innerHTML
+        this.classList.add('active');
+    });
+}
+submitDOM.addEventListener("click", () => displayRate(rate));
+
+
+function displayRate(rate) {
+    if (rate === 0) {
+        alert("Please rate us");
+    } else {
+        success.innerHTML = rate;
+        ratingState.style.display = "none";
+        thankState.style.display = "flex";
+    }
+}
+```
+
 
 # Conclusion
 
