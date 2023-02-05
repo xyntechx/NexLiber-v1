@@ -31,15 +31,16 @@ const FAQ: NextPage = () => {
                     <details className={styles.question}>
                         <summary>What is NexLiber?</summary>
                         <div className={styles.answer}>
-                            NexLiber is a comprehensive library of computer
-                            science (CS) projects promoting community-driven
-                            experiential learning. NexLiber hosts Workbooks,
-                            which are comprehensive project documentations, to
-                            inspire you to engineer original creations after
-                            self-coding the in-Workbook projects to understand
-                            the thought processes of experienced coders. Hence,
-                            you&apos;ll escape tutorial hell through learning by
-                            doing!
+                            NexLiber is a library of Workbooks promoting
+                            community-driven experiential learning amongst
+                            coders. Workbooks are comprehensive project
+                            documentations which explain the thought processes
+                            behind the code of the documented projects, enabling
+                            you to go beyond copy-pasting code and escape
+                            tutorial hell. By reading and writing Workbooks, you
+                            can more skilfully code original projects thanks to
+                            thoroughly understanding the &quot;why&quot; behind
+                            code.
                         </div>
                     </details>
                     <details className={styles.question}>
