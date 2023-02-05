@@ -75,5 +75,12 @@
         "difficulty": "Beginner",
         "creator": "Dave Aronmwan",
         "date": "Feb 01, 2023"
+    },
+    "Interactive Rating": {
+        "description": "A project displaying an interactive rating component for users",
+        "field": "Web Development",
+        "difficulty": "Beginner",
+        "creator": "Okeke Chidera",
+        "date": "Feb 05, 2023"
     }
 }

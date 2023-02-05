@@ -1,0 +1,398 @@
+import WorkbookLayout from "../../layouts/WorkbookLayout";
+import Pic from "../../components/workbook/pic";
+
+# Setup
+
+This project can be done on an **Integrated Development Environnment** such as Microsoft Visual Studio Code. It will also require a desktop browser of your choice to render the code. Download the starter file from [Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-rating-component-koxpeBUmI).
+
+# About the Project
+
+This is a solution to the [interactive rating component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-rating-component-koxpeBUmI). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+
+The website will look something like this...
+
+<Pic
+    src="https://raw.githubusercontent.com/Chidera-Ok/interactive-rating-component/main/design/desktop-design.jpg"
+    alt="Complete Personal Portfolio Website"
+    width={500}
+    height={300}
+/>
+
+# The Live Site
+
+Have a preview of the [live site](https://chidera-ok.github.io/interactive-rating-component/) before we begin to code.
+
+# Let's Get Started
+
+Yeah, we are about to start off. What better place to commence than with the **.html** file. The **index.html** file contains code that determines the skeleton of the page. Semantic HTML5 elements help to properly delineate the structure of the web page. In the body element, add the following lines of code:
+
+```html
+<body>
+    <main class="container">
+        <section class="rating">
+            <div class="star">
+                <img src="./images/icon-star.svg" alt="" aria-hidden="“true”" />
+            </div>
+            <h1>How did we do?</h1>
+            <p class="description">
+                Please let us know how we did with your support request. All
+                feedback is appreciated to help us improve our offering!
+            </p>
+            <div class="flexbox">
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+
+            <button class="submit">SUBMIT</button>
+        </section>
+
+        <section class="thank-you">
+            <div><img src="./images/illustration-thank-you.svg" alt="" /></div>
+            <div class="selected">
+                <p>You selected <span id="value"></span> out of 5</p>
+            </div>
+            <h1>Thank you!</h1>
+            <p class="thank-description">
+                We appreciate you taking the time to give a rating. If you ever
+                need more support, don’t hesitate to get in touch!
+            </p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+```
+
+# Styling Our Design
+
+CSS adds beauty to the webpage, a totally indispensible function I must say. Let's start off by removing the default property values using the wildcard selector. This is a recommended practice each time you want to code, and yeah it actually comes in handy. 
+
+```css
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+```
+
+The **:root** selector matches the document's root element. In a webpage, the root element is the **html** element. In the **:root** selector, CSS variables can be created. 
+
+```css
+:root {
+    --orange: hsl(25, 97%, 53%);
+    --white: hsl(0, 0%, 100%);
+    --light-grey: hsl(217, 12%, 63%);
+    --medium-grey: hsl(216, 12%, 54%);
+    --dark-blue: hsl(213, 19%, 18%);
+    --medium-blue: hsl(213, 19%, 25%);
+    --very-dark-blue: hsl(216, 12%, 8%);
+    font-size: 15px;
+}
+```
+
+We will use a **flexbox** for our layout, [Google Fonts](https://fonts.google.com/knowledge) for our custome fonts, and **relative units** such as rem and percentages for better responsiveness. Finally, your **style.css** page should look like this:
+
+```css
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap");
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --orange: hsl(25, 97%, 53%);
+    --white: hsl(0, 0%, 100%);
+    --light-grey: hsl(217, 12%, 63%);
+    --medium-grey: hsl(216, 12%, 54%);
+    --dark-blue: hsl(213, 19%, 18%);
+    --medium-blue: hsl(213, 19%, 25%);
+    --very-dark-blue: hsl(216, 12%, 8%);
+    font-size: 15px;
+}
+
+body {
+    background-color: var(--very-dark-blue);
+    max-width: 100vw;
+    max-height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Red Hat Display", sans-serif;
+}
+
+.container {
+    background-color: var(--dark-blue);
+    opacity: 80%;
+    width: 30%;
+    border-radius: 1.5rem;
+    color: var(--white);
+    padding: 1rem;
+}
+
+.container * {
+    margin: 1rem;
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.star {
+    background-color: var(--medium-blue);
+    border-radius: 50%;
+    width: 3rem;
+}
+
+.description {
+    font-size: 1rem;
+    color: var(--light-grey);
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.flexbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.flexbox > button {
+    background-color: var(--medium-blue);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    color: var(--light-grey);
+    border: 0;
+    margin: 1rem 0;
+}
+
+.flexbox > button:hover {
+    background-color: var(--orange);
+    color: var(--white);
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+
+.active {
+    background-color: var(--medium-grey) !important;
+    color: var(--white);
+    cursor: pointer;
+    transition: ease-in 0.8s;
+}
+
+.submit {
+    width: 100%;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 0.8rem;
+    background-color: var(--orange);
+    color: var(--white);
+    margin: auto;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    border: 0;
+}
+
+.submit:hover {
+    background-color: var(--white);
+    color: var(--orange);
+    cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+
+.thank-description {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--light-grey);
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.selected {
+    color: var(--orange);
+    background-color: var(--medium-blue);
+    border-radius: 3rem;
+    opacity: 80%;
+    margin: 0;
+}
+
+.selected > p {
+    margin: 0.5rem;
+}
+
+.rating {
+    display: block;
+}
+
+.thank-you {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    margin: 0;
+}
+
+#value {
+    margin: 0;
+}
+```
+
+# Responsive Design
+
+To make our implementation **responsive** for the different viewports, media queries will be employed. Add the following lines of code:
+
+```css
+/* Extra small devices (phones, 600px and down) */
+
+@media only screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+    }
+    .flexbox {
+        gap: 1rem;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 80%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 70%;
+    }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 50%;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 30%;
+    }
+}
+```
+
+# Onto the JavaScript
+
+So our app is not really interative until we add JavaScript. What we really want to implement is a functionality that returns the rating given by the user on a new page.
+
+Here is what it looks like:
+
+<Pic
+    src="https://raw.githubusercontent.com/Chidera-Ok/interactive-rating-component/main/design/desktop-thank-you-state.jpg"
+    alt="Complete Personal Portfolio Website"
+    width={500}
+    height={300}
+/>
+
+Start off by quering the DOM (Document Object Model) for required elements. The querySelector method returns a NodeList with the first element that matches the CSS selector(s). A node list is a list (collection) of nodes extracted from a document and is almost the same as an HTMLCollection object. 
+
+```js
+let rateDOM = document.querySelector(".flexbox").children;
+let submitDOM = document.querySelector(".submit");
+let success = document.querySelector("#value");
+let ratingState = document.querySelector(".rating");
+let thankState = document.querySelector(".thank-you");
+let rate = 0;
+```
+
+We will loop through the rateDOM as it is a collection that stores the five clickable buttons. So for each button loop through it, listen for a **click** event, then return the inner HTML content. This could be **3** if we clicked it for instance. Then, add the class "active" - check the css code - to the correct button you clicked.
+
+```js
+for (num of rateDOM) {
+    num.addEventListener("click", function () {
+        rate = this.innerHTML;
+        this.classList.add("active");
+    });
+}
+```
+
+The last task is to tie the click event to a function that will render the "thank you" state and hide the original rating state. This is implemented by toggling the display property on and off in a simple sense.
+
+```js
+submitDOM.addEventListener("click", () => displayRate(rate));
+
+function displayRate(rate) {
+    if (rate === 0) {
+        alert("Please rate us");
+    } else {
+        success.innerHTML = rate;
+        ratingState.style.display = "none";
+        thankState.style.display = "flex";
+    }
+}
+```
+
+The **script.js** file should look somewhat like this.
+
+```
+let rateDOM = document.querySelector('.flexbox').children;
+let submitDOM = document.querySelector('.submit');
+let success = document.querySelector('#value');
+let ratingState = document.querySelector('.rating');
+let thankState = document.querySelector('.thank-you')
+let rate = 0;
+for (num of rateDOM) {
+    num.addEventListener('click', function() {
+        rate = this.innerHTML
+        this.classList.add('active');
+    });
+}
+submitDOM.addEventListener("click", () => displayRate(rate));
+
+
+function displayRate(rate) {
+    if (rate === 0) {
+        alert("Please rate us");
+    } else {
+        success.innerHTML = rate;
+        ratingState.style.display = "none";
+        thankState.style.display = "flex";
+    }
+}
+```
+
+
+# Conclusion
+
+I hope you have learnt the basics of how to create an interactive rating component using HTML, CSS, and JavaScript.
+
+# Reference
+
+If you would like to see the complete code, you can do so [here](https://github.com/xyntechx/NexLiber-Projects/tree/main/Interactive%20Rating)!
+
+# Discord Community
+
+If you have questions about anything related to NexLiber or this Workbook, you're welcome to ask our community on [Discord](/community)!
+
+export default ({ children }) => (
+    <WorkbookLayout projectTitle="Interactive Rating" content={children} />
+);
