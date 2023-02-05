@@ -24,7 +24,7 @@ Have a preview of the [live site](https://chidera-ok.github.io/interactive-ratin
 
 # Let's Get Started
 
-Yeah, we are about to start off. What better place to commence than with the html file. The **index.html** file contains codes that determine the skeleton of the page. Semantic html 5 elements help to properly delineate the structure of the web page. In the body element add the following lines of code.
+Yeah, we are about to start off. What better place to commence than with the **.html** file. The **index.html** file contains code that determines the skeleton of the page. Semantic HTML5 elements help to properly delineate the structure of the web page. In the body element, add the following lines of code:
 
 ```html
 <body>
@@ -68,7 +68,7 @@ Yeah, we are about to start off. What better place to commence than with the htm
 
 # Styling Our Design
 
-CSS adds beauty to the webpage, a totally indispensible function I must say.  Lets start off by removing the default property values using the wildcard selector. This is a recommended practice each time you want to code, yeah it actually comes in handy. 
+CSS adds beauty to the webpage, a totally indispensible function I must say. Let's start off by removing the default property values using the wildcard selector. This is a recommended practice each time you want to code, and yeah it actually comes in handy. 
 
 ```css
 * {
@@ -79,7 +79,7 @@ CSS adds beauty to the webpage, a totally indispensible function I must say.  Le
 
 ```
 
-The :root selector matches the document's root element. In webpage, the root element is the html element. In :root selector, css variables can be created. 
+The **:root** selector matches the document's root element. In a webpage, the root element is the **html** element. In the **:root** selector, CSS variables can be created. 
 
 ```css
 :root {
@@ -94,8 +94,7 @@ The :root selector matches the document's root element. In webpage, the root ele
 }
 ```
 
-
-We will use css **flexbox** for our layout, [Google Fonts](https://fonts.google.com/knowledge) for our custome fonts, **relative units** such as rem and percentages for better responsiveness. Finally, your **style.css** page should look like this.
+We will use a **flexbox** for our layout, [Google Fonts](https://fonts.google.com/knowledge) for our custome fonts, and **relative units** such as rem and percentages for better responsiveness. Finally, your **style.css** page should look like this:
 
 ```css
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap");
@@ -254,7 +253,7 @@ h1 {
 
 # Responsive Design
 
-To make our implementation **responsive** for the different viewports, css media query will be employed. Add the following lines of code.
+To make our implementation **responsive** for the different viewports, media queries will be employed. Add the following lines of code:
 
 ```css
 /* Extra small devices (phones, 600px and down) */
@@ -305,8 +304,8 @@ To make our implementation **responsive** for the different viewports, css media
 
 So our app is not really interative until we add JavaScript. What we really want to implement is a functionality that returns the rating given by the user on a new page.
 
+Here is what it looks like:
 
-Here is what it looks like
 <Pic
     src="https://raw.githubusercontent.com/Chidera-Ok/interactive-rating-component/main/design/desktop-thank-you-state.jpg"
     alt="Complete Personal Portfolio Website"
@@ -325,7 +324,8 @@ let thankState = document.querySelector(".thank-you");
 let rate = 0;
 ```
 
-We will loop through the rateDOM as it is a collection that stores the five clickable buttons. So for each button loop through it, listen for a **click** event, then return the inner html content. This could be **3** if I clicked it for instance. Then, add the class "active" - check the css code - to the correct button you clicked. 
+We will loop through the rateDOM as it is a collection that stores the five clickable buttons. So for each button loop through it, listen for a **click** event, then return the inner HTML content. This could be **3** if we clicked it for instance. Then, add the class "active" - check the css code - to the correct button you clicked.
+
 ```js
 for (num of rateDOM) {
     num.addEventListener("click", function () {
@@ -335,7 +335,7 @@ for (num of rateDOM) {
 }
 ```
 
-The last task is to tie the click event to a function that will render the thank you state and hid the original rating state. This will implemented by toggling display property on and off in a simple sense.
+The last task is to tie the click event to a function that will render the "thank you" state and hide the original rating state. This is implemented by toggling the display property on and off in a simple sense.
 
 ```js
 submitDOM.addEventListener("click", () => displayRate(rate));
@@ -383,15 +383,15 @@ function displayRate(rate) {
 
 # Conclusion
 
-I hope you have learnt the basics of how to create an interactive rating component using vanilla JavaScript.
+I hope you have learnt the basics of how to create an interactive rating component using HTML, CSS, and JavaScript.
 
 # Reference
 
-If you would like to see the complete code, you can do so [here](https://github.com/Chidera-Ok/interactive-rating-component)!
+If you would like to see the complete code, you can do so [here](https://github.com/xyntechx/NexLiber-Projects/tree/main/Interactive%20Rating)!
 
 # Discord Community
 
-If you have questions about anything related to NexLiber or this workbook, you're welcome to ask our community on [Discord](/community)!
+If you have questions about anything related to NexLiber or this Workbook, you're welcome to ask our community on [Discord](/community)!
 
 export default ({ children }) => (
     <WorkbookLayout projectTitle="Interactive Rating" content={children} />
