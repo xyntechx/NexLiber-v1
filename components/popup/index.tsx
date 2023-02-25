@@ -21,15 +21,14 @@ const Popup = () => {
                         NexLiber 2.0 is Coming Very Soon
                     </h1>
                     <p className={styles.text}>
-                        NexLiber 2.0 is releasing publicly on 1 March 2023! Join
+                        The official public release of NexLiber 2.0 is 1 March 2023. Join
                         our{" "}
                         <Link href="/community">
                             <a target="_blank" className={styles.link}>
                                 Discord
                             </a>
                         </Link>{" "}
-                        now to get an exclusive early access to NexLiber 2.0 on
-                        20 February!
+                        server now to get an exclusive early access to NexLiber 2.0!
                     </p>
                     <p className={styles.text}>Appreciate ya!</p>
                     <sub className={styles.author}>
