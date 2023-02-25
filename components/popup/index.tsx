@@ -21,7 +21,7 @@ const Popup = () => {
                         NexLiber 2.0 is Coming Very Soon
                     </h1>
                     <p className={styles.text}>
-                        The official public release of NexLiber 2.0 is 1 March 2023. Join
+                        The official public release date of NexLiber 2.0 is 1 March 2023. Join
                         our{" "}
                         <Link href="/community">
                             <a target="_blank" className={styles.link}>
